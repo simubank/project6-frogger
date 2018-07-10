@@ -40,16 +40,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   // Each tab has its own nav history stack:
 
-  .state('tab.dash', {
-    url: '/dash',
+  .state('tab.postings', {
+    url: '/postings',
     views: {
-      'tab-dash': {
-        templateUrl: 'templates/tab-dash.html',
-        controller: 'DashCtrl'
+      'tab-postings': {
+        templateUrl: 'templates/tab-postings.html',
+        controller: 'PostingsCtrl'
       }
     }
   })
-
+/*
   .state('tab.chats', {
       url: '/chats',
       views: {
@@ -75,6 +75,37 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       'tab-account': {
         templateUrl: 'templates/tab-account.html',
         controller: 'AccountCtrl'
+      }
+    }
+  })
+*/
+.state('tab.myshortlist', {
+  url: '/myshortlist',
+  views: {
+    'tab-myshortlist': {
+      templateUrl: 'templates/tab-myshortlist.html',
+      controller: 'MyShortlistCtrl'
+    }
+  }
+})
+
+  .state('tab.apps', {
+    url: '/apps',
+    views: {
+      'tab-apps': {
+        templateUrl: 'templates/tab-apps.html',
+        controller: 'AppsCtrl'
+      }
+    }
+  })
+
+ 
+  .state('tab.myProfile', {
+    url: '/myprofile',
+    views: {
+      'tab-myprofile': {
+        templateUrl: 'templates/tab-myprofile.html',
+        controller: 'MyProfileCtrl'
       }
     }
   });
