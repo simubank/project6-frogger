@@ -1,5 +1,6 @@
 angular.module('starter.controllers', [])
 
+<<<<<<< HEAD
 .controller('DashCtrl', function($scope, BotsService) {
   $scope.result = undefined
   
@@ -7,6 +8,9 @@ angular.module('starter.controllers', [])
     $scope.result = rs.data.result.balance;
   });
 })
+=======
+.controller('PostingsCtrl', function($scope) {})
+>>>>>>> a05c877fc17f63f5bfaa06634b0acbf7538fc17f
 
 .controller('ChatsCtrl', function($scope, Chats) {
   // With the new view caching in Ionic, Controllers are only called
@@ -26,6 +30,11 @@ angular.module('starter.controllers', [])
 .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
   $scope.chat = Chats.get($stateParams.chatId);
 })
+.controller('MyShortlistCtrl', function($scope) {})
+
+.controller('MyProfileCtrl', function($scope) {})
+
+.controller('AppsCtrl', function($scope) {})
 
 .controller('AccountCtrl', function($scope) {
   $scope.settings = {
