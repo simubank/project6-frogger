@@ -1,6 +1,12 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope) {})
+.controller('DashCtrl', function($scope, BotsService) {
+  $scope.result = undefined
+  
+  BotsService.getSelf().then(function successCallback(rs) {
+    $scope.result = rs.data.result.balance;
+  });
+})
 
 .controller('ChatsCtrl', function($scope, Chats) {
   // With the new view caching in Ionic, Controllers are only called
