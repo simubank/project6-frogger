@@ -26,6 +26,8 @@ function ($scope, $stateParams) {
    
 .controller('myProfileCtrl', ['$scope', '$stateParams',
 function ($scope, $stateParams) {
+    var vm=this;
+    $scope.currentUser = 2000;
     $scope.user = {
         "name": "Jon Snow", 
         "id": 2000,
@@ -38,19 +40,46 @@ function ($scope, $stateParams) {
                 "review" : "Jon was a very great tenant, who is clean, quiet and is a real leader! 10/10 would lease to again.",
                 "name": "Ned Stark",
                 "id": 3000,
-                "timestamp": "July 15, 2018"
+                "timestamp": "July 15, 2018",
+                "rating": 5
             },
             {
                 "review" : "An amazing tenant with a great track record...",
                 "name": "Daeneyrs Targaryon",
                 "id": 1000,
-                "timestamp": "June 17, 2017"
+                "timestamp": "June 17, 2017",
+                "rating": 4
             }
         ]   
     }
     
-    console.log ($scope.user.reviews[0].name);
-    //YOU NEED TO GET USER ID FROM BOTS API!! CHANGE THIS!
+    vm.calculateRating = function(userId){
+        var rating=0;
+        for (var i=0; i< $scope.user['reviews'].length; i++) {
+;            rating+=$scope.user['reviews'][i].rating;
+        }
+        rating=rating/($scope.user['reviews'].length);
+        return rating;
+    }
+    $scope.rating =vm.calculateRating($scope.currentUser);
+    
+    vm.stars = function(rating){
+        var starRating=[];
+        for(var j=0; j<5; j++){
+            if(j<(rating-1)){
+                starRating[j]="fa fa-star checked";
+            }
+            else if(j!==0 && (rating-1-j)<1){
+                starRating[j]="fa fa-star-half-full checked";
+            }
+            else{
+                starRating[j]="fa fa-star";
+            }
+        }
+        return starRating;
+    }
+
+    $scope.averageStars = vm.stars(vm.calculateRating($scope.currentUser));
 }])
    
 .controller('pageCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller

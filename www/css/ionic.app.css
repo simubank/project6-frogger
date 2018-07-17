@@ -9882,3 +9882,12 @@ a.button {
 .review-text {
   font-size: 16px;
 }
+#rating {
+  font-size: 18px;
+}
+.starcolor{
+  color:white;
+}
+.checked {
+  color: orange;
+}

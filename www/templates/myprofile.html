@@ -1,5 +1,10 @@
 <ion-view title="Profile" id="myProfile" style="">
   <ion-content padding="true" class="has-header"></ion-content>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  
+
   <div id="profile-info">
     <div class="picture">
       <img id="profile-picture" ng-src="img/userProfileImg/{{user.id}}.jpg" />
@@ -7,6 +12,10 @@
     <div class="user-info">
       <p id="username">{{user.name}}</p>
       <p id="location">{{user.location}}</p>
+      <div id="rating">
+        <span ng-repeat="currentStar in averageStars track by $index" ng-class="averageStars[$index]"></span>
+        {{rating}}
+      </div>
       <p id="description">{{user.description}}</p>
     </div>
   </div>
