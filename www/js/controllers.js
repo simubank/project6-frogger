@@ -33,7 +33,7 @@ function ($scope, $stateParams) {
         "id": 2000,
         "location": "Toronto, Ontario",
         "description": "Hi! I am currently looking for a place to stay for the upcoming winter!Hi! I am currently looking for a place to stay for the upcoming winter!Hi! I am currently looking for a place to stay for the upcoming winter!",
-        "status": ["Seeking a 1 year lease in Guelph", "Subletting a room in Kitchener for Fall term"],
+        "status": "Seeking a 1 year lease in Guelph. Subletting a room in Kitchener for Fall term",
         "listings": [],
         "reviews": [
             {
@@ -80,6 +80,9 @@ function ($scope, $stateParams) {
     }
 
     $scope.averageStars = $scope.stars(vm.calculateRating($scope.currentUser));
+    function writeReview(){
+        this.navCtrl.setRoot(writeReview);
+       }
 }])
    
 .controller('pageCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
@@ -91,6 +94,14 @@ function ($scope, $stateParams) {
 }])
    
 .controller('shortlistCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $stateParams) {
+
+
+}])
+
+.controller('writeReviewCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {

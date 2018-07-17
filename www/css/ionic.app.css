@@ -9841,13 +9841,15 @@ a.button {
 }
 #status-list{
   font-size: 18px;
-  margin-left: 10px;
+  margin-left: 12px;
+  margin-right:12px;
   list-style-type: disc;
   margin-bottom: 3px;
 }
 #arrangement-info hr{
   width:90%;
   border-radius:50%;
+  margin-bottom: 10px;
 }
 #null-review-text {
   font-size:20px;
@@ -9905,9 +9907,4 @@ a.button {
 }
 .review-bar{
   display:inline-block;
-  height:100px;
-}
-.custom-icon{
-  font-size:100px;
-  color:red;
 }
