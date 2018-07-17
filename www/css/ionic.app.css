@@ -9808,12 +9808,13 @@ a.button {
 */
 #profile-info {
   width: 100%;
-  height:22%;
+  height:auto;
   margin-top:50px;
   font-family: WeblySleek;
 }
 #profile-picture {
   margin-left:12px;
+  margin-top: 7px;
   margin-right: 20px;
   border-radius: 50%;
   display:block;
@@ -9833,19 +9834,22 @@ a.button {
 #description{
   font-size:17px;
   margin-right: 12px;
+  margin-left:12px;
 }
 #arrangement-info{
   font-family: WeblySleek;
 }
 #status-list{
   font-size: 18px;
-  margin-left: 10px;
+  margin-left: 12px;
+  margin-right:12px;
   list-style-type: disc;
   margin-bottom: 3px;
 }
 #arrangement-info hr{
   width:90%;
   border-radius:50%;
+  margin-bottom: 10px;
 }
 #null-review-text {
   font-size:20px;
@@ -9881,4 +9885,26 @@ a.button {
 }
 .review-text {
   font-size: 16px;
+}
+.rating {
+  font-size: 18px;
+}
+.starcolor{
+  color:white;
+}
+.checked {
+  color: orange;
+}
+.far {
+  color:orange;
+}
+#write-review-button {
+  background-color: white;
+  height:50px;
+  width:50px;
+  margin-top: -10px;
+  float:right;
+}
+.review-bar{
+  display:inline-block;
 }

@@ -51,6 +51,12 @@ angular.module('app.routes', [])
     controller: 'pageCtrl'
   })
 
+  .state('app.writeReview', {
+    url: '/writereview',
+    templateUrl: 'templates/writereview.html',
+    controller: 'writeReviewCtrl'
+  })
+
   .state('app.shortlist', {
     url: '/shortlist',
     views: {
