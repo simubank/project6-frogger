@@ -32,7 +32,7 @@ function ($scope, $stateParams) {
         "name": "Jon Snow", 
         "id": 2000,
         "location": "Toronto, Ontario",
-        "description": "Hi! I am currently looking for a place to stay for the upcoming winter!",
+        "description": "Hi! I am currently looking for a place to stay for the upcoming winter!Hi! I am currently looking for a place to stay for the upcoming winter!Hi! I am currently looking for a place to stay for the upcoming winter!",
         "status": ["Seeking a 1 year lease in Guelph", "Subletting a room in Kitchener for Fall term"],
         "listings": [],
         "reviews": [
@@ -41,14 +41,14 @@ function ($scope, $stateParams) {
                 "name": "Ned Stark",
                 "id": 3000,
                 "timestamp": "July 15, 2018",
-                "rating": 5
+                "rating": 5.0
             },
             {
                 "review" : "An amazing tenant with a great track record...",
                 "name": "Daeneyrs Targaryon",
                 "id": 1000,
                 "timestamp": "June 17, 2017",
-                "rating": 4
+                "rating": 4.0
             }
         ]   
     }
@@ -63,23 +63,23 @@ function ($scope, $stateParams) {
     }
     $scope.rating =vm.calculateRating($scope.currentUser);
     
-    vm.stars = function(rating){
+    $scope.stars = function(rating){
         var starRating=[];
         for(var j=0; j<5; j++){
-            if(j<(rating-1)){
-                starRating[j]="fa fa-star checked";
+            if(j<=(rating-1)){
+                starRating[j]="fas fa-star checked";
             }
-            else if(j!==0 && (rating-1-j)<1){
-                starRating[j]="fa fa-star-half-full checked";
+            else if(j!==0 && rating > j && rating < j+1){
+                starRating[j]="fas fa-star-half checked";
             }
             else{
-                starRating[j]="fa fa-star";
+                starRating[j]="far fa-star";
             }
         }
         return starRating;
     }
 
-    $scope.averageStars = vm.stars(vm.calculateRating($scope.currentUser));
+    $scope.averageStars = $scope.stars(vm.calculateRating($scope.currentUser));
 }])
    
 .controller('pageCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller

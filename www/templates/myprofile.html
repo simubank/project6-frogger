@@ -1,7 +1,8 @@
 <ion-view title="Profile" id="myProfile" style="">
   <ion-content padding="true" class="has-header"></ion-content>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+
 
   
 
@@ -12,7 +13,7 @@
     <div class="user-info">
       <p id="username">{{user.name}}</p>
       <p id="location">{{user.location}}</p>
-      <div id="rating">
+      <div class="rating">
         <span ng-repeat="currentStar in averageStars track by $index" ng-class="averageStars[$index]"></span>
         {{rating}}
       </div>
@@ -29,12 +30,20 @@
       <p>listings</p>
     </div>
     <div id="reviews" ng-if="user.reviews.length">
-      <p id="review-title">Reviews</p>
+      <p id="review-title" class="review-bar">Reviews</p>
+      <button class ="button icon ion-ios-compose custom-icon" id="write-review-button"></button>
+      
+      
+
       <div class="review-item" ng-repeat="reviewobject in user.reviews">
           <div class="reviewer-info">
               <img class="reviewer-picture" ng-src="img/userProfileImg/{{reviewobject.id}}.jpg"/>
               <p id="reviewer-name">{{reviewobject.name}}</p>
               <p id="reviewer-timestamp">{{reviewobject.timestamp}}</p>
+              <div class="rating">
+                  <span ng-repeat="currentRevStar in stars(reviewobject.rating) track by $index" ng-class="stars(reviewobject.rating)[$index]"></span>
+                  {{reviewobject.rating}}
+              </div>
 
           </div>
           <div class="review-text">
