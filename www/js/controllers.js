@@ -1,4 +1,4 @@
-angular.module('app.controllers', [])
+angular.module('app.controllers', ["tdnb.services"])
   
 .controller('postingsCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
@@ -24,8 +24,8 @@ function ($scope, $stateParams) {
 
 }])
    
-.controller('myProfileCtrl', ['$scope', '$stateParams',
-function ($scope, $stateParams) {
+.controller('myProfileCtrl', ['$scope', '$stateParams', 'BotsService',
+function ($scope, $stateParams, BotsService) {
     $scope.user = {
         "name": "Jon Snow", 
         "id": 2000,
@@ -46,10 +46,13 @@ function ($scope, $stateParams) {
                 "id": 1000,
                 "timestamp": "June 17, 2017"
             }
-        ]   
-    }
+        ]
+    };
     
     console.log ($scope.user.reviews[0].name);
+    BotsService.getUser(0).then(function(data) {
+      $scope.user = data.result[0]["test"];
+    });
     //YOU NEED TO GET USER ID FROM BOTS API!! CHANGE THIS!
 }])
    
