@@ -1,0 +1,64 @@
+{
+  "posting_details":{
+    "avaliable":"**",
+    "location":{
+      "long":00,
+      "lat":00
+    },
+    "avaliable_dates":{
+      "from":"**",
+      "to": "**"
+    },
+    "guests_required":"**",
+    "housing_Details":{
+      "price":00,
+      "type":"**",
+      "shared_common_space":"**",
+      "bedroom":{
+        "number":00,
+        "shared":"**"
+      },
+      "bathroom":{
+        "number":00,
+        "shared":"**"
+      }, 
+      "furnished":"**",
+      "pet_friendly":"**",
+      "smoking": "**",
+      "utilities_included":{
+        "hydro":"**",
+        "electricity":"**",
+        "wifi":"**"
+      }
+    },
+    "walkscore":{
+       "status": 1,
+       "walkscore": 98,
+       "description": "Walker's Paradise",
+       "updated": "2016-11-17 04:40:31.218250",
+       "logo_url": "https://cdn.walk.sc/images/api-logo.png",
+       "more_info_icon": "https://cdn.walk.sc/images/api-more-info.gif",
+       "more_info_link": "https://www.walkscore.com/how-it-works/",
+       "ws_link": "https://www.walkscore.com/score/1119-8th-Avenue-Seattle-WA-98101/lat=47.6085/lng=-122.3295/?utm_source=walkscore.com&utm_medium=ws_api&utm_campaign=ws_api",
+       "help_link": "https://www.walkscore.com/how-it-works/",
+       "snapped_lat": 47.6085,
+       "snapped_lon": -122.3295,
+       "transit": {
+          "score": 100,
+          "description": "Rider's Paradise",
+          "summary": "115 nearby routes: 103 bus, 6 rail, 6 other"
+       },
+       "bike": {
+          "score": 68,
+          "description": "Bikeable"
+       }
+    },
+    "additional_info":
+    {
+      "comments":"This appartment also has a tennis court and basketball court."
+    }
+
+  },
+  "owner_rating":00
+  }
+}
