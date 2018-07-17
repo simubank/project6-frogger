@@ -24,13 +24,13 @@ function ($scope, $stateParams) {
 
 }])
    
-  .controller('myProfileCtrl', ['$scope', '$stateParams', 'BotsService',
-  function ($scope, $stateParams, BotsService) {
+  .controller('myProfileCtrl', ['$scope', '$stateParams', 'BotsService', 'User',
+  function ($scope, $stateParams, BotsService, User) {
     var vm=this;
-    $scope.currentUser = 2000;
+    $scope.currentUserId = 0;
     $scope.user = {
         "name": "Jon Snow", 
-        "id": 2000,
+        "id": 0,
         "location": "Toronto, Ontario",
         "description": "Hi! I am currently looking for a place to stay for the upcoming winter!Hi! I am currently looking for a place to stay for the upcoming winter!Hi! I am currently looking for a place to stay for the upcoming winter!",
         "status": "Seeking a 1 year lease in Guelph. Subletting a room in Kitchener for Fall term",
@@ -55,20 +55,12 @@ function ($scope, $stateParams) {
     
     console.log ($scope.user.reviews[0].name);
     BotsService.getUser(0).then(function(data) {
-      $scope.user = data.result[0]["test"];
+      $scope.user = new User(data.result[0]);
+      $scope.averageStars = $scope.createStars($scope.user.averageStars());
+      console.log ($scope.user);
     });
-    //YOU NEED TO GET USER ID FROM BOTS API!! CHANGE THIS!
-    vm.calculateRating = function(userId){
-        var rating=0;
-        for (var i=0; i< $scope.user['reviews'].length; i++) {
-;            rating+=$scope.user['reviews'][i].rating;
-        }
-        rating=rating/($scope.user['reviews'].length);
-        return rating;
-    }
-    $scope.rating =vm.calculateRating($scope.currentUser);
     
-    $scope.stars = function(rating){
+    $scope.createStars = function(rating){
         var starRating=[];
         for(var j=0; j<5; j++){
             if(j<=(rating-1)){
@@ -84,7 +76,6 @@ function ($scope, $stateParams) {
         return starRating;
     }
 
-    $scope.averageStars = $scope.stars(vm.calculateRating($scope.currentUser));
     function writeReview(){
       this.navCtrl.setRoot(writeReview);
     }

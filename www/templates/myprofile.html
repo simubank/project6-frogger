@@ -7,49 +7,50 @@
   
 
   <div id="profile-info">
-    <div class="picture">
-      <img id="profile-picture" ng-src="img/userProfileImg/{{user.id}}.jpg" />
-    </div>
-    <div class="user-info">
-      <p id="username">{{user.name}}</p>
-      <p id="location">{{user.location}}</p>
-      <div class="rating">
-        <span ng-repeat="currentStar in averageStars track by $index" ng-class="averageStars[$index]"></span>
-        {{rating}}
+
+    <div class="user-info row">
+      <div class="picture">
+        <img id="profile-picture" ng-src="img/userProfileImg/2000.jpg" />
       </div>
-      <p id="description">{{user.description}}</p>
+      <div class="col col-top">
+          <p id="username" >{{user.getFullName()}}</p>
+          <p id="location">{{user.getLocation()}}</p>
+          <div class="rating">
+              <span ng-repeat="currentStar in averageStars track by $index" ng-class="averageStars[$index]"></span>
+              {{user.getRating()}}
+          </div>
+      </div>
+    </div>
+    <div class="col col-center">
+        <p id="description" class="padding">{{user.data.appData.description}}</p>
+        <p id="status-list">{{user.data.appData.status}}</p>
     </div>
   </div>
   <div id="arrangement-info">
-    <p id="status-list">{{user.status}}</p>
     <hr></hr>
     <div id="listings" ng-if="user.listings.length>0">
       <!--ADD THESE IN FOR SOME LANDLORD....-->
       <p>listings</p>
     </div>
-    <div id="reviews" ng-if="user.reviews.length">
+    <div id="reviews" ng-if="user.data.appData.reviews.length">
       <p id="review-title" class="review-bar">Reviews</p>
       <a href="#/app/writereview.html"><button class ="button icon ion-compose custom-icon" id="write-review-button"></button></a>
-      
-      
-
-      <div class="review-item" ng-repeat="reviewobject in user.reviews">
+      <div class="review-item" ng-repeat="reviewobject in user.data.appData.reviews track by $index">
           <div class="reviewer-info">
               <img class="reviewer-picture" ng-src="img/userProfileImg/{{reviewobject.id}}.jpg"/>
               <p id="reviewer-name">{{reviewobject.name}}</p>
               <p id="reviewer-timestamp">{{reviewobject.timestamp}}</p>
               <div class="rating">
-                  <span ng-repeat="currentRevStar in stars(reviewobject.rating) track by $index" ng-class="stars(reviewobject.rating)[$index]"></span>
+                  <span ng-repeat="currentRevStar in createStars(reviewobject.rating) track by $index" ng-class="createStars(reviewobject.rating)[$index]"></span>
                   {{reviewobject.rating}}
               </div>
-
           </div>
           <div class="review-text">
               {{reviewobject.review}}
           </div>
       </div>
     </div>
-    <div id="nullreviews" ng-if="user.reviews.length===0">
+    <div id="nullreviews" ng-if="user.data.appData.reviews.length===0">
       <p id="null-review-text"> There are no reviews to show</p>
     </div>
   </div>
