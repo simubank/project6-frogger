@@ -67,7 +67,7 @@ angular.module('tdnb.services', [])
     .run(function ($http) {
         $http.defaults.headers.common.Authorization = AppSettings.authorization;
     })
-    .factory('User', function () {
+    .factory('User', function ($resource, $q) {
 
         /**
          * Constructor, with class name
@@ -76,16 +76,23 @@ angular.module('tdnb.services', [])
             // Public properties, assigned to the instance ('this')
             this.data = botsApiResponse;
         }
-
+        function monthDiff(d1, d2) {
+            var months;
+            months = (d2.getFullYear() - d1.getFullYear()) * 12;
+            months -= d1.getMonth() + 1;
+            months += d2.getMonth();
+            return months <= 0 ? 0 : months;
+        }
+        
         /**
          * Public method, assigned to prototype
          */
         User.prototype.getFullName = function () {
-            return this.data.givenName + ' ' + this.data.surname;
+            return this.data.userData.givenName + ' ' + this.data.userData.surname;
         };
 
         User.prototype.getLocation = function () {
-            return this.data.addresses.principalResidence.municipality;
+            return this.data.userData.addresses.principalResidence.municipality;
         };
 
         User.prototype.getRating = function(){
@@ -106,6 +113,48 @@ angular.module('tdnb.services', [])
             return rating;
         };
 
+        User.prototype.getIncome = function() {
+            var deferred = $q.defer();
+            var transactionsQuery = $resource(AppSettings.botsApiUrl + 'api/customers/:userId/transactions',
+                {},
+                {
+                    query: {
+                        method: "GET",
+                        isArray: false,
+                        headers: {
+                            Authorization: AppSettings.authorization,
+                            requestObject: null
+                        }
+                    }
+                }
+            );
+            var transactionsPromise = transactionsQuery.query({
+                userId: this.data.botsId
+            }); 
+            transactionsPromise.$promise.then(function (transactionsRes) {
+                var total = 0;
+                var minDate = new Date();
+                var topDate = new Date();
+                for (var i = 0; i < transactionsRes.result.length; i++) {
+                    for (var j = 0; j < transactionsRes.result[i].categoryTags.length; j++) {
+                        // console.log(transactionsRes.result[i].categoryTags);
+                        if (transactionsRes.result[i].categoryTags[j].toLowerCase() === "salary") {
+                            var transDate = new Date(transactionsRes.result[i].originationDate);
+                            total += transactionsRes.result[i].currencyAmount;
+                            if (transDate > topDate) {
+                                topDate = transDate;
+                            }
+                            if (transDate < minDate) {
+                                minDate = transDate;
+                            }
+                        }
+                    }
+                }
+                deferred.resolve(total/(monthDiff(minDate, topDate)));
+            });
+            return deferred.promise;
+        };
+
         /**
          * Return the constructor function
          */
@@ -117,8 +166,10 @@ angular.module('tdnb.services', [])
             getUser: function (id) {
                 var rs;
                 var defer = $q.defer();
+                var userObj = USERIDS[id];
+
                 rs = defer.promise;
-                var temp = $resource(AppSettings.botsApiUrl + 'api/customers/:userId',
+                var userData = $resource(AppSettings.botsApiUrl + 'api/customers/:userId',
                     {},
                     {
                         query: {
@@ -131,22 +182,40 @@ angular.module('tdnb.services', [])
                         }
                     }
                 );
-                var promise = temp.query({
+
+                var accountQuery = $resource(AppSettings.botsApiUrl + 'api/customers/:userId/accounts',
+                    {},
+                    {
+                        query: {
+                            method: "GET",
+                            isArray: false,
+                            headers: {
+                                Authorization: AppSettings.authorization,
+                                requestObject: null
+                            }
+                        }
+                    }
+                );
+
+                var userPromise = userData.query({
                     userId: USERIDS[id]["botsId"]
                 });
-                promise.$promise.then(function (data) {
-                    data.result[0]["appData"] = USERIDS[id]["appData"];
-                    defer.resolve(data);
-                    console.log(data);
+
+                var accountPromise = accountQuery.query({
+                    userId: USERIDS[id]["botsId"]
+                });
+
+
+                
+                userPromise.$promise.then(function (userRes) {
+                    userObj.userData = userRes.result[0];
+                    accountPromise.$promise.then(function (accountRes) {
+                        userObj.accountData = accountRes.result;
+                        defer.resolve(userObj);
+                    });
                 });
 
                 return rs;
-            },
-            getSelf: function () {
-                return $http({
-                    method: 'GET',
-                    url: AppSettings.botsApiUrl + 'api/accounts/self/;',
-                });
             }
         };
     });
