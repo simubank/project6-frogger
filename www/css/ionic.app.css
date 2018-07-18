@@ -9824,9 +9824,13 @@ a.button {
 }
 .user-info{
  padding-top: 20px;
+ height:auto;
+ width: auto;
 }
 #username {
   font-size: 40px;
+  overflow: visible;
+  line-height: 40px;
 }
 #location {
   font-size: 20px;
@@ -9900,6 +9904,7 @@ a.button {
 }
 #write-review-button {
   background-color: white;
+  color:green;
   height:50px;
   width:50px;
   margin-top: -10px;
@@ -9907,4 +9912,31 @@ a.button {
 }
 .review-bar{
   display:inline-block;
+}
+.action-bar {
+  color:green;
+  font-size: 18px;
+}
+#map {
+  height: 300px;
+  width: 100%;
+}
+
+/* Write Review CSS
+*
+*
+*
+*/
+#review-body{
+  font-family: WeblySleek;
+  font-size:18px;
+}
+#review-title{
+  font-size:30px;
+  text-decoration: none;
+  display:block;
+  margin-left:0px;
+}
+#review-rating{
+  font-size:28px;
 }

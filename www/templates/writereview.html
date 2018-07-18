@@ -1,3 +1,25 @@
-<ion-view title="Write Review" id="writereview" style="">
-    <ion-content padding="true" class="has-header"></ion-content>
+<ion-view title="Write a Review" id="writeReview">
+  <ion-content padding="true" class="has-header" id="review-body">
+    <div id="review-title">
+      <p>Write a Review</p>
+    </div>
+
+    <div id="page-markdown3" class="show-list-numbers-and-dots">
+      <p>Write the details of your expereince with {{user.name}} below:</p>
+    </div>
+
+    <form id="page-form6" class="list">
+      <label class="item item-input" id="page-input3">
+        <input type="text" placeholder="">
+      </label>
+    </form>
+
+    <div id="review-rating" class="button-bar">
+      <p id="review-rating-title">Rating:</p>
+      <p></p>
+      <span ng-repeat="i in [0,1,2,3,4] track by $index" ng-class="starRatingClass[$index]" ng-click="starHighlight($index)"></span>
+    </div>
+    <button id="page-button9" class="button button-balanced button-block">Submit</button>
+    <button id="page-button10" class="button button-stable button-block">Cancel</button>
+  </ion-content>
 </ion-view>

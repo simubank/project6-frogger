@@ -2,10 +2,6 @@
   <ion-content padding="true" class="has-header"></ion-content>
 
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-
-
-  
-
   <div id="profile-info">
 
     <div class="user-info row">
@@ -34,7 +30,8 @@
     </div>
     <div id="reviews" ng-if="user.data.appData.reviews.length">
       <p id="review-title" class="review-bar">Reviews</p>
-      <a href="#/app/writereview.html"><button class ="button icon ion-compose custom-icon" id="write-review-button"></button></a>
+      <a ng-href="#/app/writeReview" id="write-review-button" class="button icon ion-compose custom-icon">
+      </a>
       <div class="review-item" ng-repeat="reviewobject in user.data.appData.reviews track by $index">
           <div class="reviewer-info">
               <img class="reviewer-picture" ng-src="img/userProfileImg/{{reviewobject.id}}.jpg"/>

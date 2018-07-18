@@ -57,11 +57,9 @@ angular.module('app.controllers', ["tdnb.services"])
         ]
       };
 
-      console.log($scope.user.reviews[0].name);
       BotsService.getUser(0).then(function (data) {
         $scope.user = new User(data);
         $scope.averageStars = $scope.createStars($scope.user.averageStars());
-        console.log($scope.user);
         $scope.user.getIncome().then(function(res) {
           console.log(res);
         });
@@ -109,6 +107,46 @@ angular.module('app.controllers', ["tdnb.services"])
     // TIP: Access Route Parameters for your page via $stateParams.parameterName
     function ($scope, $stateParams) {
 
+.controller('createPostingCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $stateParams) {
+
+
+}])
+.controller('viewPostingCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $stateParams) {
+    function initMap(){
+        var postingLocation ={ lat: posting.latitude, lng: posting.longitude};
+        var map = new google.maps.Map(
+            document.getElementById('map'), {zoom:4, center: myPosting});
+        var marker = new google.maps.Marker({position: postingLocation, map:map});
+
+    }
+
+}])
+
+.controller('writeReviewCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $stateParams) {
+    $scope.starRatingClass =["far fa-star","far fa-star","far fa-star","far fa-star","far fa-star"];
+
+    $scope.starHighlight = function(starCount){
+        //note that starcount is rating-1 to deal with indexing issues..
+        $scope.starRatingClass = ["far fa-star","far fa-star","far fa-star","far fa-star","far fa-star"];
+        for(var i=0;i<starCount+1;i++){
+            if(i<=(starCount)){
+                $scope.starRatingClass[i]="fas fa-star checked";
+            }
+            else{
+                $scope.starRatingClass[i]="far fa-star";
+            }
+        }
+        return $scope.starRatingClass;
+    }
 
     }])
 
