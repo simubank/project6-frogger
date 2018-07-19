@@ -1,0 +1,134 @@
+
+<ion-view title="Listing Comparison Analysis" id="ComparisonView">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <ion-content padding="true" class="has-header">
+        <div class="row">
+            <!-- <div class="col col-30">
+            </div> -->
+            <div class="col col-50">
+                <img style="width:100%;"src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"/>
+            </div>
+            <div class="col col-50">
+                    <img style="width:100%;"src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"/>
+            </div>
+        </div>
+        </div>
+        <h4 class="text-center"><i class="fas fa-dollar-sign" style="color: green;"></i> Rent Score <i class="fas fa-dollar-sign" style="color: green;"></i> </h4>
+        <div class="row text-center">
+            <div class="col item" ng-repeat="value in valueData track by $index" ng-click="openValueModal($index)">
+                <h4 ng-style="{opacity: isHighestValue(valueData, averageValue, $index) ? 0.5 : 1}">
+                    <span ng-repeat="currentRevStar in createStars(calculateScore(averageValue, value, true)) track by $index" ng-class="createStars(calculateScore(averageValue, value, true))[$index]"></span>
+                    {{calculateScore(averageValue, value, true) | number: 1}}
+                </h4>
+            </div>
+        </div>
+        <h4 class="text-center"><i class="fas fa-lock" style="color: red;"></i> Safety Score <i class="fas fa-lock" style="color: red;"></i> </h4>
+        <div class="row text-center">
+            <div class="col item" ng-repeat="value in safetyScoreData track by $index" ng-click="openSafetyModal($index)">
+                <h4 ng-style="{opacity: isHighestValue(safetyScoreData, averageSafetyScore, $index) ? 0.5 : 1}">
+                    <span ng-repeat="currentRevStar in createStars(calculateScore(averageSafetyScore, value, true)) track by $index" ng-class="createStars(calculateScore(averageSafetyScore, value, true))[$index]"></span>
+                    {{calculateScore(averageSafetyScore, value, false) | number: 1}}
+                </h4>
+            </div>
+        </div>
+        <h4 class="text-center"><i class="fas fa-walking" style="color: purple;"></i> Travel Score <i class="fas fa-walking" style="color: purple;"></i> </h4>
+        <div class="row text-center">
+            <div class="col item" ng-repeat="value in walkScoreData track by $index" ng-click="openCommuteModal($index)">
+                <h4 ng-style="{opacity: isHighestValue(walkScoreData, averageWalkScore, $index) ? 0.5 : 1}">
+                    <span ng-repeat="currentRevStar in createStars(calculateScore(averageWalkScore, value, true)) track by $index" ng-class="createStars(calculateScore(averageWalkScore, value, true))[$index]"></span>
+                    {{calculateScore(averageWalkScore, value, false) | number: 1}}
+                </h4>
+            </div>
+        </div>
+        <!-- <div class="row text-center">
+            <div class="col col-30">
+                <h4 class="title">
+                    <i class="fas fa-walking" style="color: purple;"></i>
+                </h4>
+                </div>
+                <div class="col" ng-repeat="value in walkScoreData track by $index" ng-click="openCommuteModal($index)">
+                    <h4 class="title">
+                        {{getWeightedScore($index) | number: 1}}
+                    </h4>
+                </div>
+            </div>
+        </div> -->
+    </ion-content>
+
+
+</ion-view>
+
+
+
+
+<!-- <ion-view title="Listing Comparison Analysis" id="ComparisonView">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+        <ion-content padding="true" class="has-header">
+            <div class="row">
+                <div class="col col-30">
+                </div>
+                <div class="col col-35">
+                    <img style="width:100%;"src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"/>
+                </div>
+                <div class="col col-35">
+                        <img style="width:100%;"src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"/>
+                </div>
+            </div>
+            </div>
+            <div class="row text-center">
+                <div class="col col-30">
+                    <h4 class="title">
+                        <i class="fas fa-dollar-sign" style="color: green;"></i> 
+                    </h4>
+                    </div>
+                    <div class="col" ng-repeat="value in valueData track by $index" ng-click="openValueModal($index)">
+                        <h4 class="title">
+                            {{calculateScore(averageValue, value, true) | number: 1}}
+                        </h4>
+                    </div>
+                </div>
+            </div>
+            <h4>Safety Score <i class="fas fa-lock" style="color: red;"></i> </h4>
+            <div class="row text-center">
+                <div class="col col-30">
+                    <h4 class="title">
+                        <h4>Safe <i class="fas fa-lock" style="color: red;"></i> </h4>
+                    </h4>
+                    </div>
+                    <div class="col" ng-repeat="value in safetyScoreData track by $index" ng-click="openSafetyModal($index)">
+                        <h4 class="title">
+                            {{calculateScore(averageSafetyScore, value, false) | number: 1}}
+                        </h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col col-30">
+                    <h4 class="title">
+                        <h4>Walk <span class="fas fa-walking" style="color: purple;"></span></h4>
+                    </h4>
+                    </div>
+                    <div class="col" ng-repeat="value in walkScoreData track by $index" ng-click="openCommuteModal($index)">
+                        <h4 class="title">
+                            {{calculateScore(averageWalkScore, value, false) | number: 1}}
+                        </h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col col-30">
+                    <h4 class="title">
+                        <i class="fas fa-walking" style="color: purple;"></i>
+                    </h4>
+                    </div>
+                    <div class="col" ng-repeat="value in walkScoreData track by $index" ng-click="openCommuteModal($index)">
+                        <h4 class="title">
+                            {{getWeightedScore($index) | number: 1}}
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </ion-content>
+    
+    
+    </ion-view> -->
