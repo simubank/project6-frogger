@@ -95,26 +95,6 @@ function ($scope, $stateParams) {
 
 }])
 
-.controller('createPostingCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
-
-
-}])
-.controller('viewPostingCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
-    function initMap(){
-        var postingLocation ={ lat: posting.latitude, lng: posting.longitude};
-        var map = new google.maps.Map(
-            document.getElementById('map'), {zoom:4, center: myPosting});
-        var marker = new google.maps.Marker({position: postingLocation, map:map});
-
-    }
-
-}])
 
 .controller('writeReviewCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function

@@ -51,21 +51,6 @@ angular.module('app.routes', [])
     controller: 'pageCtrl'
   })
 
-  .state('app.createPosting', {
-    url: '/createPosting',
-    templateUrl: 'templates/createPosting.html',
-    controller: 'createPostingCtrl'
-  })
-
-  .state('app.viewPosting', {
-    url: '/viewPosting',
-    views:{
-      "viewPosting":{
-        templateUrl: 'templates/viewPosting.html',
-        controller: 'viewPostingCtrl'
-      }
-    }
-  })
 
   .state('app.writeReview', {
     url: "/writeReview",
