@@ -1,11 +1,109 @@
-<ion-view title="Postings" id="postings" style="">
+7<ion-view title="Postings" id="postings" style="">
   <ion-content padding="true" class="has-header">
+
+      
+
+      <!--OVERLAY-->
+      <div ng-show = "filter" ng-style="checked ? {height: '100%'} : {height: '100%'}" class="overlay" animation = "slide-in-up ng-leave">
+          
+            <div class = "bar bar-header bar-light">
+              <table>
+                <tr>
+                  <td width = "90%">
+                    <button class = "button button-clear" ng-click = "openCloseFilter()">
+                      <i class = "icon ion-android-close"></i>
+                    </button>
+                  </td>
+                  <td>
+                    <button class = "button button-clear">
+                      <p style = "color: rgb(121, 200, 231); font-size: 1.5em"> clear </p>
+                    </button>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="overlay-content">
+                <button>sdf</button>
+            </div>
+            
+      </div>
+
+      <!-------------OVERLAY-------------------->
+        
+    
     <form id="postings-form4" class="list">
-      <label class="item item-input" id="postings-search1" style="">
-        <i class="icon ion-search placeholder-icon"></i>
-        <input placeholder="" type="search">
-      </label>
-      <ion-item class="item-thumbnail-left item-icon-right" id="postings-list-item13" style="">
+        
+          <label class="item search item-input" id="postings-search1" style="">
+            <i class="icon ion-search placeholder-icon"></i>
+            <input placeholder="Explore new living" type="search">
+          </label>
+
+          <ion-scroll direction="x" class="activeFilters">
+            <button class="button button-outline button-balanced" ng-click = "openCloseFilter()">Filter</button>
+            <div ng-repeat="filter in activeFilters track by filter.filter" ng-click="changeFilter(filter)" class="filter">
+              <button ng-show="filter.show" class="button button-balanced" ng-click="clear(filter)">
+                <span>{{filter.filter}} </span>
+                <span>
+                  <i ng-show="filter.show" class="icon ion-android-close"> </i>
+                </span>
+              </button>
+            </div>
+          </ion-scroll>
+
+      <table style = "margin-top: 0em; margin-bottom: 0.5em">
+        <tr aria-colspan="15">
+          <td width="80%">
+              <h4>
+                  <b>Your Recently Viewed<b>
+              </h4>
+          </td>
+          
+          <td width = "20%" height = "5px">
+            <div style = "display:inline" style = "padding: 5px">
+              <ion-toggle class = "toggle-small" color = "dark" checked = "true" style = "overflow: visible" ng-click= "changePin(); click()"
+              ng-model = "checked"></ion-toggle>
+            </div>
+          </td>
+          <td width = "10%">
+              <i class = "icon ion-android-pin map-pin" ng-style = "checked ? {color: 'rgb(55, 165, 165)'} : {color: 'grey'}"></i>
+            </td>
+        </tr>
+      </table>
+    <div ng-show = "!map">
+      <div ng-repeat="listing in recentlyViewed track by $index | limitTo: maxRecent">
+        <ion-card>
+          <div class="posting">
+            <div class="imageScroller">
+              <ion-nav-view></ion-nav-view>
+              <ion-slide-box on-slider-changed="slideHasChanged($index)">
+                <ion-slide ng-repeat="image in listing.images">
+                  <div class="image-listing">
+                    <img src= {{image.src}}>
+                  </div>
+                </ion-slide>
+              </ion-slide-box>
+            </div>
+            <div class="previewInfo">
+              <div class="fav">
+                <button class="button button-clear" style="margin-right:-25px" ng-click = "save(listing)">
+                  <i class="icon ion-heart icon-accessory" ng-style = "listing.saved ? {color:'#EC5959'} : {color: 'rgba(53, 53, 53, 0.5)'}"></i>
+                </button>
+                <button class="button button-clear">
+                  <i class="icon ion-android-share icon-accessory"></i>
+                </button>
+              </div>
+              <h4 class="posting-title">{{listing.name}}</h4>
+              <p class="posting-description">{{listing.description}}</p>
+              <p class="posting-description-2">{{listing.price | currency}} / month</p>
+            </div>
+          </div>
+        </ion-card>
+      </div>
+      <button class="button button-outline block button-dark" ng-show="recentlyViewedNum" style="margin: auto">
+        View More
+      </button>
+    </div>
+      <!-- <ion-item class="item-thumbnail-left item-icon-right" id="postings-list-item13" style="">
         <img src="img/0vjW5aZEQ5GKTo5UVCbX_temp1.png">
         <h2>100 West Street</h2>
         <p style="white-space:normal;">1 Bedroom $700/month</p>
@@ -34,7 +132,7 @@
       </ion-item>
       <ion-item class="item-thumbnail-left" id="postings-list-item17" style="">
         <h2>Item</h2>
-      </ion-item>
+      </ion-item>-->
     </form>
   </ion-content>
 </ion-view>
