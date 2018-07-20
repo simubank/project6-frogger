@@ -45,6 +45,12 @@ angular.module('app.routes', [])
     }
   })
 
+  .state('app.viewProfile', {
+    url: '/viewProfile',
+    templateUrl: 'templates/viewProfile.html',
+    controller: 'viewProfileCtrl'
+  })
+
   .state('page', {
     url: '/page8',
     templateUrl: 'templates/page.html',
