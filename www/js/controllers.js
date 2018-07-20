@@ -273,10 +273,9 @@ function ($rootScope, $scope, $stateParams, $state, BotsService, User, $filter) 
         var today = new Date();
         var formattedDate = $filter('date')(today, 'MMMM dd, yyyy');
 
-
         var reviewObject = {
             "review": $scope.reviewText,
-            "name": $scope.user.data.givenName + ' ' +$scope.user.data.surname,
+            "name": $scope.user.getFullName(),
             "id": $scope.user.data.id,
             "timestamp": formattedDate,
             "rating": $scope.reviewRating*1.0
