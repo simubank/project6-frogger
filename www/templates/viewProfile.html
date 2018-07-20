@@ -1,0 +1,56 @@
+<ion-view title="View Profile" id="viewProfile">
+    <ion-content padding="true" class="has-header">
+        <ion-content padding="true" class="has-header"></ion-content>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+        <div id="profile-info">
+      
+          <div class="user-info row">
+            <div class="picture">
+              <img id="profile-picture" ng-src="img/userProfileImg/{{userData.id}}}.jpg" />
+            </div>
+            <div class="col col-top">
+                <p id="username" >{{userData.getFullName()}}</p>
+                <p id="location">{{userData.getLocation()}}</p>
+                <div class="rating">
+                    <span ng-repeat="currentStar in averageStars track by $index" ng-class="averageStars[$index]"></span>
+                    {{userData.getRating()}}
+                </div>
+            </div>
+          </div>
+          <div class="col col-center">
+              <p id="description" class="padding">{{userData.data.appData.description}}</p>
+              <p id="status-list">{{userData.data.appData.status}}</p>
+          </div>
+        </div>
+        <div id="arrangement-info">
+          <hr></hr>
+          <div id="listings" ng-if="user.listings.length>0">
+            <!--ADD THESE IN FOR SOME LANDLORD....-->
+            <p>listings</p>
+          </div>
+          <div id="reviews" ng-if="user.data.appData.reviews.length">
+            <p id="review-title" class="review-bar">Reviews</p>
+            <a ng-href="#/app/writeReview" id="write-review-button" class="button icon ion-compose custom-icon">
+            </a>
+            <div class="review-item" ng-repeat="reviewobject in user.data.appData.reviews track by $index">
+                <div class="reviewer-info">
+                    <img class="reviewer-picture" ng-src="img/userProfileImg/{{reviewobject.id}}.jpg"/>
+                    <p id="reviewer-name">{{reviewobject.name}}</p>
+                    <p id="reviewer-timestamp">{{reviewobject.timestamp}}</p>
+                    <div class="rating">
+                        <span ng-repeat="currentRevStar in createStars(reviewobject.rating) track by $index" ng-class="createStars(reviewobject.rating)[$index]"></span>
+                        {{reviewobject.rating}}
+                    </div>
+                </div>
+                <div class="review-text">
+                    {{reviewobject.review}}
+                </div>
+            </div>
+          </div>
+          <div id="nullreviews" ng-if="user.data.appData.reviews.length===0">
+            <p id="null-review-text"> There are no reviews to show</p>
+          </div>
+        </div>
+
+    </ion-content>
+  </ion-view>

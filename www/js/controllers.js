@@ -70,7 +70,7 @@ angular.module('app.controllers', ["tdnb.services"])
         $scope.safetyScoreData[i] = $scope.listings[i].posting_details.safetyScore;
       }
 
-      $scope.calculateScore = function(average, value, lowerIsBetter) {
+      $scope.calculateScore = function (average, value, lowerIsBetter) {
         var result = value / average;
         var score = 0;
         if (result < 1) {
@@ -90,7 +90,7 @@ angular.module('app.controllers', ["tdnb.services"])
         }
       };
 
-      $scope.getWeightedScore = function(index) {
+      $scope.getWeightedScore = function (index) {
         var weightedValue = $scope.calculateScore($scope.averageValue, $scope.valueData[index], true) * .5;
         var weightWalkScore = $scope.calculateScore($scope.averageWalkScore, $scope.walkScoreData[index], false) * .3;
         var weightedSafetyScore = $scope.calculateScore($scope.averageSafetyScore, $scope.safetyScoreData[index], false) * .2;
@@ -108,12 +108,12 @@ angular.module('app.controllers', ["tdnb.services"])
       $ionicModal.fromTemplateUrl('/templates/comparisonCharts/value-view.html', {
         scope: $scope,
         animation: 'slide-in-up'
-      }).then(function(modal) {
+      }).then(function (modal) {
         $scope.modal = modal;
       });
 
 
-      $scope.openValueModal = function(index) {
+      $scope.openValueModal = function (index) {
         $scope.detailViewId = index;
         // $scope.data = [$scope.userIncome, $scope.valueData[index]];
 
@@ -128,7 +128,7 @@ angular.module('app.controllers', ["tdnb.services"])
         $scope.modal.show();
       };
 
-      $scope.isHighestValue = function(listObj, average, index) {
+      $scope.isHighestValue = function (listObj, average, index) {
         var value1 = $scope.calculateScore(average, listObj[0]);
         var value2 = $scope.calculateScore(average, listObj[1]);
 
@@ -175,30 +175,6 @@ angular.module('app.controllers', ["tdnb.services"])
     function ($scope, $stateParams, BotsService, User) {
       var vm = this;
       $scope.currentUserId = 0;
-      $scope.user = {
-        "name": "Jon Snow",
-        "id": 0,
-        "location": "Toronto, Ontario",
-        "description": "Hi! I am currently looking for a place to stay for the upcoming winter!Hi! I am currently looking for a place to stay for the upcoming winter!Hi! I am currently looking for a place to stay for the upcoming winter!",
-        "status": "Seeking a 1 year lease in Guelph. Subletting a room in Kitchener for Fall term",
-        "listings": [],
-        "reviews": [
-          {
-            "review": "Jon was a very great tenant, who is clean, quiet and is a real leader! 10/10 would lease to again.",
-            "name": "Ned Stark",
-            "id": 3000,
-            "timestamp": "July 15, 2018",
-            "rating": 5.0
-          },
-          {
-            "review": "An amazing tenant with a great track record...",
-            "name": "Daeneyrs Targaryon",
-            "id": 1000,
-            "timestamp": "June 17, 2017",
-            "rating": 4.0
-          }
-        ]
-      };
 
       BotsService.getUser(0).then(function (data) {
         $scope.user = new User(data);
@@ -273,11 +249,15 @@ angular.module('app.controllers', ["tdnb.services"])
 
     }])
 
-  .controller('writeReviewCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+  .controller('writeReviewCtrl', ['$rootScope', '$scope', '$stateParams', '$state', 'BotsService', 'User',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
     // You can include any angular dependencies as parameters for this function
     // TIP: Access Route Parameters for your page via $stateParams.parameterName
-    function ($scope, $stateParams) {
+    function ($rootScope, $scope, $stateParams, $state, BotsService, User) {
       $scope.starRatingClass = ["far fa-star", "far fa-star", "far fa-star", "far fa-star", "far fa-star"];
+
+      BotsService.getUser(0).then(function (data) {
+        $scope.user = new User(data);
+      });
 
       $scope.starHighlight = function (starCount) {
         //note that starcount is rating-1 to deal with indexing issues..
@@ -293,6 +273,38 @@ angular.module('app.controllers', ["tdnb.services"])
         return $scope.starRatingClass;
       }
 
-    }])
+      BotsService.getUser(0).then(function (data) {
+        $scope.user = new User(data);
+      });
 
+      $scope.submitReview = function () {
+        $scope.user.reviews.push($scope.reviewText)
+      }
+
+    }])
+  .controller('viewProfileCtrl', ['$scope', '$stateParams', 'BotsService', 'User',
+    function ($scope, $stateParams, BotsService, User) {
+      $scope.currentUserId = 0;
+
+      BotsService.getUser(0).then(function (data) {
+        $scope.user = new User(data); //pass in as param here
+        $scope.averageStars = $scope.createStars($scope.user.averageStars());
+      });
+
+      $scope.createStars = function (rating) {
+        var starRating = [];
+        for (var j = 0; j < 5; j++) {
+          if (j <= (rating - 1)) {
+            starRating[j] = "fas fa-star checked";
+          }
+          else if (j !== 0 && rating > j && rating < j + 1) {
+            starRating[j] = "fas fa-star-half checked";
+          }
+          else {
+            starRating[j] = "far fa-star";
+          }
+        }
+        return starRating;
+      }
+    }])
 
