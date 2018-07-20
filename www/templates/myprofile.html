@@ -1,5 +1,5 @@
 <ion-view title="Profile" id="myProfile" style="">
-  <ion-content padding="true" class="has-header"></ion-content>
+  <ion-content padding="true" class="has-header" overflow-scroll="true">
 
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
   <div id="profile-info">
@@ -13,7 +13,7 @@
           <p id="location">{{user.getLocation()}}</p>
           <div class="rating">
               <span ng-repeat="currentStar in averageStars track by $index" ng-class="averageStars[$index]"></span>
-              {{user.getRating()}}
+              {{user.getRating() | number:1}}
           </div>
       </div>
     </div>
@@ -34,7 +34,8 @@
       </a>
       <div class="review-item" ng-repeat="reviewobject in user.data.appData.reviews track by $index">
           <div class="reviewer-info">
-              <img class="reviewer-picture" ng-src="img/userProfileImg/{{reviewobject.id}}.jpg"/>
+              <img ng-if="reviewobject.id!==undefined" class="reviewer-picture" ng-src="img/userProfileImg/{{reviewobject.id}}.jpg"/>
+              <img ng-if="reviewobject.id===undefined" class="reviewer-picture" ng-src="img/userProfileImg/3000.jpg"/>
               <p id="reviewer-name">{{reviewobject.name}}</p>
               <p id="reviewer-timestamp">{{reviewobject.timestamp}}</p>
               <div class="rating">
@@ -51,4 +52,5 @@
       <p id="null-review-text"> There are no reviews to show</p>
     </div>
   </div>
+</ion-content>
 </ion-view>

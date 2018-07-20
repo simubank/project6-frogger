@@ -43,7 +43,28 @@ var USERIDS = [
     }, // End of renter IDs
 
     {
-        botsId: "ef7900c7-e404-4418-b517-bee61affe2f7_9df5822f-6802-4942-a734-b999b50cbb19"
+        botsId: "ef7900c7-e404-4418-b517-bee61affe2f7_9df5822f-6802-4942-a734-b999b50cbb19",
+        appData: {
+            "description": "Hello, I am currently renting out some houses",
+            "status": "Seeking 3 tenants for my latest posting...",
+            "listings": [],
+            "reviews": [
+                {
+                    "review": "Very good landlord, who maintains the place well!!",
+                    "name": "Ned Stark",
+                    "id": 3000,
+                    "timestamp": "July 15, 2018",
+                    "rating": 5.0
+                },
+                {
+                    "review": "Never replied to my emails...always late for inspections too!!",
+                    "name": "Daeneyrs Targaryon",
+                    "id": 1000,
+                    "timestamp": "June 17, 2017",
+                    "rating": 2.0
+                }
+            ]
+        }
     },
     {
         botsId: "ef7900c7-e404-4418-b517-bee61affe2f7_7e789538-8cf3-46b3-95a4-81e5d8a2a6a7"
