@@ -9809,7 +9809,6 @@ a.button {
 #profile-info {
   width: 100%;
   height:auto;
-  margin-top:50px;
   font-family: WeblySleek;
 }
 #profile-picture {
@@ -9828,7 +9827,7 @@ a.button {
  width: auto;
 }
 #username {
-  font-size: 40px;
+  font-size: 10vw;
   overflow: visible;
   line-height: 40px;
 }
@@ -9838,7 +9837,6 @@ a.button {
 #description{
   font-size:17px;
   margin-right: 12px;
-  margin-left:12px;
 }
 #arrangement-info{
   font-family: WeblySleek;
@@ -9869,7 +9867,7 @@ a.button {
 }
 #review-title {
   font-size:22px;
-  margin-left:12px;
+  padding-left:12px;
   margin-bottom: 15px;
 }
 .reviewer-picture {
@@ -9907,7 +9905,7 @@ a.button {
   color:green;
   height:50px;
   width:50px;
-  margin-top: -10px;
+  margin-top: -45px;
   float:right;
 }
 .review-bar{

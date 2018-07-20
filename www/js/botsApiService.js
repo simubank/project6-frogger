@@ -98,6 +98,11 @@ angular.module('tdnb.services', [])
             this.data = botsApiResponse;
         }
 
+
+        User.prototype.updateRating = function (rating) {
+            this.rating = rating;
+        }
+
         /**
          * Public method, assigned to prototype
          */
@@ -115,6 +120,7 @@ angular.module('tdnb.services', [])
                 rating+=this.data.appData['reviews'][i].rating;
             }
             rating=rating/(this.data.appData['reviews'].length);
+            User.prototype.updateRating(rating);
             return rating;
         };
 

@@ -11,7 +11,7 @@
       <div class="col col-top">
           <p id="username" >{{user.getFullName()}}</p>
           <p id="location">{{user.getLocation()}}</p>
-          <div class="rating">
+          <div class="rating" ng-model="user.rating" ng-change="changeRating()">
               <span ng-repeat="currentStar in averageStars track by $index" ng-class="averageStars[$index]"></span>
               {{user.getRating() | number:1}}
           </div>

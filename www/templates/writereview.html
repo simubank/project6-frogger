@@ -17,9 +17,9 @@
     <div id="review-rating" class="button-bar">
       <p id="review-rating-title">Rating:</p>
       <p></p>
-      <span ng-repeat="i in [0,1,2,3,4] track by $index" ng-class="starRatingClass[$index]" ng-click="starHighlight($index)"></span>
+      <span ng-repeat="i in [1,2,3,4,5] track by $index" ng-class="starRatingClass[$index]" ng-click="starHighlight($index)"></span>
     </div>
     <button id="page-button9" class="button button-balanced button-block" ng-click="submitReview()">Submit</button>
-    <button id="page-button10" class="button button-stable button-block" ng-click="back()" >Cancel</button><!-- make into href poitning to the profile...-->
+    <button id="page-button10" class="button button-stable button-block" ng-click="cancel()" >Cancel</button><!-- make into href poitning to the profile...-->
   </ion-content>
 </ion-view>

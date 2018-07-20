@@ -32,9 +32,9 @@ function ($scope, $stateParams) {
         $scope.user = new User(data.result[0]);
         $scope.averageStars = $scope.createStars($scope.user.averageStars());
     });
-    //incorrcetly displays stars...
+
     $scope.createStars = function(rating){
-        $scope.clearStars;
+        //$scope.clearStars();
         var starRating=[];
         for(var j=0; j<5; j++){
             if(j<=(rating-1)){
@@ -49,13 +49,22 @@ function ($scope, $stateParams) {
         }
         return starRating;
     }
+    $scope.changeRating = function() {
+        if ($scope.user)
+            $scope.averageStars = $scope.createStars($scope.user.averageStars());
+    }
+
+    $scope.$watch('user.rating', function(newValue, oldValue) {
+        $scope.changeRating();
+    });
+
+    
+
+
     $scope.clearStars = function(){
         var starRating=["far fa-star", "far fa-star", "far fa-star", "far fa-star", "far fa-star"];
     }
 
-    function writeReview(){
-      this.navCtrl.setRoot(writeReview);
-    }
 }])
    
 .controller('pageCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
@@ -86,16 +95,15 @@ function ($rootScope, $scope, $stateParams, $state, BotsService, User, $filter) 
     });
     $scope.reviewRating = 0;
     $scope.starHighlight = function(starCount){
-        //note that starcount is rating-1 to deal with indexing issues..
         $scope.reviewRating = 0;
         $scope.starRatingClass = ["far fa-star","far fa-star","far fa-star","far fa-star","far fa-star"];
-        for(var i=0;i<starCount+1;i++){
-            if(i<=(starCount)){
-                $scope.starRatingClass[i]="fas fa-star checked";
+        for(var i=1;i<=starCount+1;i++){
+            if(i<=(starCount+1)){
+                $scope.starRatingClass[i-1]="fas fa-star checked";
                 $scope.reviewRating+=1;
             }
             else{
-                $scope.starRatingClass[i]="far fa-star";
+                $scope.starRatingClass[i-1]="far fa-star";
             }
         }
         return $scope.starRatingClass;
@@ -108,19 +116,28 @@ function ($rootScope, $scope, $stateParams, $state, BotsService, User, $filter) 
     //BotsService.getViewingUser(0).then(function(data) {
         //$scope.user = new User(data.result[0]);
    // });
+   $scope.cancel = function(){
+       $scope.reviewText="";
+       $scope.reviewRating=0;
+       $scope.starHighlight(-1);
+       $rootScope.back();
+   }
     $scope.submitReview= function(){
         var today = new Date();
-        var formattedDate = $filter('date')(today, 'dd-MM-yyyy');
+        var formattedDate = $filter('date')(today, 'MMMM dd, yyyy');
 
 
         var reviewObject = {
             "review": $scope.reviewText,
-            "name": $scope.user.data.givenName + $scope.user.data.surname,
+            "name": $scope.user.data.givenName + ' ' +$scope.user.data.surname,
             "id": $scope.user.data.id,
             "timestamp": formattedDate,
             "rating": $scope.reviewRating*1.0
         }
         $scope.user.data.appData.reviews.push(reviewObject);
+        $scope.reviewText="";
+        $scope.reviewRating=0;
+        $scope.starHighlight(-1);
         $rootScope.back();
     }
 
