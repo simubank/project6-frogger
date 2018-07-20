@@ -45,6 +45,15 @@ angular.module('app.routes', [])
     }
   })
 
+  .state('app.comparison', {
+    url: '/comparison',
+    views: {
+      'tab5': {
+        templateUrl: 'templates/comparison.html',
+        controller: 'comparisonCtrl'
+      }
+    }
+  })
   .state('app.viewProfile', {
     url: '/viewProfile',
     templateUrl: 'templates/viewProfile.html',

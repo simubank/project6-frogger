@@ -1,0 +1,33 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-balanced">
+    <h1 class="title">Value Analysis</h1>
+    <button class="button button-clear button-primary" ng-click="modal.hide()">Close</button>
+    </ion-header-bar>
+    <ion-content  padding="true" class="has-header">
+        <div class="row">
+            <div class="col col-30">
+                
+            </div>
+            <div class="col col-35">
+                <h4>Average rent in the area</h4>
+            </div>
+            <div class="col col-35">
+                <h4>Listing Rent</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-30">
+                <h4>Rent</h4>
+            </div>
+            <div class="col col-35">
+                {{averageValue | number: 2}}
+            </div>
+            <div class="col col-35">
+                {{valueData[detailViewId] | number: 2}}
+            </div>
+        </div>
+        <canvas id="doughnut" class="chart chart-doughnut"
+            chart-data="data" chart-labels="labels" chart-options="title">
+        </canvas>
+    </ion-content>
+</ion-modal-view>
