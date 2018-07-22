@@ -4,7 +4,7 @@
 
 
     <!--OVERLAY-->
-    <div ng-show="filter" style="height: 100%" class="overlay" animation="slide-in-up ng-leave">
+    <div ng-show="showFilter" style="height: 100%" class="overlay" animation="slide-in-up ng-leave">
 
 
       <div class="bar bar-header bar-light tab-nav">
@@ -16,7 +16,7 @@
               </button>
             </td>
             <td width="10%">
-              <button class="button button-clear">
+              <button class="button button-clear" ng-click="clearAllFilters()">
                 <b>
                   <p style="color: darkcyan; "> clear </p>
                 </b>
@@ -40,12 +40,12 @@
         <div class="divhr"></div>
         <p style="font-size: 20px; margin-bottom: 1em">Rooms and beds</p>
         <table>
-          <tr ng-repeat="room in rooms track by $index" width = "100%">
+          <tr ng-repeat="room in allFilters.rooms.type track by $index" width = "100%">
             <td width = "20%" style="vertical-align: middle">
                 <ion-label style="padding: 0px">{{room.name}}</ion-label>
             </td>
             <td width = "2%">
-                <button class="button button-clear" ng-disabled="room.count == 0" ng-click = "sub(room)">
+                <button class="button button-clear" ng-disabled="room.count == 0" ng-click = "sub(room, allFilters.rooms)">
                     <i class="icon ion-minus-circled"> </i>
                 </button>
             </td>
@@ -53,7 +53,7 @@
               {{room.count}}
             </td>
             <td width = "5%">
-                <button class="button button-clear" ng-disabled="room.count == 10" ng-click ="add(room)">
+                <button class="button button-clear" ng-disabled="room.count == 10" ng-click ="add(room, allFilters.rooms)">
                     <i class="icon ion-android-add-circle"> </i>
                 </button>
               </td>
@@ -63,12 +63,12 @@
         <div class="divhr"></div>
         <p style="font-size: 20px; margin-bottom: 1em">Utilities</p>
         <table>
-          <tr ng-repeat="util in utilities">
-            <td style="vertical-align: middle">
-                <ion-label >{{util.name}}</ion-label>
-            </td>
+          <tr ng-repeat="util in allFilters.utilities.type track by $index">
             <td>
-                <ion-checkbox [(ng-model)] = "util.name"  ></ion-checkbox>
+                <ion-checkbox [(ng-model)] = "util.name" ng-click = "check(util, allFilters.utilities)" ng-checked = "util.checked"></ion-checkbox>
+            </td>
+            <td style="vertical-align: middle" width = "90%">
+                <ion-label >{{util.name}}</ion-label>
             </td>
           </tr>
         </table>
@@ -76,12 +76,12 @@
         <div class="divhr"></div>
         <p style="font-size: 20px; margin-bottom: 1em">Facilities</p>
         <table>
-          <tr ng-repeat="util in utilities">
-            <td style="vertical-align: middle">
-                <ion-label >{{util.name}}</ion-label>
-            </td>
+          <tr ng-repeat="facility in allFilters.facilities.type track by $index">
             <td>
-                <ion-checkbox [(ng-model)] = "util.name"  ></ion-checkbox>
+                <ion-checkbox [(ng-model)] = "facility.name" ng-click = "check(facility, allFilters.facilities)" ng-checked = "facility.checked"></ion-checkbox>
+            </td>
+            <td style="vertical-align: middle" width = "100%">
+                <ion-label >{{facility.name}}</ion-label>
             </td>
           </tr>
         </table>
@@ -89,12 +89,12 @@
         <div class="divhr"></div>
         <p style="font-size: 20px; margin-bottom: 1em">Property type</p>
         <table>
-          <tr ng-repeat="util in utilities">
-            <td style="vertical-align: middle">
-                <ion-label >{{util.name}}</ion-label>
-            </td>
+          <tr ng-repeat="property in allFilters.propertyType.type track by $index">
             <td>
-                <ion-checkbox [(ng-model)] = "util.name"  ></ion-checkbox>
+                <ion-checkbox [(ng-model)] = "property.name" ng-click = "check(property, allFilters.propertyType)" ng-checked = "property.checked"></ion-checkbox>
+            </td>
+            <td style="vertical-align: middle">
+                <ion-label >{{property.name}}</ion-label>
             </td>
           </tr>
         </table>
@@ -102,12 +102,12 @@
         <div class="divhr"></div>
         <p style="font-size: 20px; margin-bottom: 1em">House Rules</p>
         <table>
-          <tr ng-repeat="util in utilities">
-            <td style="vertical-align: middle">
-                <ion-label >{{util.name}}</ion-label>
-            </td>
+          <tr ng-repeat="rules in allFilters.houseRules.type track by $index">
             <td>
-                <ion-checkbox [(ng-model)] = "util.name"  ></ion-checkbox>
+                <ion-checkbox [(ng-model)] = "rules.name"  ng-click = "check(rules, allFilters.houseRules)" ng-checked = "rules.checked"></ion-checkbox>
+            </td>
+            <td style="vertical-align: middle" width = "90%">
+                <ion-label >{{rules.name}}</ion-label>
             </td>
           </tr>
         </table>
@@ -129,12 +129,12 @@
         <input placeholder="Explore new living" type="search">
       </label>
 
-      <div stickyHeader="sticky" ng-show="!filter">
+      <div ng-show="!showFilter">
         <ion-scroll direction="x" class="activeFilters">
           <button class="button button-outline button-balanced" ng-click="openCloseFilter()">Filter</button>
-          <div ng-repeat="filter in activeFilters track by filter.filter" ng-click="changeFilter(filter)" class="filter">
-            <button ng-show="filter.show" class="button button-balanced" ng-click="clear(filter)">
-              <span>{{filter.filter}} </span>
+          <div ng-repeat="filter in activeFilters track by $index" ng-click="changeFilter(filter)" class="filter">
+            <button ng-show="filter.show" class="button button-balanced" ng-click="clearFilter(filter)">
+              <span>{{filter.name}} </span>
               <span>
                 <i ng-show="filter.show" class="icon ion-android-close"> </i>
               </span>

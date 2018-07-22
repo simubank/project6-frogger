@@ -13,34 +13,97 @@ angular.module('app.controllers', ["tdnb.services", "app.directives"])
 
             $scope.checked = false;
             $scope.map = false;
-            $scope.filter = false;
+            $scope.showFilter = false;
 
-            $scope.rooms = [{ name: "Bedrooms", count: 0 }, { name: "Washrooms", count: 0 }];
-
-            $scope.utilities = [{ name: "Bedrooms", checked: false },
-            { name: "Washrooms", checked: false }];
+            $scope.allFilters = {
+                "rooms": {
+                    name: "Rooms",
+                    type: [{
+                        name: "Bedrooms",
+                        count: 0
+                    }, {
+                        name: "Washrooms",
+                        count: 0
+                    }],
+                    show: false,
+                    number: 0
+                },
+                "utilities": {
+                    name: "Utilities",
+                    type: [{
+                        name: "Internet",
+                        checked: false
+                    }, {
+                        name: "Hydro",
+                        checked: false
+                    }, {
+                        name: "Gas",
+                        checked: false
+                    }, {
+                        name: "Cabel TV",
+                        checked: false
+                    }, {
+                        name: "Laundry",
+                        checked: false
+                    }, {
+                        name: "Funished",
+                        checked: false
+                    }, {
+                        name: "Air conditioning",
+                        checked: false
+                    }],
+                    show: false,
+                    number: 0
+                },
+                "price": {
+                    name: "Price",
+                    min: $scope.lowerPrice,
+                    max: $scope.higherPrice,
+                    show: false,
+                    number: 0
+                },
+                "propertyType": {
+                    name: "Property Type",
+                    type: [{
+                        name: "House",
+                        checked: false
+                    }, {
+                        name: "Apartment",
+                        checked: false
+                    }],
+                    show: false,
+                    number: 0
+                },
+                "facilities": {
+                    name: "Facilities",
+                    type: [{
+                        name: "Free Parking on premises",
+                        checked: false
+                    }, {
+                        name: "Gym",
+                        checked: false
+                    }, {
+                        name: "Common room",
+                        checked: false
+                    }],
+                    show: false,
+                    number: 0
+                },
+                "houseRules": {
+                    name: "House Rules",
+                    type: [{
+                        name: "Pets allowed",
+                        checked: false
+                    }, {
+                        name: "Quiet hours",
+                        checked: false
+                    }],
+                    show: false,
+                    number: 0
+                }
+            }
 
             var activeFilters = [
-                {
-                    filter: "price",
-                    show: true
-                },
-                {
-                    filter: "location",
-                    show: true
-                },
-                {
-                    filter: "filter A",
-                    show: false
-                },
-                {
-                    filter: "filter B",
-                    show: true
-                },
-                {
-                    filter: "filter C",
-                    show: true
-                }
             ];
 
             $scope.recentlyViewed = HouseListingService.getAllListings();
@@ -51,18 +114,38 @@ angular.module('app.controllers', ["tdnb.services", "app.directives"])
                 $scope.checked = !$scope.checked;
             }
 
-            $scope.applyFilter = function (value) {
-                activeFilters.push({ filter: value, show: true });
-                $scope.appliedFilters += 1;
+            $scope.applyFilter = function (code) {
+
+                if (!$scope.activeFilters.includes(code) && code.number > 0) {
+                    code.show = true;
+                    $scope.activeFilters.push(code);
+                    $scope.appliedFilters += 1;
+                } else if ($scope.activeFilters.includes(code) && code.number == 0) {
+                    clearFilter(code);
+                }
             };
 
-            $scope.clearFilters = function (value) {
+            $scope.clearAllFilters = function () {
                 $scope.appliedFilters = 0;
+                angular.forEach($scope.activeFilters, function (value, key) {
+                    $scope.clearFilter(value);
+                });
                 activeFilters = [];
             }
 
-            $scope.clear = function (filter) {
+            $scope.clearFilter = function (filter) {
                 filter.show = false;
+                filter.number = 0;
+                angular.forEach(filter.type, function (value, key) {
+                    if (value.checked) {
+                        value.checked = false;
+                    } else {
+                        value.count = 0;
+                    }
+                });
+                var x = $scope.activeFilters.indexOf(filter);
+                $scope.activeFilters.splice(x, 1);
+                $scope.appliedFilters -= 1;
             }
 
             $scope.click = function () {
@@ -70,7 +153,7 @@ angular.module('app.controllers', ["tdnb.services", "app.directives"])
             };
 
             $scope.openCloseFilter = function () {
-                $scope.filter = !$scope.filter;
+                $scope.showFilter = !$scope.showFilter;
             }
 
             $scope.save = function (value) {
@@ -84,14 +167,36 @@ angular.module('app.controllers', ["tdnb.services", "app.directives"])
                 zoom: 8
             });
 
-            $scope.add = function (room) {
+            $scope.add = function (room, code) {
                 room.count += 1;
+                code.number += 1;
+                $scope.applyFilter(code);
             }
 
-            $scope.sub = function (room) {
+            $scope.sub = function (room, code) {
                 room.count -= 1;
+                code.number -= 1;
+                if (code.number === 0) {
+                    $scope.clearFilter(code);
+                }
+                
             }
 
+            $scope.check = function (value, code) {
+                value.checked = !value.checked;
+                // console.log(value);
+                // console.log(value.checked);
+                if (value.checked) {
+                    code.number += 1;
+                } else {
+                    code.number -= 1;
+                }
+                // console.log($scope.allFilters.propertyType);   
+                $scope.applyFilter(code);
+            }
+
+
+            ////MAP///////////////////////////////////////////////////
             var markers = [];
 
             angular.forEach($scope.recentlyViewed, function (value, key) {
