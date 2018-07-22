@@ -112,3 +112,42 @@ angular.module('starter', [])
     }
   });
 })
+
+
+.directive('stickyHeader', function ($window) {
+  var $win = angular.element($window); // wrap window object as jQuery object
+
+  return {
+      restrict: 'A',
+      link: function (scope, element, attrs) {
+          var topClass = attrs.stickyHeader, // get CSS class from directive's attribute value
+              offsetTop = element.offset().top; // get element's top relative to the document
+
+          $win.scroll(function (e) {
+              if ($win.scrollTop() >= offsetTop) {
+                  element.addClass(sticky);
+              } else {
+                  element.removeClass(sticky);
+              }
+          });
+      }
+  };
+})
+
+.directive('format', ['$filter', function ($filter) {
+  return {
+      require: '?ngModel',
+      link: function (scope, elem, attrs, ctrl) {
+          if (!ctrl) return;
+
+          ctrl.$formatters.unshift(function (a) {
+              return $filter(attrs.format)(ctrl.$modelValue)
+          });
+
+          elem.bind('blur', function(event) {
+              var plainNumber = elem.val().replace(/[^\d|\-+|\.+]/g, '');
+              elem.val($filter(attrs.format)(plainNumber));
+          });
+      }
+  };
+}]);

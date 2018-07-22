@@ -9,8 +9,9 @@
     "gulp-sass": "^3.1.0"
   },
   "dependencies": {
-    "bootstrap": "^4.1.2",
     "angular-resource": "^1.7.2",
+    "angular-sticky-plugin": "^0.4.2",
+    "bootstrap": "^4.1.2",
     "cordova-ios": "4.5.4",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-ionic-keyboard": "^2.1.2",

@@ -1,16 +1,24 @@
-angular.module('app.controllers', ["tdnb.services"])
+angular.module('app.controllers', ["tdnb.services", "app.directives"])
 
-    .controller('postingsCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+    .controller('postingsCtrl', ['$scope', '$stateParams', 'BotsService', 'User', 'HouseListingService', '$ionicModal', '$timeout', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
         // You can include any angular dependencies as parameters for this function
         // TIP: Access Route Parameters for your page via $stateParams.parameterName
-        function ($scope, $stateParams) {
+        function ($scope, $stateParams, BotsService, User, HouseListingService, $ionicModal, $timeout) {
 
-            $scope.maxRecent = 2;
+            $scope.maxRecent = 5;
             $scope.recentlyViewedNum = 2;
+            $scope.lowerPrice = 10;
+            $scope.higherPrice = 20;
+            $scope.availableHouses = 2;
 
             $scope.checked = false;
             $scope.map = false;
             $scope.filter = false;
+
+            $scope.rooms = [{ name: "Bedrooms", count: 0 }, { name: "Washrooms", count: 0 }];
+
+            $scope.utilities = [{ name: "Bedrooms", checked: false },
+            { name: "Washrooms", checked: false }];
 
             var activeFilters = [
                 {
@@ -35,28 +43,7 @@ angular.module('app.controllers', ["tdnb.services"])
                 }
             ];
 
-            $scope.recentlyViewed = [
-                {
-                    name: "Waterloo - Lester",
-                    images: [
-                        { src: "img/0vjW5aZEQ5GKTo5UVCbX_temp1.png" },
-                        { src: "img/0vjW5aZEQ5GKTo5UVCbX_temp1.png" }
-                    ],
-                    description: "student housing etc etc etc.",
-                    price: "200",
-                    saved: false
-                },
-                {
-                    name: "Waterloo - Lester",
-                    images: [
-                        { src: "img/0vjW5aZEQ5GKTo5UVCbX_temp1.png" },
-                        { src: "img/0vjW5aZEQ5GKTo5UVCbX_temp1.png" }
-                    ],
-                    description: "student housing etc etc etc.",
-                    price: "200",
-                    saved: false
-                }
-            ];
+            $scope.recentlyViewed = HouseListingService.getAllListings();
 
             $scope.appliedFilters = 0;
 
@@ -91,6 +78,51 @@ angular.module('app.controllers', ["tdnb.services"])
             }
 
             $scope.activeFilters = activeFilters;
+
+            $scope.mapRecent = new google.maps.Map(document.getElementById('mapRecent'), {
+                center: { lat: 43.653226, lng: -79.38318429999998 },
+                zoom: 8
+            });
+
+            $scope.add = function (room) {
+                room.count += 1;
+            }
+
+            $scope.sub = function (room) {
+                room.count -= 1;
+            }
+
+            var markers = [];
+
+            angular.forEach($scope.recentlyViewed, function (value, key) {
+                var x = {
+                    mark: new google.maps.Marker(
+                        {
+                            position: {
+                                lat: value.posting_details.location.lat,
+                                lng: value.posting_details.location.long
+                            },
+                            map: $scope.mapRecent,
+                            title: "Waterloo"
+                        }),
+
+                    message: new google.maps.InfoWindow({
+                        content: "sdf"
+                    })
+                }
+                x.mark.addListener('click', function () {
+                    closeallwindows();
+                    x.message.open($scope.mapRecent, x.mark);
+                });
+                markers.push(x);
+            });
+
+            function closeallwindows() {
+                markers.forEach(function (marker) {
+                    marker.message.close($scope.mapRecent, marker);
+                });
+            }
+
 
         }])
 
