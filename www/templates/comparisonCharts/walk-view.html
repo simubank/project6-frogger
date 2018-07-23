@@ -1,0 +1,27 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-balanced">
+        <h1 class="title">Value Analysis</h1>
+        <button class="button button-clear button-primary" ng-click="walkModal.hide()">Close</button>
+    </ion-header-bar>
+    <ion-content padding="true" class="has-header">
+        <div class="row">
+            <div class="col">
+                <h4>How did we come up with this score?</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h5 ng-style="{ color: walkScoreData[detailViewId] < averageWalkScore ? 'red' : 'green' }">
+                    This property has {{walkScoreData[detailViewId] / averageWalkScore | number:1}}% {{walkScoreData[detailViewId]
+                    < averageWalkScore ? "less" : "more" }} walk score than national walk score</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h5>walk score comparison to national average</h5>
+            </div>
+        </div>
+        <canvas id="bar" class="chart chart-bar" chart-data="walkData" chart-labels="walkLabels" chart-series="series" chart-options="chartSettings"></canvas>
+        </canvas>
+    </ion-content>
+</ion-modal-view>

@@ -288,7 +288,7 @@ angular.module('tdnb.services', [])
                   "safetyScore": 4,
                   "walkscore":{
                      "status": 1,
-                     "walkscore": 80,
+                     "walkscore": 32,
                      "description": "Comfortable for Walkers",
                      "updated": "2016-11-17 04:40:31.218250",
                      "logo_url": "https://cdn.walk.sc/images/api-logo.png",
@@ -714,10 +714,11 @@ angular.module('tdnb.services', [])
                 return average / listings.length;
             },
             getMedianWalkScoreValue: function() {
-                var average = 0;
-                for (var i = 0; i < listings.length; i++) {
-                    average += listings[i].posting_details.walkscore.walkscore;
-                }
+                // var average = 0;
+                // for (var i = 0; i < listings.length; i++) {
+                //     average += listings[i].posting_details.walkscore.walkscore;
+                // }
+                return 50;
                 return average / listings.length;
             },
             getMedianSafetyValue: function() {

@@ -23,10 +23,15 @@ angular.module('app.controllers', ["tdnb.services"])
 
 
     }])
-  .controller('comparisonCtrl', ['$scope', '$stateParams', 'BotsService', 'User', 'HouseListingService', '$ionicModal', '$timeout',
-    function ($scope, $stateParams, BotsService, User, HouseListingService, $ionicModal, $timeout) {
+  .controller('comparisonCtrl', ['$scope', '$stateParams', 'BotsService', 'User', 'HouseListingService', '$ionicModal', '$timeout', '$filter',
+    function ($scope, $stateParams, BotsService, User, HouseListingService, $ionicModal, $timeout, $filter) {
+      $scope.incomeLabels = ["Income", "Rent"];
       $scope.labels = ["Income", "Rent"];
+      $scope.userIncome = 3000;
+
       $scope.data = [3000, 1000];
+      $scope.doughnutChartColors = ['#008000', '#ff6384'];
+
       $scope.sufficentFunds = true;
       $scope.detailViewId = 0;
       $scope.title = {
@@ -47,6 +52,13 @@ angular.module('app.controllers', ["tdnb.services"])
           display: true,
           text: 'Cost per month'
         },
+        scales: {
+          yAxes: [{
+              ticks: {
+                  beginAtZero:true
+              }
+          }]
+      }
       };
 
       $scope.averageValue = HouseListingService.getMedianRentalValue();
@@ -81,11 +93,11 @@ angular.module('app.controllers', ["tdnb.services"])
             return (1 - score) * 5;
           }
         } else {
-          score = 1.5 - Math.min(result, 1.5);
+          score = Math.min(result, 1.9) / 1.9;
           if (lowerIsBetter) {
-            return (score) * 5;
-          } else {
             return (1 - score) * 5;
+          } else {
+            return (score) * 5;
           }
         }
       };
@@ -101,7 +113,10 @@ angular.module('app.controllers', ["tdnb.services"])
       BotsService.getUser(0).then(function (data) {
         $scope.user = new User(data);
         $scope.user.getIncome().then(function (res) {
-          $scope.userIncome = res;
+          $scope.userIncome = Number($filter('number')(res, 2));
+          $scope.userIncome = 300;
+        }).catch(function() {
+          $scope.userIncome = 3000;
         });
       });
 
@@ -112,25 +127,53 @@ angular.module('app.controllers', ["tdnb.services"])
         $scope.modal = modal;
       });
 
+      $ionicModal.fromTemplateUrl('/templates/comparisonCharts/safety-view.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+      }).then(function (modal) {
+        $scope.safetyModal = modal;
+      });
 
+      $ionicModal.fromTemplateUrl('/templates/comparisonCharts/walk-view.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+      }).then(function (modal) {
+        $scope.walkModal = modal;
+      });
+      
       $scope.openValueModal = function (index) {
         $scope.detailViewId = index;
-        // $scope.data = [$scope.userIncome, $scope.valueData[index]];
-
-        var portionOfUserIncome = $scope.userIncome - $scope.valueData[index];
-        if (portionOfUserIncome < 0) {
-          portionOfUserIncome = 0;
-          $scope.sufficentFunds = false;
-        } else {
-          $scope.sufficentFunds = true;
-        }
-        $scope.data = [portionOfUserIncome, $scope.valueData[index]];
+        $scope.incomeData = [$scope.userIncome, $scope.valueData[index]];
+        $scope.series = $scope.labels;
+        $scope.chartSettings.title.text = "Rent to income";
         $scope.modal.show();
       };
 
-      $scope.isHighestValue = function (listObj, average, index) {
-        var value1 = $scope.calculateScore(average, listObj[0]);
-        var value2 = $scope.calculateScore(average, listObj[1]);
+
+      $scope.openSafetyModal = function (index) {
+        $scope.detailViewId = index;
+        $scope.safetyData = [$scope.averageSafetyScore, $scope.safetyScoreData[index]];
+        $scope.safetyLabels = ['Average', 'This Property'];
+        $scope.series = ['Crime Average', 'This Area'];
+        $scope.chartSettings.title.text = "National safety score vs property";
+        $scope.safetyModal.show();
+      };
+
+      $scope.openWalkModal = function (index) {
+        $scope.detailViewId = index;
+        $scope.walkData = [$scope.averageWalkScore, $scope.walkScoreData[index]];
+        $scope.walkLabels = ['Average', 'This Property'];
+        $scope.series = ['Average', 'This Property'];
+        $scope.chartSettings.title.text = "National walk score vs property";
+        $scope.walkModal.show();
+      };
+
+      $scope.isHighestValue = function (listObj, average, index, higherIsBetter) {
+        if (!angular.isDefined(higherIsBetter)) {
+          higherIsBetter = false;
+        }
+        var value1 = $scope.calculateScore(average, listObj[0], higherIsBetter);
+        var value2 = $scope.calculateScore(average, listObj[1], higherIsBetter);
 
         if (value1 > value2) {
           return index == 1;
@@ -154,9 +197,10 @@ angular.module('app.controllers', ["tdnb.services"])
         }
         return starRating;
       }
-      // $scope.closeValueModal = function() {
-      //   $scope.modal.hide();
-      // };
+      $scope.closeValueModal = function() {
+        $scope.modal.hide();
+        $scope.safetyModal.hide();
+      };
       // // Cleanup the modal when we're done with it!
       // $scope.$on('$destroy', function() {
       //   $scope.modal.remove();
