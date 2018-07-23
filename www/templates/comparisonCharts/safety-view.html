@@ -1,0 +1,26 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-balanced">
+        <h1 class="title">Value Analysis</h1>
+        <button class="button button-clear button-primary" ng-click="safetyModal.hide()">Close</button>
+    </ion-header-bar>
+    <ion-content padding="true" class="has-header">
+        <div class="row">
+            <div class="col">
+                <h4>How did we come up with this score?</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h5 ng-style="{ color: safetyScoreData[detailViewId] > averageSafetyScore ? 'red' : 'green' }">This property is {{safetyScoreData[detailViewId] /averageSafetyScore | number:1}}% {{safetyScoreData[detailViewId]  > averageSafetyScore
+                    ? "less" : "more" }} safe than national safety score</h5>
+            </div>
+        </div>
+        <div class="row">
+                <div class="col">
+                        <h5>Safety comparison to national average</h5>
+                </div>
+            </div>
+        <canvas id="bar" class="chart chart-bar" chart-data="safetyData" chart-labels="safetyLabels" chart-series="series" chart-options="chartSettings"></canvas>
+        </canvas>
+    </ion-content>
+</ion-modal-view>

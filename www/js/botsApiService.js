@@ -765,11 +765,12 @@ angular.module('tdnb.services', [])
                 }
                 return average / listings.length;
             },
-            getMedianWalkScoreValue: function () {
-                var average = 0;
-                for (var i = 0; i < listings.length; i++) {
-                    average += listings[i].posting_details.walkscore.walkscore;
-                }
+            getMedianWalkScoreValue: function() {
+                // var average = 0;
+                // for (var i = 0; i < listings.length; i++) {
+                //     average += listings[i].posting_details.walkscore.walkscore;
+                // }
+                return 50;
                 return average / listings.length;
             },
             getMedianSafetyValue: function () {

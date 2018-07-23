@@ -1,8 +1,5 @@
 <ion-view title="Postings" id="postings" style="">
-  <ion-content padding="true">
-
-
-
+  <ion-content padding="true" overflow-scroll="true">
     <!--OVERLAY-->
     <div ng-show="showFilter" style="height: 100%" class="overlay" animation="slide-in-up ng-leave">
 
@@ -177,7 +174,8 @@
 
       <div ng-show="!map">
         <div ng-repeat="listing in recentlyViewed | limitTo: maxRecent track by $index">
-            
+          <a ng-click="navigatePosting($index)">
+          <ion-card>
             <div class="posting">
                 <a ng-href="#/app/postingInfo" >
               <div class="imageScroller">
@@ -205,7 +203,8 @@
                 <p class="posting-description-2">{{listing.posting_details.housing_Details.price | currency}} / month</p>
               </div>
             </div>
-         
+          </ion-card>
+        </a>
         </div>
         <button class="button button-outline block button-dark" ng-show="recentlyViewedNum" style="margin: auto" ng-click = "showAllRecents()">
           {{showMoreRecent}}
