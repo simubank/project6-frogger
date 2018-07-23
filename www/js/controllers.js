@@ -128,7 +128,7 @@ angular.module('app.controllers', ["tdnb.services", "app.directives"])
             $scope.navigatePosting = function(index){
                 var toPageParams = $scope.recentlyViewed[index];
                 console.log(toPageParams);
-                $state.go('app.myProfile', toPageParams)
+                $state.go('app.viewPosting', toPageParams);
             }
 
             $scope.clearAllFilters = function () {
@@ -760,5 +760,11 @@ angular.module('app.controllers', ["tdnb.services", "app.directives"])
                 }
                 return starRating;
             }
+        }])
+        
+        .controller('viewPostingCtrl', ['$scope', '$stateParams', 
+        function ($scope, $stateParams) {
+        
+
         }]);
 

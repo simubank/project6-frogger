@@ -29,6 +29,12 @@ angular.module('app.routes', [])
     }
   })
 
+  .state('app.viewPosting', {
+    url: '/viewPosting',
+    templateUrl: 'templates/viewPosting.html',
+    controller: 'viewPostingCtrl'
+  })
+
   .state('app', {
     url: '/app',
     templateUrl: 'templates/app.html',
