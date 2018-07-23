@@ -98,7 +98,7 @@ angular.module('app.controllers', ["tdnb.services"])
         return weightedValue + weightWalkScore + weightedSafetyScore;
       };
 
-      BotsService.getUser(9).then(function (data) {
+      BotsService.getUser(0).then(function (data) {
         $scope.user = new User(data);
         $scope.user.getIncome().then(function (res) {
           $scope.userIncome = res;
