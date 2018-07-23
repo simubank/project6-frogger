@@ -266,50 +266,6 @@ angular.module('tdnb.services', [])
                         "long": 43.2900,
                         "lat": 80.3154
                     },
-<<<<<<< HEAD
-                    "bathroom":{
-                      "number":1,
-                      "shared":"false"
-                    }, 
-                    "furnished":"false",
-                    "pet_friendly":"false",
-                    "smoking": "true",
-                    "utilities_included":{
-                      "hydro":"false",
-                      "electricity":"true",
-                      "wifi":"false"
-                    }
-                  },
-                  "safetyScore": 4,
-                  "walkscore":{
-                     "status": 1,
-                     "walkscore": 32,
-                     "description": "Comfortable for Walkers",
-                     "updated": "2016-11-17 04:40:31.218250",
-                     "logo_url": "https://cdn.walk.sc/images/api-logo.png",
-                     "more_info_icon": "https://cdn.walk.sc/images/api-more-info.gif",
-                     "more_info_link": "https://www.walkscore.com/how-it-works/",
-                     "ws_link": "https://www.walkscore.com/score/1119-8th-Avenue-Seattle-WA-98101/lat=47.6085/lng=-122.3295/?utm_source=walkscore.com&utm_medium=ws_api&utm_campaign=ws_api",
-                     "help_link": "https://www.walkscore.com/how-it-works/",
-                     "snapped_lat": 43.4643,
-                     "snapped_lon": -122.3295,
-                     "transit": {
-                        "score": 75,
-                        "description": "Somewhat Rider's",
-                        "summary": "30 nearby routes: 20 bus, 6 rail, 4 other"
-                     },
-                     "bike": {
-                        "score": 51,
-                        "description": "Somewhat bikeable"
-                     }
-                  },
-                  "additional_info":
-                  {
-                    "comments":"Pool with sauna and hottub"
-              
-                },
-                "owner_rating":4.2
-=======
                     "avaliable_dates": {
                         "from": "09/05/18",
                         "to": "04/01/19"
@@ -365,7 +321,6 @@ angular.module('tdnb.services', [])
 
                         },
                     "owner_rating": 4.2
->>>>>>> 82b566c15824f2d0e3a0f8631e89ef507d48acd1
                 }
             },
             {
@@ -810,20 +765,12 @@ angular.module('tdnb.services', [])
                 }
                 return average / listings.length;
             },
-<<<<<<< HEAD
             getMedianWalkScoreValue: function() {
                 // var average = 0;
                 // for (var i = 0; i < listings.length; i++) {
                 //     average += listings[i].posting_details.walkscore.walkscore;
                 // }
                 return 50;
-=======
-            getMedianWalkScoreValue: function () {
-                var average = 0;
-                for (var i = 0; i < listings.length; i++) {
-                    average += listings[i].posting_details.walkscore.walkscore;
-                }
->>>>>>> 82b566c15824f2d0e3a0f8631e89ef507d48acd1
                 return average / listings.length;
             },
             getMedianSafetyValue: function () {
