@@ -30,9 +30,9 @@
         <!--sdf-->
         <p style="font-size: 20px; margin-bottom: 2em">Price Range</p>
         <div style="display: block" width="100%">
-          <input type="number" class="button button-stable" placeholder="{{lowerPrice | currency}}" style="float: left"> </input>
+          <input type = "number" class="button button-stable" style="float: left; font-size: 14px" ng-model = "lowerPrice.price">  </input>
           <label style="font-size: 1em; line-height: 3; margin-left: 1em;"> to </label>
-          <input type="number" class="button button-stable" style="float: right; margin-right: 3em" placeholder="{{higherPrice | currency}}"></input>
+          <input type="number" class="button button-stable" style="float: right; margin-right: 3em" ng-model= "higherPrice.price" ></input>
         </div>
 
 

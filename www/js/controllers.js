@@ -1,14 +1,14 @@
 angular.module('app.controllers', ["tdnb.services", "app.directives"])
 
-    .controller('postingsCtrl', ['$scope', '$stateParams', 'BotsService', 'User', 'HouseListingService', '$ionicModal', '$timeout', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+    .controller('postingsCtrl', ['$scope', '$filter', '$stateParams', 'BotsService', 'User', 'HouseListingService', '$ionicModal', '$timeout', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
         // You can include any angular dependencies as parameters for this function
         // TIP: Access Route Parameters for your page via $stateParams.parameterName
-        function ($scope, $stateParams, BotsService, User, HouseListingService, $ionicModal, $timeout) {
+        function ($scope, $filter, $stateParams, BotsService, User, HouseListingService, $ionicModal, $timeout) {
 
             $scope.maxRecent = 5;
             $scope.recentlyViewedNum = 2;
-            $scope.lowerPrice = 10;
-            $scope.higherPrice = 20;
+            $scope.lowerPrice = {price: 0};
+            $scope.higherPrice = {price: 20000};
             $scope.availableHouses = 2;
 
             $scope.checked = false;
@@ -17,7 +17,7 @@ angular.module('app.controllers', ["tdnb.services", "app.directives"])
 
             $scope.allFilters = {
                 "rooms": {
-                    name: "Rooms",
+                    name: "Rooms and Beds",
                     type: [{
                         name: "Bedrooms",
                         count: 0
@@ -136,13 +136,19 @@ angular.module('app.controllers', ["tdnb.services", "app.directives"])
             $scope.clearFilter = function (filter) {
                 filter.show = false;
                 filter.number = 0;
-                angular.forEach(filter.type, function (value, key) {
-                    if (value.checked) {
-                        value.checked = false;
-                    } else {
-                        value.count = 0;
-                    }
-                });
+                if (filter.name === "Price") {
+                    $scope.lowerPrice.price = 0;
+                    $scope.higherPrice.price = 20000;
+                    $scope.allFilters.price.number = 0;
+                } else {
+                    angular.forEach(filter.type, function (value, key) {
+                        if (value.checked) {
+                            value.checked = false;
+                        } else {
+                            value.count = 0;
+                        }
+                    });
+                }
                 var x = $scope.activeFilters.indexOf(filter);
                 $scope.activeFilters.splice(x, 1);
                 $scope.appliedFilters -= 1;
@@ -162,10 +168,6 @@ angular.module('app.controllers', ["tdnb.services", "app.directives"])
 
             $scope.activeFilters = activeFilters;
 
-            $scope.mapRecent = new google.maps.Map(document.getElementById('mapRecent'), {
-                center: { lat: 43.653226, lng: -79.38318429999998 },
-                zoom: 8
-            });
 
             $scope.add = function (room, code) {
                 room.count += 1;
@@ -179,7 +181,7 @@ angular.module('app.controllers', ["tdnb.services", "app.directives"])
                 if (code.number === 0) {
                     $scope.clearFilter(code);
                 }
-                
+
             }
 
             $scope.check = function (value, code) {
@@ -195,9 +197,36 @@ angular.module('app.controllers', ["tdnb.services", "app.directives"])
                 $scope.applyFilter(code);
             }
 
+            $scope.$watch("lowerPrice.price", function(newValue){
+                $scope.lowerPrice.price = newValue;
+                
+                if(newValue != 0) {
+                    $scope.allFilters.price.number += 1;
+                    $scope.applyFilter($scope.allFilters.price);
+                }
+              // console.log($scope.lowerPrice.price); 
+            }, true);
+
+            $scope.$watch("higherPrice.price", function(newValue){
+                $scope.higherPrice.price = newValue;
+                ;
+                if(newValue != 20000) {
+                    $scope.allFilters.price.number += 1
+                    $scope.applyFilter($scope.allFilters.price);
+                }
+               console.log($scope.higherPrice.price); 
+               console.log($scope.allFilters.price.number);
+            }, true);
+            
+            
 
             ////MAP///////////////////////////////////////////////////
             var markers = [];
+
+            $scope.mapRecent = new google.maps.Map(document.getElementById('mapRecent'), {
+                center: { lat: 43.653226, lng: -79.38318429999998 },
+                zoom: 8
+            });
 
             angular.forEach($scope.recentlyViewed, function (value, key) {
                 var x = {
