@@ -15,7 +15,7 @@ angular.module('app.controllers', ["tdnb.services", "app.directives"])
             $scope.higherPrice = {price: 20000};
             $scope.availableHouses = 2;
 
-            $scope.checked = false;
+            $scope.checked = false;9
             $scope.map = false;
             $scope.showFilter = false;
 
