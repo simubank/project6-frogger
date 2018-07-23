@@ -1,4 +1,4 @@
-angular.module('app.controllers', ["tdnb.services", "app.directives"])
+angular.module('app.controllers')
 
     .controller('comparisonCtrl', ['$scope', '$stateParams', 'BotsService', 'User', 'HouseListingService', '$ionicModal', '$timeout', '$filter',
         function ($scope, $stateParams, BotsService, User, HouseListingService, $ionicModal, $timeout, $filter) {
