@@ -4333,7 +4333,7 @@ a.subdued {
 .bar-header {
   top: 0;
   border-top-width: 0;
-  border-bottom-width: 1px; }
+  border-bottom-width: 0px; }
   .bar-header.has-tabs-top {
     border-bottom-width: 0px;
     background-image: none; }
@@ -10086,6 +10086,11 @@ a.button {
   width: 100%;
 }
 
+#mapAll {
+  height: 30em;
+  width: 100%;
+}
+
 .sticky {
   position: fixed;
   top: 0;
@@ -10118,4 +10123,25 @@ a.button {
   overflow: hidden;
   transition: max-height 0.2s ease-out;
   background-color: #f1f1f1;
+}
+
+ul.grid{
+  list-style: none;
+  width: 100%px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+ul.grid li{
+  padding: 2px;
+  float:left;
+}
+
+ul.grid li img{
+  width:13.5em;
+  height:13.5em;
+  margin: 0.01em;
+  margin-left: 0.2em;
+  display:block;
+  border:none;
 }

@@ -1,9 +1,13 @@
 angular.module('app.controllers', ["tdnb.services", "app.directives"])
 
-    .controller('postingsCtrl', ['$scope', '$filter', '$stateParams', 'BotsService', 'User', 'HouseListingService', '$ionicModal', '$timeout', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+    .filter('searchFor', function(){
+
+    })
+
+    .controller('postingsCtrl', ['$scope', '$stateParams', 'BotsService', 'User', 'HouseListingService', '$ionicModal', '$timeout', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
         // You can include any angular dependencies as parameters for this function
         // TIP: Access Route Parameters for your page via $stateParams.parameterName
-        function ($scope, $filter, $stateParams, BotsService, User, HouseListingService, $ionicModal, $timeout) {
+        function ($scope, $stateParams, BotsService, User, HouseListingService, $ionicModal, $timeout) {
 
             $scope.maxRecent = 5;
             $scope.recentlyViewedNum = 2;
@@ -218,13 +222,30 @@ angular.module('app.controllers', ["tdnb.services", "app.directives"])
                console.log($scope.allFilters.price.number);
             }, true);
             
-            
+            $scope.showMoreRecent = "Show More";
+            $scope.showAllRecents = function() {
+                console.log($scope.showMoreRecent);
+                if($scope.maxRecent == 5) {
+                    $scope.maxRecent = 10;
+                    $scope.showMoreRecent = "Show Less"
+                    console.log($scope.maxRecent);
+                } else {
+                    $scope.maxRecent = 5;
+                    $scope.showMoreRecent = "Show More";
+                }
+                
+            }
 
             ////MAP///////////////////////////////////////////////////
             var markers = [];
 
             $scope.mapRecent = new google.maps.Map(document.getElementById('mapRecent'), {
                 center: { lat: 43.653226, lng: -79.38318429999998 },
+                zoom: 8
+            });
+
+            $scope.mapAll = new google.maps.Map(document.getElementById('mapAll'), {
+                center: { lat: 43.653226, lng: -89.38318429999998 },
                 zoom: 8
             });
 
@@ -271,7 +292,15 @@ angular.module('app.controllers', ["tdnb.services", "app.directives"])
         // You can include any angular dependencies as parameters for this function
         // TIP: Access Route Parameters for your page via $stateParams.parameterName
         function ($scope, $stateParams) {
-
+            $scope.saved = [{
+                src: "img/0vjW5aZEQ5GKTo5UVCbX_temp1.png"
+            }, {
+                src: "img/0vjW5aZEQ5GKTo5UVCbX_temp1.png"
+            }, {
+                src: "img/0vjW5aZEQ5GKTo5UVCbX_temp1.png"
+            }, {
+                src: "img/0vjW5aZEQ5GKTo5UVCbX_temp1.png"
+            }]
 
         }])
     .controller('menuCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
@@ -538,6 +567,8 @@ angular.module('app.controllers', ["tdnb.services", "app.directives"])
                 $scope.starHighlight(-1);
                 $rootScope.back();
             }
+
+            
 
         }])
     .controller('viewProfileCtrl', ['$scope', '$stateParams', 'BotsService', 'User',

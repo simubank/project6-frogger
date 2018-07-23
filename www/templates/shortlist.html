@@ -1,6 +1,15 @@
 <ion-view title="Shortlist" id="shortlist" style="">
   <ion-content padding="true" class="has-header">
 
+    <div>
+      <ul class="grid">
+        <!-- A view with big photos and no text -->
+        <li ng-repeat="save in saved track by $index">
+            <a href="facebook.com" ><img src= {{save.src}} /></a>
+        </li>
+    </ul>
+      
+    </div>
     
   </ion-content>
 </ion-view>
