@@ -164,6 +164,7 @@
       <div ng-model="mapRecent" ng-show="map" id="mapRecent" style="z-index: 100"></div>
       <div ng-show="!map">
         <div ng-repeat="listing in recentlyViewed | limitTo: maxRecent track by $index">
+          <a ng-click="navigatePosting($index)">
           <ion-card>
             <div class="posting">
               <div class="imageScroller">
@@ -191,6 +192,7 @@
               </div>
             </div>
           </ion-card>
+        </a>
         </div>
         <button class="button button-outline block button-dark" ng-show="recentlyViewedNum" style="margin: auto">
           View More

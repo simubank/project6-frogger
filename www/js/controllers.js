@@ -1,9 +1,9 @@
 angular.module('app.controllers', ["tdnb.services", "app.directives"])
 
-    .controller('postingsCtrl', ['$scope', '$filter', '$stateParams', 'BotsService', 'User', 'HouseListingService', '$ionicModal', '$timeout', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+    .controller('postingsCtrl', ['$state','$scope', '$filter', '$stateParams', 'BotsService', 'User', 'HouseListingService', '$ionicModal', '$timeout', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
         // You can include any angular dependencies as parameters for this function
         // TIP: Access Route Parameters for your page via $stateParams.parameterName
-        function ($scope, $filter, $stateParams, BotsService, User, HouseListingService, $ionicModal, $timeout) {
+        function ($state, $scope, $filter, $stateParams, BotsService, User, HouseListingService, $ionicModal, $timeout) {
 
             $scope.maxRecent = 5;
             $scope.recentlyViewedNum = 2;
@@ -124,6 +124,12 @@ angular.module('app.controllers', ["tdnb.services", "app.directives"])
                     clearFilter(code);
                 }
             };
+
+            $scope.navigatePosting = function(index){
+                var toPageParams = $scope.recentlyViewed[index];
+                console.log(toPageParams);
+                $state.go('app.myProfile', toPageParams)
+            }
 
             $scope.clearAllFilters = function () {
                 $scope.appliedFilters = 0;
