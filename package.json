@@ -10,12 +10,15 @@
   },
   "dependencies": {
     "angular-resource": "^1.7.2",
+    "angular-sticky-plugin": "^0.4.2",
+    "bootstrap": "^4.1.2",
     "cordova-ios": "4.5.4",
     "cordova-plugin-device": "^2.0.2",
-    "cordova-plugin-ionic-keyboard": "^2.0.5",
-    "cordova-plugin-ionic-webview": "^1.1.19",
+    "cordova-plugin-ionic-keyboard": "^2.1.2",
+    "cordova-plugin-ionic-webview": "^1.2.1",
     "cordova-plugin-splashscreen": "^5.0.2",
     "cordova-plugin-whitelist": "^1.3.3",
+    "ionic-angular": "^3.9.2",
     "ng-resource": "^1.3.2"
   },
   "cordova": {

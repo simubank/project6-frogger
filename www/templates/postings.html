@@ -1,40 +1,243 @@
 <ion-view title="Postings" id="postings" style="">
-  <ion-content padding="true" class="has-header">
+  <ion-content padding="true">
+
+
+
+    <!--OVERLAY-->
+    <div ng-show="showFilter" style="height: 100%" class="overlay" animation="slide-in-up ng-leave">
+
+
+      <div class="bar bar-header bar-light tab-nav">
+        <table width="100%">
+          <tr>
+            <td width="90%">
+              <button class="button button-clear" ng-click="openCloseFilter()">
+                <i class="icon ion-android-close"></i>
+              </button>
+            </td>
+            <td width="10%">
+              <button class="button button-clear" ng-click="clearAllFilters()">
+                <b>
+                  <p style="color: darkcyan; "> clear </p>
+                </b>
+              </button>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div style="width:100%; height:1px; border:0.1px solid rgb(209, 209, 209); margin-top: 3.5em"></div>
+      <div class="overlay-content">
+        <!--sdf-->
+        <p style="font-size: 20px; margin-bottom: 2em">Price Range</p>
+        <div style="display: block" width="100%">
+          <input type = "number" class="button button-stable" style="float: left; font-size: 14px" ng-model = "lowerPrice.price">  </input>
+          <label style="font-size: 1em; line-height: 3; margin-left: 1em;"> to </label>
+          <input type="number" class="button button-stable" style="float: right; margin-right: 3em" ng-model= "higherPrice.price" ></input>
+        </div>
+
+
+        <!--sdf-->
+        <div class="divhr"></div>
+        <p style="font-size: 20px; margin-bottom: 1em">Rooms and beds</p>
+        <table>
+          <tr ng-repeat="room in allFilters.rooms.type track by $index" width = "100%">
+            <td width = "20%" style="vertical-align: middle">
+                <ion-label style="padding: 0px">{{room.name}}</ion-label>
+            </td>
+            <td width = "2%">
+                <button class="button button-clear" ng-disabled="room.count == 0" ng-click = "sub(room, allFilters.rooms)">
+                    <i class="icon ion-minus-circled"> </i>
+                </button>
+            </td>
+            <td width = "2%" style="vertical-align: middle">
+              {{room.count}}
+            </td>
+            <td width = "5%">
+                <button class="button button-clear" ng-disabled="room.count == 10" ng-click ="add(room, allFilters.rooms)">
+                    <i class="icon ion-android-add-circle"> </i>
+                </button>
+              </td>
+          </tr>
+        </table>
+
+        <div class="divhr"></div>
+        <p style="font-size: 20px; margin-bottom: 1em">Utilities</p>
+        <table>
+          <tr ng-repeat="util in allFilters.utilities.type track by $index">
+            <td>
+                <ion-checkbox [(ng-model)] = "util.name" ng-click = "check(util, allFilters.utilities)" ng-checked = "util.checked"></ion-checkbox>
+            </td>
+            <td style="vertical-align: middle" width = "90%">
+                <ion-label >{{util.name}}</ion-label>
+            </td>
+          </tr>
+        </table>
+
+        <div class="divhr"></div>
+        <p style="font-size: 20px; margin-bottom: 1em">Facilities</p>
+        <table>
+          <tr ng-repeat="facility in allFilters.facilities.type track by $index">
+            <td>
+                <ion-checkbox [(ng-model)] = "facility.name" ng-click = "check(facility, allFilters.facilities)" ng-checked = "facility.checked"></ion-checkbox>
+            </td>
+            <td style="vertical-align: middle" width = "100%">
+                <ion-label >{{facility.name}}</ion-label>
+            </td>
+          </tr>
+        </table>
+
+        <div class="divhr"></div>
+        <p style="font-size: 20px; margin-bottom: 1em">Property type</p>
+        <table>
+          <tr ng-repeat="property in allFilters.propertyType.type track by $index">
+            <td>
+                <ion-checkbox [(ng-model)] = "property.name" ng-click = "check(property, allFilters.propertyType)" ng-checked = "property.checked"></ion-checkbox>
+            </td>
+            <td style="vertical-align: middle">
+                <ion-label >{{property.name}}</ion-label>
+            </td>
+          </tr>
+        </table>
+
+        <div class="divhr"></div>
+        <p style="font-size: 20px; margin-bottom: 1em">House Rules</p>
+        <table>
+          <tr ng-repeat="rules in allFilters.houseRules.type track by $index">
+            <td>
+                <ion-checkbox [(ng-model)] = "rules.name"  ng-click = "check(rules, allFilters.houseRules)" ng-checked = "rules.checked"></ion-checkbox>
+            </td>
+            <td style="vertical-align: middle" width = "90%">
+                <ion-label >{{rules.name}}</ion-label>
+            </td>
+          </tr>
+        </table>
+
+       
+      </div>
+      <div style="width:100%; height:1px; border:0.1px solid rgb(209, 209, 209); margin-top: 3.5em"></div>
+      <button style = "margin: 1em ; min-width: 90%" class = "button button-balanced"> Explore </button>
+    </div>
+
+
+    <!-------------OVERLAY-------------------->
+
+
     <form id="postings-form4" class="list">
-      <label class="item item-input" id="postings-search1" style="">
+
+      <label class="item search item-input" id="postings-search1" style="">
         <i class="icon ion-search placeholder-icon"></i>
-        <input placeholder="" type="search">
+        <input placeholder="Explore new living" type="search">
       </label>
-      <ion-item class="item-thumbnail-left item-icon-right" id="postings-list-item13" style="">
-        <img src="img/0vjW5aZEQ5GKTo5UVCbX_temp1.png">
-        <h2>100 West Street</h2>
-        <p style="white-space:normal;">1 Bedroom $700/month</p>
-        <i class="icon ion-heart icon-accessory"></i>
-      </ion-item>
-      <ion-item class="item-thumbnail-left item-icon-right" id="postings-list-item14" style="">
-        <img src="img/O1pplughRbqjKLyjgj9Y_meet-icon-skyrise.jpg">
-        <h2>235 East Avenue</h2>
-        <p>2 Bedroom $1500/month</p>
-        <i class="icon ion-heart icon-accessory"></i>
-      </ion-item>
-      <ion-item class="item-thumbnail-left item-icon-right" id="postings-list-item16" style="">
-        <img src="img/e0GsJaWSE2TzDBWPmvZQ_phillip-square-i-blair-house-house_terri-meyer-boake4.jpg">
-        <h2>330 North Drive</h2>
-        <p>4 Bedroom $2000/month</p>
-        <i class="icon ion-heart icon-accessory"></i>
-      </ion-item>
-      <ion-item class="item-thumbnail-left item-icon-right" id="postings-list-item15" style="">
-        <img src="img/EtbJEM8ERHOmSeLdaACn_img_0558.jpg">
-        <h2>237 South Boulevard</h2>
-        <p>3 Bedroom $1800/month</p>
-        <i class="icon ion-heart icon-accessory"></i>
-      </ion-item>
-      <ion-item class="item-thumbnail-left" id="postings-list-item18" style="">
-        <h2>Item</h2>
-      </ion-item>
-      <ion-item class="item-thumbnail-left" id="postings-list-item17" style="">
-        <h2>Item</h2>
-      </ion-item>
+
+      <div ng-show="!showFilter">
+        <ion-scroll direction="x" class="activeFilters">
+          <button class="button button-outline button-balanced" ng-click="openCloseFilter()">Filter</button>
+          <div ng-repeat="filter in activeFilters track by $index" ng-click="changeFilter(filter)" class="filter">
+            <button ng-show="filter.show" class="button button-balanced" ng-click="clearFilter(filter)">
+              <span>{{filter.name}} </span>
+              <span>
+                <i ng-show="filter.show" class="icon ion-android-close"> </i>
+              </span>
+            </button>
+          </div>
+        </ion-scroll>
+
+
+        <table id="header" style="margin-top: -1em; margin-bottom: 0.5em">
+          <tr aria-colspan="15">
+            <td width="80%">
+              <h4>
+                <b>Your Recently Viewed
+                  <b>
+              </h4>
+            </td>
+
+            <td width="20%" height="5px">
+              <div style="display:inline" style="padding: 5px; z-index: 100">
+                <ion-toggle class="toggle-small" color="dark" checked="true" style="overflow: visible" ng-click="changePin(); click()" ng-model="checked"></ion-toggle>
+              </div>
+            </td>
+            <td width="10%" style="z-index: 100">
+              <i class="icon ion-android-pin map-pin" ng-style="checked ? {color: 'rgb(55, 165, 165)'} : {color: 'grey'}"></i>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <div ng-model="mapRecent" ng-show="map" id="mapRecent" style="z-index: 100"></div>
+      <div ng-show="!map">
+        <div ng-repeat="listing in recentlyViewed | limitTo: maxRecent track by $index">
+          <ion-card>
+            <div class="posting">
+              <div class="imageScroller">
+                <ion-nav-view></ion-nav-view>
+                <ion-slide-box on-slider-changed="slideHasChanged($index)">
+                  <ion-slide ng-repeat="image in listing.images">
+                    <div class="image-listing">
+                      <img class="posting-image" src= {{image.src}}>
+                    </div>
+                  </ion-slide>
+                </ion-slide-box>
+              </div>
+              <div class="previewInfo">
+                <div class="fav">
+                  <button class="button button-clear" style="margin-right:-25px" ng-click="save(listing)">
+                    <i class="icon ion-heart icon-accessory" ng-style="listing.saved ? {color:'#EC5959'} : {color: 'rgba(53, 53, 53, 0.5)'}"></i>
+                  </button>
+                  <button class="button button-clear">
+                    <i class="icon ion-android-share icon-accessory"></i>
+                  </button>
+                </div>
+                <h4 class="posting-title">{{listing.name}}</h4>
+                <p class="posting-description">{{listing.description}}</p>
+                <p class="posting-description-2">{{listing.posting_details.housing_Details.price | currency}} / month</p>
+              </div>
+            </div>
+          </ion-card>
+        </div>
+        <button class="button button-outline block button-dark" ng-show="recentlyViewedNum" style="margin: auto">
+          View More
+        </button>
+
+
+        <h3 style = "margin-top: 1em">
+            <b>Explore More
+              <b>
+          </h3>
+
+        <div ng-repeat="listing in recentlyViewed | limitTo: maxRecent track by $index">
+            <ion-card>
+              <div class="posting">
+                <div class="imageScroller">
+                  <ion-nav-view></ion-nav-view>
+                  <ion-slide-box on-slider-changed="slideHasChanged($index)">
+                    <ion-slide ng-repeat="image in listing.images">
+                      <div class="image-listing">
+                        <img class="posting-image" src= {{image.src}}>
+                      </div>
+                    </ion-slide>
+                  </ion-slide-box>
+                </div>
+                <div class="previewInfo">
+                  <div class="fav">
+                    <button class="button button-clear" style="margin-right:-25px" ng-click="save(listing)">
+                      <i class="icon ion-heart icon-accessory" ng-style="listing.saved ? {color:'#EC5959'} : {color: 'rgba(53, 53, 53, 0.5)'}"></i>
+                    </button>
+                    <button class="button button-clear">
+                      <i class="icon ion-android-share icon-accessory"></i>
+                    </button>
+                  </div>
+                  <h4 class="posting-title">{{listing.name}}</h4>
+                  <p class="posting-description">{{listing.description}}</p>
+                  <p class="posting-description-2">{{listing.posting_details.housing_Details.price | currency}} / month</p>
+                </div>
+              </div>
+            </ion-card>
+          </div>
+          <button class="button button-outline block button-dark" ng-show="recentlyViewedNum" style="margin: auto">
+            View More
+          </button>
+      </div>
     </form>
   </ion-content>
 </ion-view>
