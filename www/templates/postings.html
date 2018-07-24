@@ -43,7 +43,7 @@
             </td>
             <td width = "2%">
                 <button class="button button-clear" ng-disabled="room.count == 0" ng-click = "sub(room, allFilters.rooms)">
-                    <i class="icon ion-minus-circled"> </i>
+                    <i class="icon ion-minus-circled" style = "color: green"> </i>
                 </button>
             </td>
             <td width = "2%" style="vertical-align: middle">
@@ -177,7 +177,7 @@
           
           <ion-card>
             <div class="posting">
-                <a ng-click="navigatePosting($index)">
+                <a ng-href="#/app/postingInfo">
               <div class="imageScroller">
                 <ion-nav-view></ion-nav-view>
                 <ion-slide-box on-slider-changed="slideHasChanged($index)">

@@ -480,7 +480,211 @@ angular.module('app.controllers', ["tdnb.services", "app.directives"])
           // });
         }])
     .controller('postingInfoCtrl', ['$scope', '$stateParams',
-        function($scope, $stateParams){
+            function ($scope, $stateParams) {
+
+                $scope.save = function (value) {
+                    value.saved = !value.saved;
+                }
+    
+    
+                $scope.iconColor = "black";
+                $scope.iconUtil = function(util){
+                    if(util === "Hydro") {
+                        return "ion-waterdrop";
+                    } else if (util === "Electricity") {
+                        return "ion-flash";
+                    } else if (util == "Wifi") {
+                        return "ion-wifi";
+                    } else if (util == "Accessibility"){
+                        return "ion-android-add-circle";
+                    } else if (util == "Furnished" || util == "Common Area"){
+                        return "ion-android-home";
+                    } else if (util == "Smoking"){
+                        return "ion-fireball";
+                    } else if (util == "Pet Friendly"){
+                        return "ion-ios-heart";
+                    }
+                }
+                $scope.passed =  {
+                    name: "Icon",
+                    images: [
+                        { src: "img/0vjW5aZEQ5GKTo5UVCbX_temp1.png" },
+                        { src: "img/0vjW5aZEQ5GKTo5UVCbX_temp1.png" }
+                    ],
+                    caption: "Expensive place you will never be able to afford on your salary",
+                    description: "Great location so we hiked up the prices Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fringilla lacus eros, eu pretium dolor pellentesque mattis. Suspendisse potenti. Curabitur mattis magna sed hendrerit congue. Etiam ultricies, sem sit amet imperdiet tincidunt, mi metus semper eros, in aliquam orci justo a lacus. Pellentesque convallis diam in tortor scelerisque tempor. Fusce.",
+                    saved: false,
+                    leasor: "Dave",
+                    "posting_details": {
+                        "avaliable": "true",
+                        "location": {
+                            "long": 43.2900,
+                            "lat": 80.3154
+                        },
+                        "locationCity": "Waterloo",
+                        "locationOther": "Lester St, L4E 2N9",
+                        "avaliable_dates": {
+                            "from": "09/05/18",
+                            "to": "04/01/19"
+                        },
+                        "guests_required": 2,
+                        "housing_Details": {
+                            "price": 1450,
+                            "type": "House",
+                            "bedroom": {
+                                "number": 3,
+                                "shared": "false"
+                            },
+                            "bathroom": {
+                                "number": 1,
+                                "shared": "false"
+                            },
+                            "facilities" : [
+                                {
+                                    name: "Common Area"
+                                }
+                            ],
+                            "house_rules" : [
+                                {
+                                    name: "Pet Friendly"
+                                },
+                                {
+                                    name: "Smoking"
+                                }
+                            ],
+                            
+                            "utilities_included": [
+                                {
+                                    name: "Hydro"
+                                },
+                                {
+                                    name: "Electricity"
+                                },
+                                {
+                                    name: "Wifi"
+                                },
+                                {
+                                    name: "Accessibility"
+                                },
+                                {
+                                    name: "Furnished"
+                                }
+                            ]
+                        },
+                        "safetyScore": 4,
+                        "walkscore": {
+                            "status": 1,
+                            "walkscore": 80,
+                            "description": "Comfortable for Walkers",
+                            "updated": "2016-11-17 04:40:31.218250",
+                            "logo_url": "https://cdn.walk.sc/images/api-logo.png",
+                            "more_info_icon": "https://cdn.walk.sc/images/api-more-info.gif",
+                            "more_info_link": "https://www.walkscore.com/how-it-works/",
+                            "ws_link": "https://www.walkscore.com/score/1119-8th-Avenue-Seattle-WA-98101/lat=47.6085/lng=-122.3295/?utm_source=walkscore.com&utm_medium=ws_api&utm_campaign=ws_api",
+                            "help_link": "https://www.walkscore.com/how-it-works/",
+                            "snapped_lat": 43.4643,
+                            "snapped_lon": -122.3295,
+                            "transit": {
+                                "score": 75,
+                                "description": "Somewhat Rider's",
+                                "summary": "30 nearby routes: 20 bus, 6 rail, 4 other"
+                            },
+                            "bike": {
+                                "score": 49,
+                                "description": "Somewhat bikeable"
+                            }
+                        },
+                        "additional_info":
+                            {
+                                "comments": "Pool with sauna and hottub"
+    
+                            },
+                        "owner_rating": 4.2
+                    }
+                }
+    
+                var appraisal = function() {
+                    var x = $scope.passed.posting_details.owner_rating;
+                    if(x <= 1) {
+                        $scope.appraisal = "Poor";
+                        $scope.appraise = "#e5381d";
+                    } else if (x <= 2) {
+                        $scope.appraisal = "Adequate";
+                        $scope.appraise = "#e57d1c";
+                    } else if (x <= 3) {
+                        $scope.appraisal = "Good";
+                        $scope.appraise = "#e8d52f";
+                    } else if (x <= 4){
+                        $scope.appraisal = "Great";
+                        $scope.appraise = "#4278b2";
+                    } else if (x <= 5) {
+                        $scope.appraisal = "Excellent";
+                        $scope.appraise = "#61bc16" ;
+                    } else {
+                        $scope.appraisal = "New";
+                    }
+                }
+                appraisal();
+    
+                var appraisalWalk = function() {
+                    var x = $scope.passed.posting_details.walkscore.walkscore;
+                    if(x <= 10) {
+                        $scope.appraiseWalk = "#e5381d";
+                    } else if (x <= 30) {
+                        $scope.appraiseWalk = "#e57d1c";
+                    } else if (x <= 50) {
+                        $scope.appraiseWalk = "#e8d52f";
+                    } else if (x <= 80){
+                        $scope.appraiseWalk = "#4278b2";
+                    } else if (x <= 100) {
+                        $scope.appraiseWalk = "#61bc16" ;
+                    }
+                }
+    
+                appraisalWalk();
+    
+                var appraisalTransit = function() {
+                    var x = $scope.passed.posting_details.walkscore.transit.score;
+                    if(x <= 10) {
+                        $scope.appraiseTransit = "#e5381d";
+                    } else if (x <= 30) {
+                        $scope.appraiseTransit= "#e57d1c";
+                    } else if (x <= 50) {
+                        $scope.appraiseTransit = "#e8d52f";
+                    } else if (x <= 80){
+                        $scope.appraiseTransit = "#4278b2";
+                    } else if (x <= 100) {
+                        $scope.appraiseTransit = "#61bc16" ;
+                    }
+                }
+    
+                appraisalTransit();
+    
+                var appraisalBike = function() {
+                    var x = $scope.passed.posting_details.walkscore.bike.score;
+                    console.log(x);
+                    if(x <= 10) {
+                        $scope.appraiseBike = "#e5381d";
+                    } else if (x <= 30) {
+                        $scope.appraiseBike= "#e57d1c";
+                    } else if (x <= 50) {
+                        $scope.appraiseBike = "#e8d52f";
+                    } else if (x <= 80){
+                        $scope.appraiseBike= "#4278b2";
+                    } else if (x <= 100) {
+                        $scope.appraiseBike = "#61bc16" ;
+                    }
+                }
+    
+                appraisalBike();
+    
+                $scope.map = new google.maps.Map(document.getElementById('map'), {
+                    center: { lat: $scope.passed.posting_details.location.lat, lng: $scope.passed.posting_details.location.long },
+                    zoom: 5
+                });
+    
+                var marker = new google.maps.Marker({position: {lat: $scope.passed.posting_details.location.lat,
+                    lng: $scope.passed.posting_details.location.long }, map:$scope.map});
 
         }])
 
@@ -502,213 +706,20 @@ angular.module('app.controllers', ["tdnb.services", "app.directives"])
 
         }])
     .controller('shortlistCtrl', ['$scope', '$stateParams', 
-        function ($scope, $stateParams) {
+    function ($scope, $stateParams) {
+        $scope.saved = [{
+            src: "img/e0GsJaWSE2TzDBWPmvZQ_phillip-square-i-blair-house-house_terri-meyer-boake4.jpg"
+        }, {
+            src: "img/EtbJEM8ERHOmSeLdaACn_img_0558.jpg"
+        }, {
+            src: "img/O1pplughRbqjKLyjgj9Y_meet-icon-skyrise.jpg"
+        },{
+            src: "img/0vjW5aZEQ5GKTo5UVCbX_temp1.png"
+        },{
+            src: "img/e0GsJaWSE2TzDBWPmvZQ_phillip-square-i-blair-house-house_terri-meyer-boake4.jpg"
+        }];
 
-            $scope.save = function (value) {
-                value.saved = !value.saved;
-            }
-
-
-            $scope.iconColor = "black";
-            $scope.iconUtil = function(util){
-                if(util === "Hydro") {
-                    return "ion-waterdrop";
-                } else if (util === "Electricity") {
-                    return "ion-flash";
-                } else if (util == "Wifi") {
-                    return "ion-wifi";
-                } else if (util == "Accessibility"){
-                    return "ion-android-add-circle";
-                } else if (util == "Furnished" || util == "Common Area"){
-                    return "ion-android-home";
-                } else if (util == "Smoking"){
-                    return "ion-fireball";
-                } else if (util == "Pet Friendly"){
-                    return "ion-ios-heart";
-                }
-            }
-            $scope.passed =  {
-                name: "Icon",
-                images: [
-                    { src: "img/0vjW5aZEQ5GKTo5UVCbX_temp1.png" },
-                    { src: "img/0vjW5aZEQ5GKTo5UVCbX_temp1.png" }
-                ],
-                caption: "Expensive place you will never be able to afford on your salary",
-                description: "Great location so we hiked up the prices Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fringilla lacus eros, eu pretium dolor pellentesque mattis. Suspendisse potenti. Curabitur mattis magna sed hendrerit congue. Etiam ultricies, sem sit amet imperdiet tincidunt, mi metus semper eros, in aliquam orci justo a lacus. Pellentesque convallis diam in tortor scelerisque tempor. Fusce.",
-                saved: false,
-                leasor: "Dave",
-                "posting_details": {
-                    "avaliable": "true",
-                    "location": {
-                        "long": 43.2900,
-                        "lat": 80.3154
-                    },
-                    "locationCity": "Waterloo",
-                    "locationOther": "Lester St, L4E 2N9",
-                    "avaliable_dates": {
-                        "from": "09/05/18",
-                        "to": "04/01/19"
-                    },
-                    "guests_required": 2,
-                    "housing_Details": {
-                        "price": 1450,
-                        "type": "House",
-                        "bedroom": {
-                            "number": 3,
-                            "shared": "false"
-                        },
-                        "bathroom": {
-                            "number": 1,
-                            "shared": "false"
-                        },
-                        "facilities" : [
-                            {
-                                name: "Common Area"
-                            }
-                        ],
-                        "house_rules" : [
-                            {
-                                name: "Pet Friendly"
-                            },
-                            {
-                                name: "Smoking"
-                            }
-                        ],
-                        
-                        "utilities_included": [
-                            {
-                                name: "Hydro"
-                            },
-                            {
-                                name: "Electricity"
-                            },
-                            {
-                                name: "Wifi"
-                            },
-                            {
-                                name: "Accessibility"
-                            },
-                            {
-                                name: "Furnished"
-                            }
-                        ]
-                    },
-                    "safetyScore": 4,
-                    "walkscore": {
-                        "status": 1,
-                        "walkscore": 80,
-                        "description": "Comfortable for Walkers",
-                        "updated": "2016-11-17 04:40:31.218250",
-                        "logo_url": "https://cdn.walk.sc/images/api-logo.png",
-                        "more_info_icon": "https://cdn.walk.sc/images/api-more-info.gif",
-                        "more_info_link": "https://www.walkscore.com/how-it-works/",
-                        "ws_link": "https://www.walkscore.com/score/1119-8th-Avenue-Seattle-WA-98101/lat=47.6085/lng=-122.3295/?utm_source=walkscore.com&utm_medium=ws_api&utm_campaign=ws_api",
-                        "help_link": "https://www.walkscore.com/how-it-works/",
-                        "snapped_lat": 43.4643,
-                        "snapped_lon": -122.3295,
-                        "transit": {
-                            "score": 75,
-                            "description": "Somewhat Rider's",
-                            "summary": "30 nearby routes: 20 bus, 6 rail, 4 other"
-                        },
-                        "bike": {
-                            "score": 49,
-                            "description": "Somewhat bikeable"
-                        }
-                    },
-                    "additional_info":
-                        {
-                            "comments": "Pool with sauna and hottub"
-
-                        },
-                    "owner_rating": 4.2
-                }
-            }
-
-            var appraisal = function() {
-                var x = $scope.passed.posting_details.owner_rating;
-                if(x <= 1) {
-                    $scope.appraisal = "Poor";
-                    $scope.appraise = "#e5381d";
-                } else if (x <= 2) {
-                    $scope.appraisal = "Adequate";
-                    $scope.appraise = "#e57d1c";
-                } else if (x <= 3) {
-                    $scope.appraisal = "Good";
-                    $scope.appraise = "#e8d52f";
-                } else if (x <= 4){
-                    $scope.appraisal = "Great";
-                    $scope.appraise = "#4278b2";
-                } else if (x <= 5) {
-                    $scope.appraisal = "Excellent";
-                    $scope.appraise = "#61bc16" ;
-                } else {
-                    $scope.appraisal = "New";
-                }
-            }
-            appraisal();
-
-            var appraisalWalk = function() {
-                var x = $scope.passed.posting_details.walkscore.walkscore;
-                if(x <= 10) {
-                    $scope.appraiseWalk = "#e5381d";
-                } else if (x <= 30) {
-                    $scope.appraiseWalk = "#e57d1c";
-                } else if (x <= 50) {
-                    $scope.appraiseWalk = "#e8d52f";
-                } else if (x <= 80){
-                    $scope.appraiseWalk = "#4278b2";
-                } else if (x <= 100) {
-                    $scope.appraiseWalk = "#61bc16" ;
-                }
-            }
-
-            appraisalWalk();
-
-            var appraisalTransit = function() {
-                var x = $scope.passed.posting_details.walkscore.transit.score;
-                if(x <= 10) {
-                    $scope.appraiseTransit = "#e5381d";
-                } else if (x <= 30) {
-                    $scope.appraiseTransit= "#e57d1c";
-                } else if (x <= 50) {
-                    $scope.appraiseTransit = "#e8d52f";
-                } else if (x <= 80){
-                    $scope.appraiseTransit = "#4278b2";
-                } else if (x <= 100) {
-                    $scope.appraiseTransit = "#61bc16" ;
-                }
-            }
-
-            appraisalTransit();
-
-            var appraisalBike = function() {
-                var x = $scope.passed.posting_details.walkscore.bike.score;
-                console.log(x);
-                if(x <= 10) {
-                    $scope.appraiseBike = "#e5381d";
-                } else if (x <= 30) {
-                    $scope.appraiseBike= "#e57d1c";
-                } else if (x <= 50) {
-                    $scope.appraiseBike = "#e8d52f";
-                } else if (x <= 80){
-                    $scope.appraiseBike= "#4278b2";
-                } else if (x <= 100) {
-                    $scope.appraiseBike = "#61bc16" ;
-                }
-            }
-
-            appraisalBike();
-
-            $scope.map = new google.maps.Map(document.getElementById('map'), {
-                center: { lat: $scope.passed.posting_details.location.lat, lng: $scope.passed.posting_details.location.long },
-                zoom: 5
-            });
-
-            var marker = new google.maps.Marker({position: {lat: $scope.passed.posting_details.location.lat,
-                lng: $scope.passed.posting_details.location.long }, map:$scope.map});
-
-        }])
+    }])
 
     .controller('menuCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
         // You can include any angular dependencies as parameters for this function
