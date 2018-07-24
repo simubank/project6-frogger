@@ -37,11 +37,11 @@
       "furnished":"false",
       "pet_friendly":"false",
       "smoking": "true",
-      "utilities_included":{
-        "hydro":"false",
-        "electricity":"true",
-        "wifi":"false"
-      }
+      "utilities_included":[
+        {"hydro":false},
+        {"electricity":true},
+        {"wifi":false}
+      ]
     },
     "walkscore":{
        "status": 1,
