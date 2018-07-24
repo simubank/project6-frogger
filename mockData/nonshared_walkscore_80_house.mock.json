@@ -1,9 +1,21 @@
 {
+  "images":[
+    {"src":"img/0vjW5aZeq5GKto5UVCbX_temp1.png"},
+    {"src":"img/111.jpg"},
+    {"src":"img/112.jpg"},
+    {"src":"img/113.jpg"},
+    {"src":"img/114.jpg"}
+  ],
+  "post_title":"Student housing in Waterloo",
+  "saved": false,
+  "leasor":"Dave",
+  "avaliable":true,
   "posting_details":{
-    "avaliable":"true",
     "location":{
+      "province":"Ontario",
+      "city":"Waterloo",
       "long":43.2900,
-      "lat":80.3154
+      "lat":-80.3154
     },
     "avaliable_dates":{
       "from":"09/05/18",
@@ -25,11 +37,11 @@
       "furnished":"false",
       "pet_friendly":"false",
       "smoking": "true",
-      "utilities_included":{
-        "hydro":"false",
-        "electricity":"true",
-        "wifi":"false"
-      }
+      "utilities_included":[
+        {"hydro":false},
+        {"electricity":true},
+        {"wifi":false}
+      ]
     },
     "walkscore":{
        "status": 1,
@@ -57,7 +69,7 @@
     {
       "comments":"Pool with sauna and hottub"
 
+    }
   },
   "owner_rating":4.2
-  }
 }

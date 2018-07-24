@@ -266,18 +266,19 @@ angular.module('app.controllers', ["tdnb.services", "app.directives"])
 
         }])
 
-    .controller('applicationsCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+    .controller('shortlistCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
         // You can include any angular dependencies as parameters for this function
         // TIP: Access Route Parameters for your page via $stateParams.parameterName
         function ($scope, $stateParams) {
 
 
         }])
-    .controller('shortlistCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-        // You can include any angular dependencies as parameters for this function
-        // TIP: Access Route Parameters for your page via $stateParams.parameterName
-        function ($scope, $stateParams) {
-
+    .controller('applicationsCtrl', ['$scope', '$stateParams', 'Events',
+        function ($scope, $stateParams, Events) {
+            Events.get().then(function(events) {
+                console.log("events", events);	
+                $scope.events = events;
+            });
 
         }])    
 

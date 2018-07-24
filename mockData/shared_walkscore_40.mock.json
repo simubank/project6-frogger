@@ -1,9 +1,19 @@
 {
+  "images":[
+    {"src":"img/121.jpg"},
+    {"src":"img/122.jpg"},
+    {"src":"img/123.jpg"}
+  ],
+  "post_title":"Waterloo student housing",
+  "saved": false,
+  "leasor":"Bob",
+  "avaliable":true,
   "posting_details":{
-    "avaliable":"true",
     "location":{
+      "province":"Ontario",
+      "city":"Waterloo",
       "long":43.2814,
-      "lat":80.3438
+      "lat":-80.3438
     },
     "avaliable_dates":{
       "from":"09/10/18",
@@ -11,7 +21,7 @@
     },
     "guests_required":1,
     "housing_Details":{
-      "price":1400,
+      "price":1300,
       "type":"House",
       "shared_common_space":"true",
       "bedroom":{
@@ -25,11 +35,11 @@
       "furnished":"true",
       "pet_friendly":"false",
       "smoking": "true",
-      "utilities_included":{
-        "hydro":"true",
-        "electricity":"true",
-        "wifi":"true"
-      }
+      "utilities_included":[
+        {"hydro":true},
+        {"electricity":true},
+        {"wifi":true}
+      ]
     },
     "walkscore":{
        "status": 1,
@@ -57,7 +67,7 @@
     {
       "comments":"Wonderful house in a nice neighborhood"
 
-  },
+    }
+  }, 
   "owner_rating":4.5
-  }
 }

@@ -1,9 +1,19 @@
 {
+  "images":[
+    {"src":"img/131.jpg"},
+    {"src":"img/132.jpg"},
+    {"src":"img/133.jpg"}
+  ],
+  "post_title":"University student housing",
+  "saved": false,
+  "leasor":"John",
+  "avaliable":true,
   "posting_details":{
-    "avaliable":"true",
     "location":{
+      "province":"Ontario",
+      "city":"Waterloo",
       "long":43.2829,
-      "lat":80.3217
+      "lat":-80.3217
     },
     "avaliable_dates":{
       "from":"09/01/18",
@@ -25,11 +35,11 @@
       "furnished":"true",
       "pet_friendly":"false",
       "smoking": "false",
-      "utilities_included":{
-        "hydro":"true",
-        "electricity":"true",
-        "wifi":"false"
-      }
+      "utilities_included":[
+        {"hydro":true},
+        {"electricity":true},
+        {"wifi":false}
+      ]
     },
     "walkscore":{
        "status": 1,
@@ -52,13 +62,8 @@
           "score": 51,
           "description": "Somewhat bikeable"
        }
-    },
-    "additional_info":
-    {
-      "comments":"There is a gym near by with a swimming pool."
-
+    }
+  
   },
-  "owner_rating":3.3
-  }
-
+"owner_rating":3.3
 }
