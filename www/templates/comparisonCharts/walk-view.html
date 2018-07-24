@@ -4,12 +4,29 @@
         <button class="button button-clear button-primary" ng-click="walkModal.hide()">Close</button>
     </ion-header-bar>
     <ion-content padding="true" class="has-header">
-        <div class="row">
-            <div class="col">
-                <h4>How did we come up with this score?</h4>
+        <div class="item item-divider">
+                <h2>STATISTICS</h2>
+        </div>
+        <div class="row text-center item">
+            <div class="col col-50">
+                <h4>Area Average Walk Score</h4>
+            </div>
+            <div class="col col-50">
+                <h4>Walk Score</h4>
             </div>
         </div>
-        <div class="row">
+        <div class="row text-center item">
+            <div class="col col-50 item">
+                <span>{{averageWalkScore | number:2 }}</span>
+            </div>
+            <div class="col col-50 item">
+                <span>{{walkScoreData[detailViewId] | number:2 }}</span>
+            </div>
+        </div>
+        <div class="item item-divider">
+            <h2>ANALYSIS</h2>
+        </div>
+        <div class="row item">
             <div class="col">
                 <h5 ng-style="{ color: walkScoreData[detailViewId] < averageWalkScore ? 'red' : 'green' }">
                     This property has {{walkScoreData[detailViewId] / averageWalkScore | number:1}}% {{walkScoreData[detailViewId]
@@ -18,10 +35,28 @@
         </div>
         <div class="row">
             <div class="col">
-                <h5>walk score comparison to national average</h5>
+                <h5>Walk Score Comparison to National Average</h5>
             </div>
         </div>
+        <div class="row">
+            <div class="col">
         <canvas id="bar" class="chart chart-bar" chart-data="walkData" chart-labels="walkLabels" chart-series="series" chart-options="chartSettings"></canvas>
-        </canvas>
+            </div>
+        </div>
+        <div class="item item-divider">
+            <h3>How did we come up with this score?</h3>
+        </div>
+        <div class="card">
+            <div class="item item-text-wrap">
+                <div class="row">
+                    <div class="col col-20">
+                        <img style="width: 100%; height: auto;" src="https://pp.walk.sc/_/s/_i/images/fb-walkscore-180.jpg" />
+                    </div>
+                    <div class="col col-80">
+                        <h3>Using data from <a href="https://www.walkscore.com/">Walk Score</a>, we are able to gather walking data around the surrounding area</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
     </ion-content>
 </ion-modal-view>

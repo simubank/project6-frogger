@@ -17,6 +17,11 @@ angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives
   //general back button functinality. WILL NOT WORK ON PAGE REFRESH!!!
   $rootScope.$state = $state;
   $rootScope.$stateParams = $stateParams;
+
+  $rootScope.changeUser = function() {
+    $rootScope.$broadcast("UserChange");
+  }
+
   $rootScope.$on("$stateChangeSuccess",  function(event, toState, toParams, fromState, fromParams) {
     $rootScope.previousState_name = fromState.name;
     $rootScope.previousState_params = fromParams;

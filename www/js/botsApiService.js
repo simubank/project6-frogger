@@ -30,16 +30,100 @@ var USERIDS = [
         }
     },
     {
-        botsId: "ef7900c7-e404-4418-b517-bee61affe2f7_eb2ff32c-aba3-4e4b-bd5b-03190fef76fb"
+        botsId: "ef7900c7-e404-4418-b517-bee61affe2f7_eb2ff32c-aba3-4e4b-bd5b-03190fef76fb",
+        appData: {
+            "description": "Hi! I am currently looking for a place to stay for the upcoming winter!",
+            "status": "Seeking a 1 year lease in Guelph. Subletting a room in Kitchener for Fall term",
+            "listings": [],
+            "reviews": [
+                {
+                    "review": "Jon was a very great tenant, who is clean, quiet and is a real leader! 10/10 would lease to again.",
+                    "name": "Ned Stark",
+                    "id": 3000,
+                    "timestamp": "July 15, 2018",
+                    "rating": 5.0
+                },
+                {
+                    "review": "An amazing tenant with a great track record...",
+                    "name": "Daeneyrs Targaryon",
+                    "id": 1000,
+                    "timestamp": "June 17, 2017",
+                    "rating": 4.0
+                }
+            ]
+        }
     },
     {
-        botsId: "ef7900c7-e404-4418-b517-bee61affe2f7_b35ea8b6-3fa1-412d-ad4e-14134f58ceb7"
+        botsId: "ef7900c7-e404-4418-b517-bee61affe2f7_b35ea8b6-3fa1-412d-ad4e-14134f58ceb7",
+        appData: {
+            "description": "Hi! I am currently looking for a place to stay for the upcoming winter!",
+            "status": "Seeking a 1 year lease in Guelph. Subletting a room in Kitchener for Fall term",
+            "listings": [],
+            "reviews": [
+                {
+                    "review": "Jon was a very great tenant, who is clean, quiet and is a real leader! 10/10 would lease to again.",
+                    "name": "Ned Stark",
+                    "id": 3000,
+                    "timestamp": "July 15, 2018",
+                    "rating": 5.0
+                },
+                {
+                    "review": "An amazing tenant with a great track record...",
+                    "name": "Daeneyrs Targaryon",
+                    "id": 1000,
+                    "timestamp": "June 17, 2017",
+                    "rating": 4.0
+                }
+            ]
+        }
     },
     {
-        botsId: "ef7900c7-e404-4418-b517-bee61affe2f7_f70a3064-a208-4282-aa56-8b7099056dcc"
+        botsId: "ef7900c7-e404-4418-b517-bee61affe2f7_f70a3064-a208-4282-aa56-8b7099056dcc",
+        appData: {
+            "description": "Hi! I am currently looking for a place to stay for the upcoming winter!",
+            "status": "Seeking a 1 year lease in Guelph. Subletting a room in Kitchener for Fall term",
+            "listings": [],
+            "reviews": [
+                {
+                    "review": "Jon was a very great tenant, who is clean, quiet and is a real leader! 10/10 would lease to again.",
+                    "name": "Ned Stark",
+                    "id": 3000,
+                    "timestamp": "July 15, 2018",
+                    "rating": 5.0
+                },
+                {
+                    "review": "An amazing tenant with a great track record...",
+                    "name": "Daeneyrs Targaryon",
+                    "id": 1000,
+                    "timestamp": "June 17, 2017",
+                    "rating": 4.0
+                }
+            ]
+        }
     },
     {
-        botsId: "ef7900c7-e404-4418-b517-bee61affe2f7_26b31f74-69bc-4c36-9ae8-5ae30dc8914b"
+        botsId: "ef7900c7-e404-4418-b517-bee61affe2f7_26b31f74-69bc-4c36-9ae8-5ae30dc8914b",
+        appData: {
+            "description": "Hi! I am currently looking for a place to stay for the upcoming winter!",
+            "status": "Seeking a 1 year lease in Guelph. Subletting a room in Kitchener for Fall term",
+            "listings": [],
+            "reviews": [
+                {
+                    "review": "Jon was a very great tenant, who is clean, quiet and is a real leader! 10/10 would lease to again.",
+                    "name": "Ned Stark",
+                    "id": 3000,
+                    "timestamp": "July 15, 2018",
+                    "rating": 5.0
+                },
+                {
+                    "review": "An amazing tenant with a great track record...",
+                    "name": "Daeneyrs Targaryon",
+                    "id": 1000,
+                    "timestamp": "June 17, 2017",
+                    "rating": 4.0
+                }
+            ]
+        }
     }, // End of renter IDs
 
     {
@@ -67,16 +151,100 @@ var USERIDS = [
         }
     },
     {
-        botsId: "ef7900c7-e404-4418-b517-bee61affe2f7_7e789538-8cf3-46b3-95a4-81e5d8a2a6a7"
+        botsId: "ef7900c7-e404-4418-b517-bee61affe2f7_7e789538-8cf3-46b3-95a4-81e5d8a2a6a7",
+        appData: {
+            "description": "Hi! I am currently looking for a place to stay for the upcoming winter!",
+            "status": "Seeking a 1 year lease in Guelph. Subletting a room in Kitchener for Fall term",
+            "listings": [],
+            "reviews": [
+                {
+                    "review": "Jon was a very great tenant, who is clean, quiet and is a real leader! 10/10 would lease to again.",
+                    "name": "Ned Stark",
+                    "id": 3000,
+                    "timestamp": "July 15, 2018",
+                    "rating": 5.0
+                },
+                {
+                    "review": "An amazing tenant with a great track record...",
+                    "name": "Daeneyrs Targaryon",
+                    "id": 1000,
+                    "timestamp": "June 17, 2017",
+                    "rating": 4.0
+                }
+            ]
+        }
     },
     {
-        botsId: "ef7900c7-e404-4418-b517-bee61affe2f7_046815a5-8e94-40a6-ac96-3188710abb0c"
+        botsId: "ef7900c7-e404-4418-b517-bee61affe2f7_046815a5-8e94-40a6-ac96-3188710abb0c",
+        appData: {
+            "description": "Hi! I am currently looking for a place to stay for the upcoming winter!",
+            "status": "Seeking a 1 year lease in Guelph. Subletting a room in Kitchener for Fall term",
+            "listings": [],
+            "reviews": [
+                {
+                    "review": "Jon was a very great tenant, who is clean, quiet and is a real leader! 10/10 would lease to again.",
+                    "name": "Ned Stark",
+                    "id": 3000,
+                    "timestamp": "July 15, 2018",
+                    "rating": 5.0
+                },
+                {
+                    "review": "An amazing tenant with a great track record...",
+                    "name": "Daeneyrs Targaryon",
+                    "id": 1000,
+                    "timestamp": "June 17, 2017",
+                    "rating": 4.0
+                }
+            ]
+        }
     },
     {
-        botsId: "ef7900c7-e404-4418-b517-bee61affe2f7_de3e92ed-24d8-4e8f-949c-25079f270ef2"
+        botsId: "ef7900c7-e404-4418-b517-bee61affe2f7_de3e92ed-24d8-4e8f-949c-25079f270ef2",
+        appData: {
+            "description": "Hi! I am currently looking for a place to stay for the upcoming winter!",
+            "status": "Seeking a 1 year lease in Guelph. Subletting a room in Kitchener for Fall term",
+            "listings": [],
+            "reviews": [
+                {
+                    "review": "Jon was a very great tenant, who is clean, quiet and is a real leader! 10/10 would lease to again.",
+                    "name": "Ned Stark",
+                    "id": 3000,
+                    "timestamp": "July 15, 2018",
+                    "rating": 5.0
+                },
+                {
+                    "review": "An amazing tenant with a great track record...",
+                    "name": "Daeneyrs Targaryon",
+                    "id": 1000,
+                    "timestamp": "June 17, 2017",
+                    "rating": 4.0
+                }
+            ]
+        }
     },
     {
-        botsId: "ef7900c7-e404-4418-b517-bee61affe2f7_29d67bc2-e6a4-43bf-99ec-d5ff2aaa8ddb"
+        botsId: "ef7900c7-e404-4418-b517-bee61affe2f7_29d67bc2-e6a4-43bf-99ec-d5ff2aaa8ddb",
+        appData: {
+            "description": "Hi! I am currently looking for a place to stay for the upcoming winter!",
+            "status": "Seeking a 1 year lease in Guelph. Subletting a room in Kitchener for Fall term",
+            "listings": [],
+            "reviews": [
+                {
+                    "review": "Jon was a very great tenant, who is clean, quiet and is a real leader! 10/10 would lease to again.",
+                    "name": "Ned Stark",
+                    "id": 3000,
+                    "timestamp": "July 15, 2018",
+                    "rating": 5.0
+                },
+                {
+                    "review": "An amazing tenant with a great track record...",
+                    "name": "Daeneyrs Targaryon",
+                    "id": 1000,
+                    "timestamp": "June 17, 2017",
+                    "rating": 4.0
+                }
+            ]
+        }
     }
 ];
 
@@ -166,7 +334,6 @@ angular.module('tdnb.services', [])
                 for (var i = 0; i < transactionsRes.result.length; i++) {
                     for (var j = 0; j < transactionsRes.result[i].categoryTags.length; j++) {
                         if (transactionsRes.result[i].categoryTags[j].toLowerCase() === "salary") {
-                            console.log(transactionsRes);
                             var transDate = new Date(transactionsRes.result[i].originationDate);
                             total += transactionsRes.result[i].currencyAmount;
                             if (transDate > topDate) {

@@ -1,7 +1,7 @@
 angular.module('app.controllers')
 
-    .controller('comparisonCtrl', ['$scope', '$stateParams', 'BotsService', 'User', 'HouseListingService', '$ionicModal', '$timeout', '$filter',
-        function ($scope, $stateParams, BotsService, User, HouseListingService, $ionicModal, $timeout, $filter) {
+    .controller('comparisonCtrl', ['$scope', '$stateParams', 'BotsService', 'User', 'HouseListingService', '$ionicModal', '$timeout', '$filter', 'UserService', '$rootScope',
+        function ($scope, $stateParams, BotsService, User, HouseListingService, $ionicModal, $timeout, $filter, UserService, $rootScope) {
             $scope.incomeLabels = ["Income", "Rent"];
             $scope.labels = ["Income", "Rent"];
             $scope.userIncome = 3000;
@@ -87,14 +87,22 @@ angular.module('app.controllers')
                 return weightedValue + weightWalkScore + weightedSafetyScore;
             };
 
-            BotsService.getUser(0).then(function (data) {
-                $scope.user = new User(data);
-                $scope.user.getIncome().then(function (res) {
-                    $scope.userIncome = Number($filter('number')(res, 2));
-                    $scope.userIncome = 300;
-                }).catch(function () {
-                    $scope.userIncome = 3000;
+            function setUserInfo() {
+                BotsService.getUser(UserService.getCurrentUser()).then(function (data) {
+                    $scope.user = new User(data);
+                    $scope.user.getIncome().then(function (res) {
+                        $scope.userIncome = res.toFixed(2);
+                        console.log('user set', res);
+                    }).catch(function () {
+                        $scope.userIncome = 3000;
+                    });
                 });
+            }
+
+            setUserInfo();
+
+            $rootScope.$on('UserChange', function () {
+                setUserInfo();
             });
 
             $ionicModal.fromTemplateUrl('/templates/comparisonCharts/value-view.html', {
@@ -122,8 +130,7 @@ angular.module('app.controllers')
                 $scope.detailViewId = index;
                 $scope.incomeData = [$scope.userIncome, $scope.valueData[index]];
                 $scope.series = $scope.labels;
-                $scope.chartSettings.title.text = "Rent to income";
-                console.log($scope.incomeData)
+                $scope.chartSettings.title.text = "Rent to Income";
                 $scope.modal.show();
             };
 
@@ -133,7 +140,7 @@ angular.module('app.controllers')
                 $scope.safetyData = [$scope.averageSafetyScore, $scope.safetyScoreData[index]];
                 $scope.safetyLabels = ['Average', 'This Property'];
                 $scope.series = ['Crime Average', 'This Area'];
-                $scope.chartSettings.title.text = "National safety score vs property";
+                $scope.chartSettings.title.text = "National Safety Score vs Property";
                 $scope.safetyModal.show();
             };
 
@@ -142,7 +149,7 @@ angular.module('app.controllers')
                 $scope.walkData = [$scope.averageWalkScore, $scope.walkScoreData[index]];
                 $scope.walkLabels = ['Average', 'This Property'];
                 $scope.series = ['Average', 'This Property'];
-                $scope.chartSettings.title.text = "National walk score vs property";
+                $scope.chartSettings.title.text = "National Walk Score vs Property";
                 $scope.walkModal.show();
             };
 
@@ -179,16 +186,4 @@ angular.module('app.controllers')
                 $scope.modal.hide();
                 $scope.safetyModal.hide();
             };
-            // // Cleanup the modal when we're done with it!
-            // $scope.$on('$destroy', function() {
-            //   $scope.modal.remove();
-            // });
-            // // Execute action on hide modal
-            // $scope.$on('modal.hidden', function() {
-            //   // Execute action
-            // });
-            // // Execute action on remove modal
-            // $scope.$on('modal.removed', function() {
-            //   // Execute action
-            // });
         }])

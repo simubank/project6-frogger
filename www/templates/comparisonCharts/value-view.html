@@ -4,24 +4,72 @@
     <button class="button button-clear button-primary" ng-click="modal.hide()">Close</button>
     </ion-header-bar>
     <ion-content  padding="true" class="has-header">
-        <div class="row" ng-if="userIncome < valueData[detailViewId]">
-            <div class="col">
-                <!-- <h4 style="color: red;">It would be unwise to get this property since your monthly income of {{userIncome}} is insufficent for this property</h4> -->
-                <h4 style="color: green;">Need a loan?  Seems like you don't have the monthly income to fully rent this property. <a href="https://www.td.com/ca/en/personal-banking/products/borrowing/lines-of-credit/personal-line-of-credit/">Get a loan with TD now</a></h4>
+        <div class="card" ng-if="userIncome < valueData[detailViewId]">
+            <div class="item item-text-wrap">
+                <div class="row">
+                    <div class="col col-20">
+                        <img style="width: 100%; height: auto;" src="http://www.mbg.ca/wp-content/uploads/2017/06/td-bank-logo.png" />
+                    </div>
+                    <div class="col col-80">
+                        <h4 style="color: green;">Need a loan?  Seems like you don't have the monthly income to fully rent this property. <a href="https://www.td.com/ca/en/personal-banking/products/borrowing/lines-of-credit/personal-line-of-credit/">Get a loan with TD now</a></h4>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col">
-                <h4>How did we come up with this score?</h4>
+        <div class="item item-divider">
+            <h2>STATISTICS</h2>
+        </div>
+        <div class="row text-center item">
+            <div class="col col-33">
+                <h4>Area Average rent</h4>
+            </div>
+            <div class="col col-33">
+                <h4>Rent of Property</h4>
+            </div>
+            <div class="col col-33">
+                <h4>Your Income</h4>
             </div>
         </div>
-        <div class="row">
+        <div class="row text-center item">
+            <div class="col col-33 item">
+                <span>${{averageValue | number:2 }}</span>
+            </div>
+            <div class="col col-33 item">
+                <span>${{valueData[detailViewId] | number:2 }}</span>
+            </div>
+            <div class="col col-33 item">
+                <span>${{userIncome | number:2 }}</span>
+            </div>
+        </div>
+        <div class="item item-divider">
+            <h2>ANALYSIS</h2>
+        </div>
+        <div class="row item">
             <div class="col">
                 <h5 ng-style="{ color: valueData[detailViewId] > averageValue ? 'red' : 'green' }">You are paying {{valueData[detailViewId]/averageValue * 100 | number:1}}% {{valueData[detailViewId] > averageValue ? "more" : "less" }} than the average lot in the area</h5>
             </div>
         </div>
-        <canvas id="doughnut" class="chart chart-doughnut"
-            chart-data="incomeData" chart-labels="incomeLabels" chart-options="chartSettings" chart-colors="doughnutChartColors">
-        </canvas>
+        <div class="row">
+            <div class="col">
+                <canvas id="doughnut" class="chart chart-doughnut"
+                    chart-data="incomeData" chart-labels="incomeLabels" chart-options="chartSettings" chart-colors="doughnutChartColors">
+                </canvas>
+            </div>
+        </div>
+        <div class="item item-divider">
+            <h3>How did we come up with this score?</h3>
+        </div>
+        <div class="card">
+            <div class="item item-text-wrap">
+                <div class="row">
+                    <div class="col col-20">
+                        <img style="width: 100%; height: auto;" src="https://pbs.twimg.com/profile_images/539876488120500224/ixZw1WGR_400x400.png" />
+                    </div>
+                    <div class="col col-80">
+                        <h3>Using data from <a href="https://retsrabbit.com/">Rets Rabbit</a>, we are able to gather rental data around the surrounding area</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
     </ion-content>
 </ion-modal-view>

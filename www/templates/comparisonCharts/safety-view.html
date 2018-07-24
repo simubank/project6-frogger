@@ -4,23 +4,71 @@
         <button class="button button-clear button-primary" ng-click="safetyModal.hide()">Close</button>
     </ion-header-bar>
     <ion-content padding="true" class="has-header">
-        <div class="row">
-            <div class="col">
-                <h4>How did we come up with this score?</h4>
+        <div class="card">
+            <div class="item item-text-wrap">
+                <div class="row">
+                    <div class="col col-20">
+                        <img style="width: 100%; height: auto;" src="http://www.mbg.ca/wp-content/uploads/2017/06/td-bank-logo.png" />
+                    </div>
+                    <div class="col col-80">
+                        <h4 style="color: green;">Worried about the security of the area? TD offers insurance for your belongings and many different items. <a href="https://www.tdinsurance.com/">Get secured with TD now</a></h4>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="row">
+        <div class="item item-divider">
+            <h2>STATISTICS</h2>
+        </div>
+        <div class="row text-center item">
+            <div class="col col-50">
+                <h4>Area Average safety rating</h4>
+            </div>
+            <div class="col col-50">
+                <h4>Safety Rating of the area</h4>
+            </div>
+        </div>
+        <div class="row text-center item">
+            <div class="col col-50 item">
+                <span>{{averageSafetyScore | number:2 }}</span>
+            </div>
+            <div class="col col-50 item">
+                <span>{{safetyScoreData[detailViewId] | number:2 }}</span>
+            </div>
+        </div>
+
+        <div class="item item-divider">
+            <h2>ANALYSIS</h2>
+        </div>
+        <div class="row item">
             <div class="col">
                 <h5 ng-style="{ color: safetyScoreData[detailViewId] > averageSafetyScore ? 'red' : 'green' }">This property is {{safetyScoreData[detailViewId] /averageSafetyScore | number:1}}% {{safetyScoreData[detailViewId]  > averageSafetyScore
                     ? "less" : "more" }} safe than national safety score</h5>
             </div>
         </div>
         <div class="row">
-                <div class="col">
-                        <h5>Safety comparison to national average</h5>
+            <div class="col">
+                <h5>Safety comparison to national average</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <canvas id="bar" class="chart chart-bar" chart-data="safetyData" chart-labels="safetyLabels" chart-series="series" chart-options="chartSettings"></canvas>
+            </div>
+        </div>
+        <div class="item item-divider">
+            <h3>How did we come up with this score?</h3>
+        </div>
+        <div class="card">
+            <div class="item item-text-wrap">
+                <div class="row">
+                    <div class="col col-20">
+                        <img style="width: 100%; height: auto;" src="http://muskoka411.com/start/wp-content/uploads/2016/08/stats-canada.png" />
+                    </div>
+                    <div class="col col-80">
+                        <h3>Using data from <a href="https://open.canada.ca/data/en/dataset?q=crime">Stats Canada</a>, we are able to gather crime related data around the surrounding area</h3>
+                    </div>
                 </div>
             </div>
-        <canvas id="bar" class="chart chart-bar" chart-data="safetyData" chart-labels="safetyLabels" chart-series="series" chart-options="chartSettings"></canvas>
-        </canvas>
+        </div>
     </ion-content>
 </ion-modal-view>

@@ -1,5 +1,5 @@
 
-<ion-view title="Listing Comparison Analysis" id="ComparisonView">
+<ion-view title="Listing Comparison Analysis" id="ComparisonView" cache-view="false">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
     <ion-content padding="true" class="has-header">
         <div class="row">
@@ -31,7 +31,7 @@
                 </h4>
             </div>
         </div>
-        <h4 class="text-center"><i class="fas fa-walking" style="color: purple;"></i> Travel Score <i class="fas fa-walking" style="color: purple;"></i> </h4>
+        <h4 class="text-center"><i class="fas fa-walking" style="color: purple;"></i> Walk Score <i class="fas fa-walking" style="color: purple;"></i> </h4>
         <div class="row text-center">
             <div class="col item" ng-repeat="value in walkScoreData track by $index" ng-click="openWalkModal($index)">
                 <h4 ng-style="{opacity: isHighestValue(walkScoreData, averageWalkScore, $index) ? 0.5 : 1}">

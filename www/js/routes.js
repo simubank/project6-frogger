@@ -50,7 +50,7 @@ angular.module('app.routes', [])
       }
     }
   })
-
+  //url: '/comparison/:id/:id2',
   .state('app.comparison', {
     url: '/comparison',
     views: {

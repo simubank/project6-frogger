@@ -56,11 +56,13 @@
     <script src="js/app.js"></script>
     <script src="js/controllers.js"></script>
     <script src="js/comparisonController.js"></script>
+    <script src="js/menuController.js"></script>
     <script src="js/routes.js"></script>
     
     <script src="js/directives.js"></script>
     <script src="js/services.js"></script>
     <script src="js/botsApiService.js"></script>
+    <script src="js/userService.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOleV8Uv_4KUnbeZ5Ah7Amh7P0DIK7Nbs"></script>
 
 
@@ -86,7 +88,15 @@
         <div class="title">Menu</div>
       </ion-header-bar>
       <ion-content ng-controller="menuCtrl" padding="false" class="side-menu-left has-header ">
-        <a id="menu-button1" style="border-radius:0px 0px 0px 0px;" class="button button-balanced button-full" data-componentid="button1" ng-href="/#/app/comparison">Comparison View</button>
+        <a id="menu-button1" style="border-radius:0px 0px 0px 0px;" class="button button-balanced button-full" data-componentid="button1" ng-href="/#/app/comparison">Comparison View</a>
+        <div class="item item-input-inset">
+            <label class="item-input-wrapper">
+              <input type="text" placeholder="User ID" ng-model="userAccountID">
+            </label>
+            <button class="button button-small" ng-click="changeUser()">
+              Change User
+            </button>
+        </div>
       </ion-content>
     </ion-side-menu>
   </ion-side-menus>
