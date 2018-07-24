@@ -22,6 +22,11 @@ angular.module('app', ['ionic', 'app.controllers', 'app.routes', 'app.directives
     $rootScope.$broadcast("UserChange");
   }
 
+  $rootScope.changeComparisonID = function(item1, item2) {
+    console.log(item1, item2);
+    $rootScope.$broadcast('ComparisonIDChange', [item1, item2]);
+  }
+
   $rootScope.$on("$stateChangeSuccess",  function(event, toState, toParams, fromState, fromParams) {
     $rootScope.previousState_name = fromState.name;
     $rootScope.previousState_params = fromParams;

@@ -6,11 +6,17 @@ angular.module('app.controllers')
 function ($scope, $stateParams, UserService, $rootScope) {
 
     $scope.userAccountID = 0;
+    $scope.locationID1 = 0;
+    $scope.locationID2 = 1;
 
 
     $scope.changeUser = function() {
         UserService.setUser($scope.userAccountID);
         $rootScope.changeUser();
+    }
+
+    $scope.changeComparisonID = function() {
+        $rootScope.changeComparisonID($scope.locationID1, $scope.locationID2);
     }
 
 }]);

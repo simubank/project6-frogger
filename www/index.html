@@ -92,11 +92,24 @@
         <a id="menu-button1" style="border-radius:0px 0px 0px 0px;" class="button button-balanced button-full" data-componentid="button1" ng-href="/#/app/comparison">Comparison View</a>
         <div class="item item-input-inset">
             <label class="item-input-wrapper">
-              <input type="text" placeholder="User ID" ng-model="userAccountID">
+              <input type="number" placeholder="User ID" ng-model="userAccountID">
             </label>
             <button class="button button-small" ng-click="changeUser()">
               Change User
             </button>
+        </div>
+        <div class="row item item-input-inset">
+            <label class="col col-50 item-input-wrapper">
+              <input class="col col-50" type="number" placeholder="Location ID 1" ng-model="locationID1">
+            </label>
+            <label class="col col-50 item-input-wrapper">
+              <input class="col col-50" type="number" placeholder="Location ID 2" ng-model="locationID2">
+            </label>
+        </div>
+        <div class="row item item-input-inset">
+          <button class="col button button-small" ng-click="changeComparisonID()">
+              Change Comparison IDs
+          </button>
         </div>
       </ion-content>
     </ion-side-menu>

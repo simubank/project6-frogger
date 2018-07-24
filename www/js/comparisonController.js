@@ -1,7 +1,7 @@
 angular.module('app.controllers')
 
-    .controller('comparisonCtrl', ['$scope', '$stateParams', 'BotsService', 'User', 'HouseListingService', '$ionicModal', '$timeout', '$filter', 'UserService', '$rootScope',
-        function ($scope, $stateParams, BotsService, User, HouseListingService, $ionicModal, $timeout, $filter, UserService, $rootScope) {
+    .controller('comparisonCtrl', ['$scope', '$stateParams', 'BotsService', 'User', 'HouseListingService', '$ionicModal', '$timeout', '$filter', 'UserService',
+        function ($scope, $stateParams, BotsService, User, HouseListingService, $ionicModal, $timeout, $filter, UserService) {
             $scope.incomeLabels = ["Income", "Rent"];
             $scope.labels = ["Income", "Rent"];
             $scope.userIncome = 3000;
@@ -18,11 +18,7 @@ angular.module('app.controllers')
                 },
             };
 
-            $scope.listings = [
-                HouseListingService.getListing(0),
-                HouseListingService.getListing(3)
-            ];
-
+            
             $scope.chartSettings = {
                 heading: "",
                 title: {
@@ -37,27 +33,36 @@ angular.module('app.controllers')
                     }]
                 }
             };
-
-            $scope.averageValue = HouseListingService.getMedianRentalValue();
-            $scope.averageWalkScore = HouseListingService.getMedianWalkScoreValue();
-            $scope.averageSafetyScore = HouseListingService.getMedianSafetyValue();
-
-            $scope.comparisonData = [];
-
-            $scope.valueData = [];
-            for (var i = 0; i < $scope.listings.length; i++) {
-                $scope.valueData[i] = $scope.listings[i].posting_details.housing_Details.price;
+            
+            function setUpLocationData(id1, id2) {
+                $scope.listings = [
+                    HouseListingService.getListing(id1),
+                    HouseListingService.getListing(id2)
+                ];
+    
+                $scope.averageValue = HouseListingService.getMedianRentalValue();
+                $scope.averageWalkScore = HouseListingService.getMedianWalkScoreValue();
+                $scope.averageSafetyScore = HouseListingService.getMedianSafetyValue();
+    
+                $scope.comparisonData = [];
+    
+                $scope.valueData = [];
+                for (var i = 0; i < $scope.listings.length; i++) {
+                    $scope.valueData[i] = $scope.listings[i].posting_details.housing_Details.price;
+                }
+    
+                $scope.walkScoreData = [];
+                for (var i = 0; i < $scope.listings.length; i++) {
+                    $scope.walkScoreData[i] = $scope.listings[i].posting_details.walkscore.walkscore;
+                }
+    
+                $scope.safetyScoreData = [];
+                for (var i = 0; i < $scope.listings.length; i++) {
+                    $scope.safetyScoreData[i] = $scope.listings[i].posting_details.safetyScore;
+                }
             }
 
-            $scope.walkScoreData = [];
-            for (var i = 0; i < $scope.listings.length; i++) {
-                $scope.walkScoreData[i] = $scope.listings[i].posting_details.walkscore.walkscore;
-            }
-
-            $scope.safetyScoreData = [];
-            for (var i = 0; i < $scope.listings.length; i++) {
-                $scope.safetyScoreData[i] = $scope.listings[i].posting_details.safetyScore;
-            }
+            setUpLocationData(0, 3);
 
             $scope.calculateScore = function (average, value, lowerIsBetter) {
                 var result = value / average;
@@ -101,8 +106,12 @@ angular.module('app.controllers')
 
             setUserInfo();
 
-            $rootScope.$on('UserChange', function () {
+            $scope.$on('UserChange', function () {
                 setUserInfo();
+            });
+
+            $scope.$on('ComparisonIDChange', function (event, args) {
+                setUpLocationData(args[0], args[1]);
             });
 
             $ionicModal.fromTemplateUrl('/templates/comparisonCharts/value-view.html', {
