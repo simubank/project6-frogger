@@ -21,6 +21,8 @@
     src: url("../lib/ionic/fonts/weblysleekuil.ttf");
 }
 
+
+
 .ion, .ionicons,
 .ion-alert:before,
 .ion-alert-circled:before,
@@ -1053,6 +1055,9 @@
 .ion-android-pin:before {
   content: ""; }
 
+.map-pin {
+  font-size: 2em;
+}
 .ion-android-plane:before {
   content: ""; }
 
@@ -1093,7 +1098,8 @@
   content: ""; }
 
 .ion-android-share:before {
-  content: ""; }
+  content: ""; 
+  color: rgba(53, 53, 53, 1);}
 
 .ion-android-share-alt:before {
   content: ""; }
@@ -1348,7 +1354,8 @@
   content: ""; }
 
 .ion-close:before {
-  content: ""; }
+  content: ""; 
+  color: lightslategray}
 
 .ion-close-circled:before {
   content: ""; }
@@ -2434,10 +2441,12 @@
   content: ""; }
 
 .ion-minus-circled:before {
-  content: "";}
+  content: ""; 
+  color: green;}
 
 .ion-minus-round:before {
-  content: ""; }
+  content: ""; 
+  color: black;}
 
 .ion-model-s:before {
   content: ""; }
@@ -2563,7 +2572,8 @@
   content: ""; }
 
 .ion-record:before {
-  content: ""; }
+  content: ""; 
+  color: white;}
 
 .ion-refresh:before {
   content: ""; }
@@ -2988,7 +2998,7 @@ small, strike, strong, sub, sup, tt, var,
 b, i, u, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
+table, caption, tbody, tfoot, thead, tr, th,
 article, aside, canvas, details, embed, fieldset,
 figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
@@ -3275,7 +3285,41 @@ textarea {
   /* 2 */ }
 
 img {
-  -webkit-user-drag: none; }
+  -webkit-user-drag: none; 
+  width: 100%;}
+
+.posting-image{
+  border-radius: 2% 2% 20% 20%;
+  max-width: 100%;
+}
+ 
+.image-listing{
+  max-width: 100%;
+  margin: auto;
+  border-radius: 2%;
+}
+.image-listing::after{
+  display:block;
+  position:relative;
+  background-image: linear-gradient(to bottom, rgba(24, 24, 24, 0) 0, rgba(54, 54, 54, 0.527), rgba(54, 54, 54, 0.788) 100%);
+  margin-top: -110px;
+  height: 50px;
+  width: 100%;
+  content: '';
+  border-radius: 5%;
+}
+
+.fav {
+  position: absolute;
+  right: 5px;
+  z-index: 2;
+}
+
+.previewInfo{
+  width: 100%;
+  display:inline;
+}
+
 
 /* ==========================================================================
    Tables
@@ -3629,6 +3673,11 @@ h6, .h6 {
   margin-top: 10px;
   margin-bottom: 10px; }
 
+h4, .location-title {
+  margin-top: 15px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
 h1, .h1 {
   font-size: 36px; }
 
@@ -3656,6 +3705,17 @@ h2 small, .h2 small {
 h3 small, .h3 small,
 h4 small, .h4 small {
   font-size: 14px; }
+
+.posting-description {
+  font-size: 22px;
+  overflow-wrap: break-word;
+}
+
+.posting-description-2 {
+  font-size: 18px;
+  overflow-wrap: break-word;
+}
+
 
 dl {
   margin-bottom: 20px; }
@@ -4074,6 +4134,11 @@ a.subdued {
     top: 5px;
     right: 5px;
     bottom: 5px; }
+
+.posting {
+  padding-bottom: 1em;
+  padding-top: 5px;
+}
 
 .platform-android .nav-bar-has-subheader .bar {
   background-image: none; }
@@ -5685,6 +5750,13 @@ ion-tabs.tabs-striped.tabs-color-active-dark .tab-item.tab-item-active, ion-tabs
  * Items
  * --------------------------------------------------
  */
+.search {
+  
+  border-width: 1px;
+  border-style: solid;
+}
+
+
 .item {
   border-color: #ddd;
   background-color: #fff;
@@ -7839,16 +7911,17 @@ input[type="checkbox"][readonly] {
  */
 .checkbox {
   position: relative;
-  display: inline-block;
+  display: inline;
   padding: 7px 7px;
-  cursor: pointer; }
+  cursor: pointer; 
+  border-radius: 50%;}
   .checkbox input:before,
   .checkbox .checkbox-icon:before {
     border-color: #ddd; }
   .checkbox input:checked:before,
   .checkbox input:checked + .checkbox-icon:before {
-    background: #387ef5;
-    border-color: #387ef5; }
+    background: green;
+    border-color: rgba(0, 128, 0, 0); }
 
 .checkbox-light input:before,
 .checkbox-light .checkbox-icon:before {
@@ -7957,9 +8030,9 @@ input[type="checkbox"][readonly] {
     display: table;
     width: 100%;
     height: 100%;
-    border-width: 1px;
+    border-width: 3px;
     border-style: solid;
-    border-radius: 28px;
+    /*border-radius: 28px;*/
     background: #fff;
     content: ' ';
     -webkit-transition: background-color 20ms ease-in-out;
@@ -8160,6 +8233,9 @@ input:checked + .checkbox-icon:after {
 
 .item-toggle.active {
   box-shadow: none; }
+  
+  .item-content {
+  }
 
 .item-toggle,
 .item-toggle.item-complex .item-content {
@@ -8379,7 +8455,8 @@ input:checked + .checkbox-icon:after {
   -webkit-align-items: center;
   -moz-align-items: center;
   align-items: center;
-  padding: 2px 11px; }
+  padding: 2px 11px;
+  margin-left: -1em; }
   .range.range-light input::-webkit-slider-thumb:before {
     background: #ddd; }
   .range.range-light input::-ms-fill-lower {
@@ -10171,6 +10248,7 @@ a.button {
   cursor: pointer;
   padding: 18px;
   width: 100%;
+  border: none;
   text-align: left;
   outline: none;
   font-size: 15px;
@@ -10239,51 +10317,12 @@ ul.grid li img{
   border-width:1px solid grey;
 }
 
-.posting-image{
-  border-radius: 2% 2% 20% 20%;
-  max-width: 100%;
-}
- 
-.image-listing{
-  max-width: 100%;
-  margin: auto;
-  border-radius: 2%;
-}
-.image-listing::after{
-  display:block;
-  position:relative;
-  background-image: linear-gradient(to bottom, rgba(24, 24, 24, 0) 0, rgba(54, 54, 54, 0.527), rgba(54, 54, 54, 0.788) 100%);
-  margin-top: -110px;
-  height: 50px;
-  width: 100%;
-  content: '';
-  border-radius: 5%;
-}
-
 .fav {
   position: absolute;
   right: 5px;
   z-index: 2;
 }
 
-.previewInfo{
-  width: 100%;
-  display:inline;
-}
-h4, .location-title {
-  margin-top: 15px;
-  margin-bottom: 10px;
-  font-weight: bold;
-}
-.posting-description {
-  font-size: 22px;
-  overflow-wrap: break-word;
-}
-
-.posting-description-2 {
-  font-size: 18px;
-  overflow-wrap: break-word;
-}
 .posting {
   padding-bottom: 1em;
   padding-top: 5px;
