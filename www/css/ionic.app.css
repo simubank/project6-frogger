@@ -9938,3 +9938,23 @@ a.button {
 #review-rating{
   font-size:28px;
 }
+
+.posting-image{
+  border-radius: 2% 2% 2% 2%;
+  max-width: 100%;
+}
+
+.posting-description {
+  font-size: 22px;
+  overflow-wrap: break-word;
+}
+
+.posting-description-2 {
+  font-size: 18px;
+  overflow-wrap: break-word;
+}
+
+.posting {
+  padding-bottom: 1em;
+  padding-top: 5px;
+}

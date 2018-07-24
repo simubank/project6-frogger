@@ -121,46 +121,57 @@
 
     <form id="postings-form4" class="list">
 
-      <label class="item search item-input" id="postings-search1" style="">
-        <i class="icon ion-search placeholder-icon"></i>
-        <input placeholder="Explore new living" type="search">
-      </label>
 
-      <div ng-show="!showFilter">
-        <ion-scroll direction="x" class="activeFilters">
-          <button class="button button-outline button-balanced" ng-click="openCloseFilter()">Filter</button>
-          <div ng-repeat="filter in activeFilters track by $index" ng-click="changeFilter(filter)" class="filter">
-            <button ng-show="filter.show" class="button button-balanced" ng-click="clearFilter(filter)">
-              <span>{{filter.name}} </span>
-              <span>
-                <i ng-show="filter.show" class="icon ion-android-close"> </i>
-              </span>
-            </button>
+      <div class="row">
+          <div class="col">
+            <label class="item search item-input" id="postings-search1" style="">
+                <i class="icon ion-search placeholder-icon"></i>
+                <input placeholder="Explore new living" type="search">
+              </label>
           </div>
-        </ion-scroll>
-
-
-        <table id="header" style="margin-top: -1em; margin-bottom: 0.5em">
-          <tr aria-colspan="15">
-            <td width="80%">
-              <h4>
-                <b>Your Recently Viewed
-                  <b>
-              </h4>
-            </td>
-
-            <td width="20%" height="5px">
-              <div style="display:inline" style="padding: 5px; z-index: 100">
-                <ion-toggle class="toggle-small" color="dark" checked="true" style="overflow: visible" ng-click="changePin(); click()" ng-model="checked"></ion-toggle>
+      </div>
+      
+      <div class="row">
+          <div class="col">
+              <div ng-show="!showFilter">
+                  <ion-scroll direction="x" class="activeFilters">
+                    <button class="button button-outline button-balanced" ng-click="openCloseFilter()">Filter</button>
+                    <div ng-repeat="filter in activeFilters track by $index" ng-click="changeFilter(filter)" class="filter">
+                      <button ng-show="filter.show" class="button button-balanced" ng-click="clearFilter(filter)">
+                        <span>{{filter.name}} </span>
+                        <span>
+                          <i ng-show="filter.show" class="icon ion-android-close"> </i>
+                        </span>
+                      </button>
+                    </div>
+                </ion-scroll>
               </div>
-            </td>
-            <td width="10%" style="z-index: 100">
-              <i class="icon ion-android-pin map-pin" ng-style="checked ? {color: 'rgb(55, 165, 165)'} : {color: 'grey'}"></i>
-            </td>
-          </tr>
-        </table>
+          </div>
       </div>
 
+      <div class="row">
+          <div class="col">
+            <table id="header">
+              <tr aria-colspan="15">
+                <td width="80%">
+                    <h4>
+                        Your Recently Viewed
+                    </h4>
+                </td>
+
+                <td width="20%" height="5px">
+                  <div style="display:inline" style="padding: 5px; z-index: 100">
+                    <ion-toggle class="toggle-small" color="dark" checked="true" style="overflow: visible;border:0;" ng-click="changePin(); click()" ng-model="checked"></ion-toggle>
+                  </div>
+                </td>
+                <td width="10%" style="z-index: 100">
+                  <i class="icon ion-android-pin map-pin" ng-style="checked ? {color: 'rgb(55, 165, 165)'} : {color: 'grey'}"></i>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
       <div ng-model="mapRecent" ng-show="map" id="mapRecent" style="z-index: 100"></div>
       <div ng-show="!map">
         <div ng-repeat="listing in recentlyViewed | limitTo: maxRecent track by $index">
@@ -179,16 +190,20 @@
               </div>
               <div class="previewInfo">
                 <div class="fav">
-                  <button class="button button-clear" style="margin-right:-25px" ng-click="save(listing)">
-                    <i class="icon ion-heart icon-accessory" ng-style="listing.saved ? {color:'#EC5959'} : {color: 'rgba(53, 53, 53, 0.5)'}"></i>
-                  </button>
-                  <button class="button button-clear">
-                    <i class="icon ion-android-share icon-accessory"></i>
-                  </button>
+                  <div class="row">
+                    <div  class="col col-80">
+                        <h4 class="posting-title" style="color: green;">{{listing.name}}</h4>
+                        <p class="posting-description">{{listing.description}}</p>
+                        <p class="posting-description-2">{{listing.posting_details.housing_Details.price | currency}} / month</p>
+                    </div>
+                    <button class="col col-10 button button-clear text-left" style="" ng-click="save(listing)">
+                      <i class="icon ion-heart icon-accessory" ng-style="listing.saved ? {color:'#EC5959'} : {color: 'rgba(53, 53, 53, 0.5)'}"></i>
+                    </button>
+                    <button class="col col-10 button button-clear text-left">
+                      <i class="icon ion-android-share icon-accessory"></i>
+                    </button>
+                  </div>
                 </div>
-                <h4 class="posting-title">{{listing.name}}</h4>
-                <p class="posting-description">{{listing.description}}</p>
-                <p class="posting-description-2">{{listing.posting_details.housing_Details.price | currency}} / month</p>
               </div>
             </div>
           </ion-card>
@@ -219,12 +234,14 @@
                 </div>
                 <div class="previewInfo">
                   <div class="fav">
-                    <button class="button button-clear" style="margin-right:-25px" ng-click="save(listing)">
-                      <i class="icon ion-heart icon-accessory" ng-style="listing.saved ? {color:'#EC5959'} : {color: 'rgba(53, 53, 53, 0.5)'}"></i>
-                    </button>
-                    <button class="button button-clear">
-                      <i class="icon ion-android-share icon-accessory"></i>
-                    </button>
+                    <div class="row">
+                      <button class="col col-33 button button-clear" style="margin-right:-25px" ng-click="save(listing)">
+                        <i class="icon ion-heart icon-accessory" ng-style="listing.saved ? {color:'#EC5959'} : {color: 'rgba(53, 53, 53, 0.5)'}"></i>
+                      </button>
+                      <button class="col col-66 button button-clear">
+                        <i class="icon ion-android-share icon-accessory"></i>
+                      </button>
+                    </div>
                   </div>
                   <h4 class="posting-title">{{listing.name}}</h4>
                   <p class="posting-description">{{listing.description}}</p>
