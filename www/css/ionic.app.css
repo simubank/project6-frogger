@@ -10238,6 +10238,6 @@ ul.grid li img{
 #postings-search1 {
   border: 1px solid grey;
 }
-.ion-minus-circled{
-  color:green;
+.search {
+  border-width:1px solid grey;
 }
