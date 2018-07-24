@@ -114,21 +114,21 @@ angular.module('app.controllers')
                 setUpLocationData(args[0], args[1]);
             });
 
-            $ionicModal.fromTemplateUrl('/templates/comparisonCharts/value-view.html', {
+            $ionicModal.fromTemplateUrl('templates/comparisonCharts/value-view.html', {
                 scope: $scope,
                 animation: 'slide-in-up'
             }).then(function (modal) {
                 $scope.modal = modal;
             });
 
-            $ionicModal.fromTemplateUrl('/templates/comparisonCharts/safety-view.html', {
+            $ionicModal.fromTemplateUrl('templates/comparisonCharts/safety-view.html', {
                 scope: $scope,
                 animation: 'slide-in-up'
             }).then(function (modal) {
                 $scope.safetyModal = modal;
             });
 
-            $ionicModal.fromTemplateUrl('/templates/comparisonCharts/walk-view.html', {
+            $ionicModal.fromTemplateUrl('templates/comparisonCharts/walk-view.html', {
                 scope: $scope,
                 animation: 'slide-in-up'
             }).then(function (modal) {
