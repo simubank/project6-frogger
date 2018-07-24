@@ -9,7 +9,7 @@ angular.module('app.routes', [])
   $stateProvider
     
 
-      .state('app.postings', {
+  .state('app.postings', {
     url: '/postings',
     views: {
       'tab2': {
@@ -29,6 +29,12 @@ angular.module('app.routes', [])
     }
   })
 
+  .state('app.viewPosting', {
+    url: '/viewPosting',
+    templateUrl: 'templates/viewPosting.html',
+    controller: 'viewPostingCtrl'
+  })
+
   .state('app', {
     url: '/app',
     templateUrl: 'templates/app.html',
@@ -45,10 +51,36 @@ angular.module('app.routes', [])
     }
   })
 
+  .state('app.comparison', {
+    url: '/comparison',
+    views: {
+      'tab5': {
+        templateUrl: 'templates/comparison.html',
+        controller: 'comparisonCtrl'
+      }
+    }
+  })
+  .state('app.viewProfile', {
+    url: '/viewProfile',
+    templateUrl: 'templates/viewProfile.html',
+    controller: 'viewProfileCtrl'
+  })
+
   .state('page', {
     url: '/page8',
     templateUrl: 'templates/page.html',
     controller: 'pageCtrl'
+  })
+
+
+  .state('app.writeReview', {
+    url: "/writeReview",
+    views:{
+      "writeReview":{
+        templateUrl: 'templates/writereview.html',
+      controller: 'writeReviewCtrl'
+      }
+    }
   })
 
   .state('app.shortlist', {

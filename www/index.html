@@ -4,10 +4,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title></title>
-
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.css">
     
+    <link href="lib/ionic-fab/ion-fabButton.css" rel="stylesheet">
+    <script src="lib/ionic-fab/ion-fabButton.js"></script>  
     
     <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="lib/ionic/js/angular/angular-resource.js"></script>  
+    <script src="lib/ionic/js/chart.js/Chart.min.js"></script>
+    <script src="lib/ionic/js/chart.js/angular-chart.min.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
@@ -17,6 +22,7 @@
     -->
 
     <link href="css/ionic.app.css" rel="stylesheet">
+    <link rel="stylesheet" href="lib/ionic/css/project.css" rel="stylesheet">
 
     <style type="text/css">
       .platform-ios .manual-ios-statusbar-padding{
@@ -49,10 +55,14 @@
 
     <script src="js/app.js"></script>
     <script src="js/controllers.js"></script>
+    <script src="js/comparisonController.js"></script>
     <script src="js/routes.js"></script>
     
     <script src="js/directives.js"></script>
     <script src="js/services.js"></script>
+    <script src="js/botsApiService.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOleV8Uv_4KUnbeZ5Ah7Amh7P0DIK7Nbs"></script>
+
 
     <!-- Only required for Tab projects w/ pages in multiple tabs 
     <script src="lib/ionicuirouter/ionicUIRouter.js"></script>
@@ -76,11 +86,7 @@
         <div class="title">Menu</div>
       </ion-header-bar>
       <ion-content ng-controller="menuCtrl" padding="false" class="side-menu-left has-header ">
-        <button id="menu-button1" style="border-radius:0px 0px 0px 0px;" class="button button-balanced button-full" data-componentid="button1">Tap me!</button>
-        <button id="menu-button2" class="button button-balanced button-full" data-componentid="button2">Tap me!</button>
-        <button id="menu-button3" class="button button-balanced button-block" data-componentid="button3">Tap me!</button>
-        <button id="menu-button4" class="button button-balanced button-block" data-componentid="button4">Tap me!</button>
-        <button id="menu-button5" class="button button-balanced button-block" data-componentid="button5">Tap me!</button>
+        <a id="menu-button1" style="border-radius:0px 0px 0px 0px;" class="button button-balanced button-full" data-componentid="button1" ng-href="/#/app/comparison">Comparison View</button>
       </ion-content>
     </ion-side-menu>
   </ion-side-menus>
