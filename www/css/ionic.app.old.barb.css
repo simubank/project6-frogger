@@ -780,7 +780,7 @@
 
 .ion-android-add-circle:before {
   content: ""; 
-  color: green;}
+  }
 
 .ion-android-alarm-clock:before {
   content: ""; }
@@ -4333,7 +4333,7 @@ a.subdued {
 .bar-header {
   top: 0;
   border-top-width: 0;
-  border-bottom-width: 1px; }
+  border-bottom-width: 0px; }
   .bar-header.has-tabs-top {
     border-bottom-width: 0px;
     background-image: none; }
@@ -8870,7 +8870,7 @@ progress {
         color: #fff; }
   .button.button-royal {
     border-color: transparent;
-    background-color: #2C7818;
+    background-color: rgb(58, 23, 114);
     color: #fff; }
     .button.button-royal:hover {
       color: #fff;
@@ -10086,6 +10086,11 @@ a.button {
   width: 100%;
 }
 
+#mapAll {
+  height: 30em;
+  width: 100%;
+}
+
 .sticky {
   position: fixed;
   top: 0;
@@ -10118,4 +10123,49 @@ a.button {
   overflow: hidden;
   transition: max-height 0.2s ease-out;
   background-color: #f1f1f1;
+}
+
+ul.grid{
+  list-style: none;
+  width: 100%;
+  margin: 0 auto;
+  text-align: left;
+}
+
+ul.grid li{
+  padding: 2px;
+  float:left;
+}
+
+ul.grid li img{
+  width: 123px;
+  height: 123px;
+  margin: 0.01em;
+  margin-left: 0.2em;
+  margin-bottom: -1em;
+  display:block;
+  border:none;
+}
+
+.topBadge {
+  position:relative;
+  right: -100px !important;
+  top: -100px !important;
+  z-index: 2 !important;
+}
+
+.savedOverlay{
+  max-width: 100%;
+  margin: auto;
+  border-radius: 2%;
+}
+.savedOverlay::after{
+  display:block;
+  position:relative;
+  background-image: linear-gradient(to bottom, rgba(24, 24, 24, 0) 0, rgba(54, 54, 54, 0.527), rgba(54, 54, 54, 0.788) 100%);
+  margin-top: -110px;
+  height: 50px;
+  width: 100%;
+  content: '';
+  border-radius: 2%;
 }
