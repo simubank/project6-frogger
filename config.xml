@@ -90,4 +90,7 @@
     <allow-navigation href="http://172.17.167.205:8100" />
     <allow-navigation href="http://192.168.177.1:8100" />
     <allow-navigation href="http://192.168.4.104:8100" />
+    <plugin name="cordova-plugin-calendar" spec="https://github.com/EddyVerbruggen/Calendar-PhoneGap-Plugin.git">
+        <variable name="CALENDAR_USAGE_DESCRIPTION" value=" " />
+    </plugin>
 </widget>
