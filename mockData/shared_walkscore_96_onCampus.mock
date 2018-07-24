@@ -1,9 +1,19 @@
 {
+  images:[
+    {"src":"img/161.jpg},
+    {"src":"img/162.jpg},
+    {"src":"img/163.jpg}
+  ],
+  "post_title":"Room for rent",
+  "saved": false,
+  "leasor":"Mike",
+  "avaliable":true,
   "posting_details":{
-    "avaliable":"true",
     "location":{
+      "province":"Ontario",
+      "city":"Waterloo",
       "long":43.2817,
-      "lat":80.3310
+      "lat":-80.3310
     },
     "avaliable_dates":{
       "from":"08/01/18",

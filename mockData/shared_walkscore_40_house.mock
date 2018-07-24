@@ -1,9 +1,17 @@
 {
+  images:[
+    {"src":"img/171.jpg"}
+  ],
+  "post_title":"student housing",
+  "saved": false,
+  "leasor":"Susan",
+  "avaliable":true,
   "posting_details":{
-    "avaliable":"true",
     "location":{
+      "province":"Ontario",
+      "city":"Waterloo",
       "long":43.2814,
-      "lat":80.3438
+      "lat":-80.3438
     },
     "avaliable_dates":{
       "from":"09/10/18",
@@ -29,7 +37,9 @@
         "hydro":"true",
         "electricity":"true",
         "wifi":"true"
-      }
+      },
+      "description": "One Of A Kind Expo Condos Luxury 1 Bedroom In The Heart Of Vaughan Metropolitan Area, Close To Vaughan Subway Station. Highway 400 & 407. 10' Ceilings -Panoramic Views With Cn Tower. Spacious Modern Upgrades Through-Out! Upgrades Include Laminate, Over Sized Modern Kitchen With Additional Cabinets And Gorgeous Island. Large Master Bedroom! Extremely Large Storage Room With A Receptacle. Located Beside The 2 Tandem Parking Spaces. Upgrades-Additional Outlets, Ceiling Lighting, Light Fixtures, Over-Sized Electrical Panel, Additional Kitchen Cabinets And Master Bathroom.
+1000 sqft with a 50 sqft balcony with south facing views."
     },
     "walkscore":{
        "status": 1,
@@ -53,11 +63,6 @@
           "description": "Somewhat bikeable"
        }
     },
-    "additional_info":
-    {
-      "comments":"Wonderful house in a nice neighborhood"
-
-  },
   "owner_rating":4.5
   }
 }

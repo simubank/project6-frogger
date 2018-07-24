@@ -1,9 +1,18 @@
 {
+  images:[
+    {"src":"img/141.jpg},
+    {"src":"img/142.jpg}
+  ],
+  "post_title":"Room for student housing",
+  "saved": false,
+  "leasor":"Maria",
+  "avaliable":true,
   "posting_details":{
-    "avaliable":"true",
     "location":{
+      "province":"Ontario",
+      "city":"Waterloo",
       "long":43.2754,
-      "lat":80.3248
+      "lat":-80.3248
     },
     "avaliable_dates":{
       "from":"09/11/18",

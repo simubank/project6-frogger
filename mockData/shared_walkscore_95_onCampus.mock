@@ -1,9 +1,19 @@
 {
+  images:[
+    {"src":"img/151.jpg},
+    {"src":"img/152.jpg},
+    {"src":"img/153.jpg}
+  ],
+  "post_title":"2 spots for student housing",
+  "saved": false,
+  "leasor":"Chris",
+  "avaliable":true,
   "posting_details":{
-    "avaliable":"true",
     "location":{
+      "province":"Ontario",
+      "city":"Waterloo",
       "long":43.2815,
-      "lat":80.3300
+      "lat":-80.3300
     },
     "avaliable_dates":{
       "from":"08/01/18",
