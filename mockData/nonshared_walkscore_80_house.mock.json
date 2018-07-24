@@ -1,0 +1,75 @@
+{
+  "images":[
+    {"src":"img/0vjW5aZeq5GKto5UVCbX_temp1.png"},
+    {"src":"img/111.jpg"},
+    {"src":"img/112.jpg"},
+    {"src":"img/113.jpg"},
+    {"src":"img/114.jpg"}
+  ],
+  "post_title":"Student housing in Waterloo",
+  "saved": false,
+  "leasor":"Dave",
+  "avaliable":true,
+  "posting_details":{
+    "location":{
+      "province":"Ontario",
+      "city":"Waterloo",
+      "long":43.2900,
+      "lat":-80.3154
+    },
+    "avaliable_dates":{
+      "from":"09/05/18",
+      "to": "04/01/19"
+    },
+    "guests_required":2,
+    "housing_Details":{
+      "price":1450,
+      "type":"House",
+      "shared_common_space":"false",
+      "bedroom":{
+        "number":3,
+        "shared":"false"
+      },
+      "bathroom":{
+        "number":1,
+        "shared":"false"
+      }, 
+      "furnished":"false",
+      "pet_friendly":"false",
+      "smoking": "true",
+      "utilities_included":{
+        "hydro":"false",
+        "electricity":"true",
+        "wifi":"false"
+      }
+    },
+    "walkscore":{
+       "status": 1,
+       "walkscore": 80,
+       "description": "Comfortable for Walkers",
+       "updated": "2016-11-17 04:40:31.218250",
+       "logo_url": "https://cdn.walk.sc/images/api-logo.png",
+       "more_info_icon": "https://cdn.walk.sc/images/api-more-info.gif",
+       "more_info_link": "https://www.walkscore.com/how-it-works/",
+       "ws_link": "https://www.walkscore.com/score/1119-8th-Avenue-Seattle-WA-98101/lat=47.6085/lng=-122.3295/?utm_source=walkscore.com&utm_medium=ws_api&utm_campaign=ws_api",
+       "help_link": "https://www.walkscore.com/how-it-works/",
+       "snapped_lat": 43.4643,
+       "snapped_lon": -122.3295,
+       "transit": {
+          "score": 75,
+          "description": "Somewhat Rider's",
+          "summary": "30 nearby routes: 20 bus, 6 rail, 4 other"
+       },
+       "bike": {
+          "score": 51,
+          "description": "Somewhat bikeable"
+       }
+    },
+    "additional_info":
+    {
+      "comments":"Pool with sauna and hottub"
+
+  },
+  "owner_rating":4.2
+  }
+}

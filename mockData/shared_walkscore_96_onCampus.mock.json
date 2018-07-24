@@ -1,0 +1,72 @@
+{
+  "images":[
+    {"src":"img/161.jpg"},
+    {"src":"img/162.jpg"},
+    {"src":"img/163.jpg"}
+  ],
+  "post_title":"Room for rent",
+  "saved": false,
+  "leasor":"Mike",
+  "avaliable":true,
+  "posting_details":{
+    "location":{
+      "province":"Ontario",
+      "city":"Waterloo",
+      "long":43.2817,
+      "lat":-80.3310
+    },
+    "avaliable_dates":{
+      "from":"08/01/18",
+      "to": "05/01/19"
+    },
+    "guests_required":1,
+    "housing_Details":{
+      "price":1400,
+      "type":"Apartment",
+      "shared_common_space":"true",
+      "bedroom":{
+        "number":2,
+        "shared":"false"
+      },
+      "bathroom":{
+        "number":1,
+        "shared":"true"
+      }, 
+      "furnished":"true",
+      "pet_friendly":"false",
+      "smoking": "true",
+      "utilities_included":{
+        "hydro":"true",
+        "electricity":"true",
+        "wifi":"true"
+      }
+    },
+    "walkscore":{
+       "status": 1,
+       "walkscore": 96,
+       "description": "Comfortable for Walkers",
+       "updated": "2016-11-17 04:40:31.218250",
+       "logo_url": "https://cdn.walk.sc/images/api-logo.png",
+       "more_info_icon": "https://cdn.walk.sc/images/api-more-info.gif",
+       "more_info_link": "https://www.walkscore.com/how-it-works/",
+       "ws_link": "https://www.walkscore.com/score/1119-8th-Avenue-Seattle-WA-98101/lat=47.6085/lng=-122.3295/?utm_source=walkscore.com&utm_medium=ws_api&utm_campaign=ws_api",
+       "help_link": "https://www.walkscore.com/how-it-works/",
+       "snapped_lat": 43.4643,
+       "snapped_lon": -122.3295,
+       "transit": {
+          "score": 82,
+          "description": "Somewhat Rider's",
+          "summary": "120 nearby routes: 100 bus, 16 rail, 4 other"
+       },
+       "bike": {
+          "score": 73,
+          "description": "Comfortable for biking"
+       }
+    },
+    "additional_info":
+    {
+      "comments":"On University of Waterloo campus, access to local gym and swimming pool. Shared with 2 other residents."
+  },
+  "owner_rating":4.2
+  }
+}
