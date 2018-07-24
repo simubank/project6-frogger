@@ -22,7 +22,7 @@ angular.module('app.routes', [])
   .state('app.appointments', {
     url: '/appointments',
     views: {
-      'tab4': {
+      'tab7': {
         templateUrl: 'templates/appointments.html',
         controller: 'appointmentsCtrl'
       }
