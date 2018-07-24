@@ -73,7 +73,7 @@ angular.module('app.routes', [])
   .state('app.comparison', {
     url: '/comparison',
     views: {
-      'tab5': {
+      'tab9': {
         templateUrl: 'templates/comparison.html',
         controller: 'comparisonCtrl'
       }
