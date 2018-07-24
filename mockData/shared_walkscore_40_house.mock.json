@@ -1,9 +1,17 @@
 {
+  "images":[
+    {"src":"img/171.jpg"}
+  ],
+  "post_title":"student housing",
+  "saved": false,
+  "leasor":"Susan",
+  "avaliable":true,
   "posting_details":{
-    "avaliable":"true",
     "location":{
+      "province":"Ontario",
+      "city":"Waterloo",
       "long":43.2814,
-      "lat":80.3438
+      "lat":-80.3438
     },
     "avaliable_dates":{
       "from":"09/10/18",
@@ -29,35 +37,31 @@
         "hydro":"true",
         "electricity":"true",
         "wifi":"true"
+      },
+      "walkscore":{
+         "status": 1,
+         "walkscore": 40,
+         "description": "Poor for Walkers",
+         "updated": "2016-11-17 04:40:31.218250",
+         "logo_url": "https://cdn.walk.sc/images/api-logo.png",
+         "more_info_icon": "https://cdn.walk.sc/images/api-more-info.gif",
+         "more_info_link": "https://www.walkscore.com/how-it-works/",
+         "ws_link": "https://www.walkscore.com/score/1119-8th-Avenue-Seattle-WA-98101/lat=47.6085/lng=-122.3295/?utm_source=walkscore.com&utm_medium=ws_api&utm_campaign=ws_api",
+         "help_link": "https://www.walkscore.com/how-it-works/",
+         "snapped_lat": 43.4643,
+         "snapped_lon": -122.3295,
+         "transit": {
+            "score": 60,
+            "description": "Somewhat Rider's friendly",
+            "summary": "20 nearby routes: 10 bus, 6 rail, 4 other"
+         },
+         "bike": {
+            "score": 45,
+            "description": "Somewhat bikeable"
+         }
       }
-    },
-    "walkscore":{
-       "status": 1,
-       "walkscore": 40,
-       "description": "Poor for Walkers",
-       "updated": "2016-11-17 04:40:31.218250",
-       "logo_url": "https://cdn.walk.sc/images/api-logo.png",
-       "more_info_icon": "https://cdn.walk.sc/images/api-more-info.gif",
-       "more_info_link": "https://www.walkscore.com/how-it-works/",
-       "ws_link": "https://www.walkscore.com/score/1119-8th-Avenue-Seattle-WA-98101/lat=47.6085/lng=-122.3295/?utm_source=walkscore.com&utm_medium=ws_api&utm_campaign=ws_api",
-       "help_link": "https://www.walkscore.com/how-it-works/",
-       "snapped_lat": 43.4643,
-       "snapped_lon": -122.3295,
-       "transit": {
-          "score": 60,
-          "description": "Somewhat Rider's friendly",
-          "summary": "20 nearby routes: 10 bus, 6 rail, 4 other"
-       },
-       "bike": {
-          "score": 45,
-          "description": "Somewhat bikeable"
-       }
-    },
-    "additional_info":
-    {
-      "comments":"Wonderful house in a nice neighborhood"
+    }
 
   },
-  "owner_rating":4.5
-  }
+"owner_rating":4.5
 }
