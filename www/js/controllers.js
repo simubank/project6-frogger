@@ -273,7 +273,7 @@ angular.module('app.controllers', ["tdnb.services", "app.directives"])
 
 
         }])
-    .controller('applicationsCtrl', ['$scope', '$stateParams', 'Events',
+    .controller('appointmentsCtrl', ['$scope', '$stateParams', 'Events',
         function ($scope, $stateParams, Events) {
             Events.get().then(function(events) {
                 console.log("events", events);	

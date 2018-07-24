@@ -19,12 +19,12 @@ angular.module('app.routes', [])
     }
   })
 
-  .state('app.applications', {
-    url: '/applications',
+  .state('app.appointments', {
+    url: '/appointments',
     views: {
       'tab4': {
-        templateUrl: 'templates/applications.html',
-        controller: 'applicationsCtrl'
+        templateUrl: 'templates/appointments.html',
+        controller: 'appointmentsCtrl'
       }
     }
   })
