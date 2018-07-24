@@ -19,6 +19,12 @@ angular.module('app.routes', [])
     }
   })
 
+  .state('app.postingInfo', {
+    url: '/postingInfo',
+        templateUrl: 'templates/postingInfo.html',
+        controller: 'postingInfoCtrl'
+  })
+  
   .state('app.applications', {
     url: '/applications',
     views: {

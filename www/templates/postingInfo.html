@@ -1,3 +1,49 @@
-<ion-view title="Write a Review" id = "postingInfo">
-        <p>sdf</p>
-</ion-view>
+<ion-view title="Shortlist" id="shortlist" style="">
+                <ion-content padding="true" class="has-header">
+                  <!DOCTYPE html>
+              <html>
+                <head>
+                  <title>Google Calendar API Quickstart</title>
+                  <meta charset="utf-8" />
+                </head>
+                <body>
+                  <p>Google Calendar API Quickstart</p>
+              
+                  <form id="postings-form4" class="list">
+              
+                    <label class="item search item-input" id="postings-search1" style="">
+                      <i class="icon ion-search placeholder-icon"></i>
+                      <input placeholder="Explore new living" type="search">
+                    </label>
+              
+                    <div ng-show="!showFilter">
+                      <ion-scroll direction="x" class="activeFilters">
+                        <button class="button button-outline button-balanced" ng-click="openCloseFilter()">Filter</button>
+                        <div ng-repeat="filter in activeFilters track by $index" ng-click="changeFilter(filter)" class="filter">
+                          <button ng-show="filter.show" class="button button-balanced" ng-click="clearFilter(filter)">
+                            <span>{{filter.name}} </span>
+                            <span>
+                              <i ng-show="filter.show" class="icon ion-android-close"> </i>
+                            </span>
+                          </button>
+                        </div>
+                      </ion-scroll>
+              
+              
+              
+                      <div ng-show="map" height="100%">
+                        <div ng-model="mapRecent" id="mapRecent" style="z-index: 100"></div>
+                        <div>
+                          <ul class="grid">
+                            <!-- A view with big photos and no text -->
+                            <li ng-repeat="save in saved track by $index">
+                              <a href="facebook.com">
+                                <img src= {{save.src}} />
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                  </form>
+              
+                </ion-content>
+              </ion-view>

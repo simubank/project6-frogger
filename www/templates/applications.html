@@ -1,3 +1,20 @@
 <ion-view title="Applications" id="applications" style="">
-  <ion-content padding="true" class="has-header"></ion-content>
+  <ion-content padding="true" class="has-header">
+        <label class="item search item-input" id="postings-search1" style="margin-bottom: 1em">
+                <i class="icon ion-search placeholder-icon"></i>
+                <input placeholder="Search Saved" type="search">
+              </label>
+
+      <ul class = "grid">
+          <li ng-repeat="save in saved">
+              <a>
+                <div>
+                    <img class = "savedOverlay" src= {{save.src}} />
+                    <icon class = "topBadge icon ion-ios-browsers" style = "color: white"></icon>
+
+                </div>
+                </a>
+          </li>
+      </ul>
+  </ion-content>
 </ion-view>

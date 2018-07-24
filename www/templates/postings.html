@@ -27,9 +27,9 @@
         <!--sdf-->
         <p style="font-size: 20px; margin-bottom: 2em">Price Range</p>
         <div style="display: block" width="100%">
-          <input type = "number" class="button button-stable" style="float: left; font-size: 14px" ng-model = "lowerPrice.price">  </input>
+          <input type = "number" class="button button-stable" style="float: left; font-size: 1em" ng-model = "lowerPrice.price">  </input>
           <label style="font-size: 1em; line-height: 3; margin-left: 1em;"> to </label>
-          <input type="number" class="button button-stable" style="float: right; margin-right: 3em" ng-model= "higherPrice.price" ></input>
+          <input type="number" class="button button-stable" style="float: right; margin-right: 3em; font-size: 1em" ng-model= "higherPrice.price" ></input>
         </div>
 
 
@@ -51,7 +51,7 @@
             </td>
             <td width = "5%">
                 <button class="button button-clear" ng-disabled="room.count == 10" ng-click ="add(room, allFilters.rooms)">
-                    <i class="icon ion-android-add-circle"> </i>
+                    <i class="icon ion-android-add-circle" style = "color: green;"> </i>
                 </button>
               </td>
           </tr>
@@ -174,10 +174,10 @@
 
       <div ng-show="!map">
         <div ng-repeat="listing in recentlyViewed | limitTo: maxRecent track by $index">
-          <a ng-click="navigatePosting($index)">
+          
           <ion-card>
             <div class="posting">
-                <a ng-href="#/app/postingInfo" >
+                <a ng-click="navigatePosting($index)">
               <div class="imageScroller">
                 <ion-nav-view></ion-nav-view>
                 <ion-slide-box on-slider-changed="slideHasChanged($index)">
@@ -188,7 +188,7 @@
                   </ion-slide>
                 </ion-slide-box>
               </div>
-              </a>
+            </a>
               <div class="previewInfo">
                 <div class="fav">
                   <button class="button button-clear" style="margin-right:-25px" ng-click="save(listing)">
@@ -198,13 +198,14 @@
                     <i class="icon ion-android-share icon-accessory"></i>
                   </button>
                 </div>
-                <h4 class="posting-title">{{listing.name}}</h4>
-                <p class="posting-description">{{listing.description}}</p>
-                <p class="posting-description-2">{{listing.posting_details.housing_Details.price | currency}} / month</p>
+                <h4 style = "color:darkgreen" class="posting-title">{{listing.posting_details.locationCity}}</h4>
+                <p class="posting-description">{{listing.name}} | {{listing.description}}</p>
+                <p class="posting-description-2">{{listing.posting_details.housing_Details.price | currency}} / month </p>
+                
               </div>
             </div>
           </ion-card>
-        </a>
+        
         </div>
         <button class="button button-outline block button-dark" ng-show="recentlyViewedNum" style="margin: auto" ng-click = "showAllRecents()">
           {{showMoreRecent}}
@@ -239,9 +240,9 @@
                       <i class="icon ion-android-share icon-accessory"></i>
                     </button>
                   </div>
-                  <h4 class="posting-title">{{listing.name}}</h4>
-                  <p class="posting-description">{{listing.description}}</p>
-                  <p class="posting-description-2">{{listing.posting_details.housing_Details.price | currency}} / month</p>
+                  <h4 style = "color:darkgreen" class="posting-title">{{listing.posting_details.locationCity}}</h4>
+                <p class="posting-description">{{listing.name}} | {{listing.description}}</p>
+                <p class="posting-description-2">{{listing.posting_details.housing_Details.price | currency}} / month</p>
                 </div>
               </div>
             </ion-card>

@@ -253,19 +253,22 @@ angular.module('tdnb.services', [])
     }).factory('HouseListingService', function ($http, $resource, $q) {
         var listings = [
             {
-                name: "Waterloo - Lester",
+                name: "Icon",
                 images: [
                     { src: "img/0vjW5aZEQ5GKTo5UVCbX_temp1.png" },
                     { src: "img/0vjW5aZEQ5GKTo5UVCbX_temp1.png" }
                 ],
                 description: "student housing etc etc etc.",
                 saved: false,
+                leasor: "Dave",
                 "posting_details": {
                     "avaliable": "true",
                     "location": {
                         "long": 43.2900,
                         "lat": 80.3154
                     },
+                    "locationCity": "Waterloo",
+                    "locationOther": "Lester St, L4E 2N9",
                     "avaliable_dates": {
                         "from": "09/05/18",
                         "to": "04/01/19"
@@ -324,7 +327,7 @@ angular.module('tdnb.services', [])
                 }
             },
             {
-                "name": "Waterloo - Lester",
+                "name": "Place A",
                 "images": [
                     { "src": "img/0vjW5aZEQ5GKTo5UVCbX_temp1.png" },
                     { "src": "img/0vjW5aZEQ5GKTo5UVCbX_temp1.png" }
@@ -337,6 +340,8 @@ angular.module('tdnb.services', [])
                         "long": 43.2814,
                         "lat": 80.3438
                     },
+                    "locationCity": "Waterloo",
+                    "locationOther": "Lester St, L4E 2N9",
                     "avaliable_dates": {
                         "from": "09/10/18",
                         "to": "05/01/19"
@@ -395,7 +400,7 @@ angular.module('tdnb.services', [])
                 }
             },
             {
-                "name": "Waterloo - Lester",
+                "name": "Place Z",
                 "images": [
                     { "src": "img/0vjW5aZEQ5GKTo5UVCbX_temp1.png" },
                     { "src": "img/0vjW5aZEQ5GKTo5UVCbX_temp1.png" }
@@ -408,6 +413,8 @@ angular.module('tdnb.services', [])
                         "long": 43.2814,
                         "lat": 80.3438
                     },
+                    "locationCity": "Waterloo",
+                    "locationOther": "Lester St, L4E 2N9",
                     "avaliable_dates": {
                         "from": "09/10/18",
                         "to": "05/01/19"
@@ -466,7 +473,7 @@ angular.module('tdnb.services', [])
                 }
             },
             {
-                "name": "Waterloo - Lester",
+                "name": "Place B",
                 "images": [
                     { "src": "img/0vjW5aZEQ5GKTo5UVCbX_temp1.png" },
                     { "src": "img/0vjW5aZEQ5GKTo5UVCbX_temp1.png" }
@@ -479,6 +486,8 @@ angular.module('tdnb.services', [])
                         "long": 43.2829,
                         "lat": 80.3217
                     },
+                    "locationCity": "Waterloo",
+                    "locationOther": "Lester St, L4E 2N9",
                     "avaliable_dates": {
                         "from": "09/01/18",
                         "to": "04/01/19"
@@ -538,7 +547,7 @@ angular.module('tdnb.services', [])
 
             },
             {
-                "name": "Waterloo - Lester",
+                "name": "Place C",
                 "images": [
                     { "src": "img/0vjW5aZEQ5GKTo5UVCbX_temp1.png" },
                     { "src": "img/0vjW5aZEQ5GKTo5UVCbX_temp1.png" }
@@ -551,6 +560,8 @@ angular.module('tdnb.services', [])
                         "long": 43.2754,
                         "lat": 80.3248
                     },
+                    "locationCity": "Waterloo",
+                    "locationOther": "Lester St, L4E 2N9",
                     "avaliable_dates": {
                         "from": "09/11/18",
                         "to": "06/01/19"
@@ -609,7 +620,7 @@ angular.module('tdnb.services', [])
                 }
             },
             {
-                "name": "Waterloo - Lester",
+                "name": "Place D",
                 "images": [
                     { "src": "img/0vjW5aZEQ5GKTo5UVCbX_temp1.png" },
                     { "src": "img/0vjW5aZEQ5GKTo5UVCbX_temp1.png" }
@@ -622,6 +633,9 @@ angular.module('tdnb.services', [])
                         "long": 43.2815,
                         "lat": 80.3300
                     },
+                    
+                    "locationCity": "Waterloo",
+                    "locationOther": "Lester St, L4E 2N9",
                     "avaliable_dates": {
                         "from": "08/01/18",
                         "to": "05/01/19"
@@ -679,7 +693,7 @@ angular.module('tdnb.services', [])
                 }
             },
             {
-                "name": "Waterloo - Lester",
+                "name": "Place E",
                 "images": [
                     { "src": "img/0vjW5aZEQ5GKTo5UVCbX_temp1.png" },
                     { "src": "img/0vjW5aZEQ5GKTo5UVCbX_temp1.png" }
@@ -692,6 +706,9 @@ angular.module('tdnb.services', [])
                         "long": 43.2817,
                         "lat": 80.3310
                     },
+                    
+                    "locationCity": "Waterloo",
+                    "locationOther": "Lester St, L4E 2N9",
                     "avaliable_dates": {
                         "from": "08/01/18",
                         "to": "05/01/19"
