@@ -22,14 +22,14 @@
           </tr>
         </table>
       </div>
-      <div style="width:100%; height:1px; border:0.1px solid rgb(209, 209, 209); margin-top: 3.5em"></div>
+      <div style="width:100%; height:1px; border:0.1px solid rgb(209, 209, 209); margin-top: 3em"></div>
       <div class="overlay-content">
         <!--sdf-->
         <p style="font-size: 20px; margin-bottom: 2em">Price Range</p>
         <div style="display: block" width="100%">
-          <input type = "number" class="button button-stable" style="float: left; font-size: 14px" ng-model = "lowerPrice.price">  </input>
+          <input type = "number" class="button button-stable" style="float: left; font-size: 1em" ng-model = "lowerPrice.price">  </input>
           <label style="font-size: 1em; line-height: 3; margin-left: 1em;"> to </label>
-          <input type="number" class="button button-stable" style="float: right; margin-right: 3em" ng-model= "higherPrice.price" ></input>
+          <input type="number" class="button button-stable" style="float: right; margin-right: 3em; font-size: 1em" ng-model= "higherPrice.price" ></input>
         </div>
 
 
@@ -43,7 +43,7 @@
             </td>
             <td width = "2%">
                 <button class="button button-clear" ng-disabled="room.count == 0" ng-click = "sub(room, allFilters.rooms)">
-                    <i class="icon ion-minus-circled"> </i>
+                    <i class="icon ion-minus-circled" style = "color: green"> </i>
                 </button>
             </td>
             <td width = "2%" style="vertical-align: middle">
@@ -51,7 +51,7 @@
             </td>
             <td width = "5%">
                 <button class="button button-clear" ng-disabled="room.count == 10" ng-click ="add(room, allFilters.rooms)">
-                    <i class="icon ion-android-add-circle"> </i>
+                    <i class="icon ion-android-add-circle" style = "color: green;"> </i>
                 </button>
               </td>
           </tr>
@@ -161,12 +161,23 @@
         </table>
       </div>
 
-      <div ng-model="mapRecent" ng-show="map" id="mapRecent" style="z-index: 100"></div>
+      <div ng-show="map" height = "100%">
+        <div ng-model="mapRecent"  id="mapRecent" style="z-index: 100"></div>
+        <h3>
+          <b>Explore More
+            <b>
+        </h3>
+        <p>Check out places in your search areas</p>
+        <div ng-model="mapAll"  id="mapAll" style="z-index: 200;"></div>
+      </div>
+      
+
       <div ng-show="!map">
         <div ng-repeat="listing in recentlyViewed | limitTo: maxRecent track by $index">
-          <a ng-click="navigatePosting($index)">
+          
           <ion-card>
             <div class="posting">
+                <a ng-href="#/app/postingInfo">
               <div class="imageScroller">
                 <ion-nav-view></ion-nav-view>
                 <ion-slide-box on-slider-changed="slideHasChanged($index)">
@@ -177,6 +188,7 @@
                   </ion-slide>
                 </ion-slide-box>
               </div>
+            </a>
               <div class="previewInfo">
                 <div class="fav">
                   <button class="button button-clear" style="margin-right:-25px" ng-click="save(listing)">
@@ -186,16 +198,17 @@
                     <i class="icon ion-android-share icon-accessory"></i>
                   </button>
                 </div>
-                <h4 class="posting-title">{{listing.name}}</h4>
-                <p class="posting-description">{{listing.description}}</p>
-                <p class="posting-description-2">{{listing.posting_details.housing_Details.price | currency}} / month</p>
+                <h4 style = "color:darkgreen" class="posting-title">{{listing.posting_details.locationCity}}</h4>
+                <p class="posting-description">{{listing.name}} | {{listing.description}}</p>
+                <p class="posting-description-2">{{listing.posting_details.housing_Details.price | currency}} / month </p>
+                
               </div>
             </div>
           </ion-card>
-        </a>
+        
         </div>
-        <button class="button button-outline block button-dark" ng-show="recentlyViewedNum" style="margin: auto">
-          View More
+        <button class="button button-outline block button-dark" ng-show="recentlyViewedNum" style="margin: auto" ng-click = "showAllRecents()">
+          {{showMoreRecent}}
         </button>
 
 
@@ -203,6 +216,7 @@
             <b>Explore More
               <b>
           </h3>
+          <p>Check out places in your search areas</p>
 
         <div ng-repeat="listing in recentlyViewed | limitTo: maxRecent track by $index">
             <ion-card>
@@ -226,9 +240,9 @@
                       <i class="icon ion-android-share icon-accessory"></i>
                     </button>
                   </div>
-                  <h4 class="posting-title">{{listing.name}}</h4>
-                  <p class="posting-description">{{listing.description}}</p>
-                  <p class="posting-description-2">{{listing.posting_details.housing_Details.price | currency}} / month</p>
+                  <h4 style = "color:darkgreen" class="posting-title">{{listing.posting_details.locationCity}}</h4>
+                <p class="posting-description">{{listing.name}} | {{listing.description}}</p>
+                <p class="posting-description-2">{{listing.posting_details.housing_Details.price | currency}} / month</p>
                 </div>
               </div>
             </ion-card>

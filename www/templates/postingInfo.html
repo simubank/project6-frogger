@@ -1,0 +1,139 @@
+<ion-view title="{{passed.name}} - {{passed.posting_details.locationCity}}">
+    <ion-content padding="true" overflow-scroll="false">
+    <div class="imageScroller" >
+      <ion-nav-view></ion-nav-view>
+      <ion-slide-box on-slider-changed="slideHasChanged($index)">
+        <ion-slide ng-repeat="image in passed.images">
+          <div class="image-listing">
+            <img src= {{image.src}}>
+          </div>
+        </ion-slide>
+      </ion-slide-box>
+    </div>
+    <table style = "margin-left: -0.5em">
+      <tr>
+        <td width = "auto" style = "vertical-align:auto">
+            <h1 style="color: darkgreen; margin: 0.5em">{{passed.name}}</h1>
+        </td>
+        <td width = "48%">
+          <button style = "vertical-align:super; background-color: {{appraise}}; color: white" class="button button-small">{{appraisal}}</button>
+        </td>
+        <td style = "vertical-align: middle;">
+            <button class="button button-large button-clear" style="margin-right:-25px" ng-click="save(passed)">
+                <i class="icon ion-heart icon-accessory" ng-style="passed.saved ? {color:'#EC5959'} : {color: 'rgba(53, 53, 53, 0.5)'}"></i>
+              </button>
+        </td>
+        <td style = "vertical-align: middle;">
+              <a  ng-href="/#/app/comparison" href="/#/app/comparison" class="button button-large button-clear" style="margin-right:-25px">
+                <i class="icon ion-android-list" style = "color: green"></i>
+              </a>
+        </td>
+
+        
+      </tr>
+    </table>
+
+    <div style = "margin-left: 1em" >
+        <h3 style = "color:rgb(11, 39, 11)">
+          {{passed.caption}}
+        </h3>
+        <p>Owner: {{passed.leasor}}</p>
+
+        <div style = "margin-top: 2em">
+          <p>{{passed.description}}</p>
+        </div>
+
+        <div style = "display: inline-block">
+
+          <b style = "margin-right: 2em">{{passed.posting_details.housing_Details.type}}</b>
+          <b style = "margin-right: 2em">{{passed.posting_details.housing_Details.bedroom.number}} Bedrooms </b>
+          <b style = "margin-right: 2em">{{passed.posting_details.housing_Details.bathroom.number}} Bathrooms</b>
+          
+        </div>
+
+        <div class = "divhr"></div>
+
+        <h3>Provided</h3>
+          <div ng-repeat = "util in passed.posting_details.housing_Details.utilities_included track by util.name" class = "filter">
+            <button class = "button button-balanced" style = "margin-bottom: 3px">
+              <i class = "icon" ng-class = "iconUtil(util.name)" style = "color: white"></i>
+              <br>
+              {{util.name}}
+            </button>
+          </div>
+
+          <div class = "divhr"></div>
+
+          <h3>Facilities</h3>
+          <div ng-repeat = "util in passed.posting_details.housing_Details.facilities track by util.name" class = "filter">
+              <button class = "button button-calm" style = "margin-bottom: 3px">
+                <i class = "icon" ng-class = "iconUtil(util.name)" style = "color: white"></i>
+                <br>
+                {{util.name}}
+              </button>
+            </div>
+
+            <div class = "divhr"></div>
+
+          <h3>House Rules</h3>
+          <div ng-repeat = "util in passed.posting_details.housing_Details.house_rules track by util.name" class = "filter">
+              <button class = "button button-royal" style = "margin-bottom: 3px">
+                <i class = "icon" ng-class = "iconUtil(util.name)" style = "color: white"></i>
+                <br>
+                {{util.name}}
+              </button>
+            </div>
+
+            <div class = "divhr"></div>
+            
+            <h3>Walkscore</h3>
+            <p> To give you a better idea of additional costs and factors, walkscore takes into account
+              travel expenses
+            </p>
+            <h4>General</h4>
+            <table>
+              <tr>
+                <td>
+                    <button class = "button button-large" style = "background-color: {{appraiseWalk}}; color: white">{{passed.posting_details.walkscore.walkscore}}</button>
+                </td>
+                <td style = "vertical-align: middle;">
+                    <p style = "margin-left: 10px" >{{passed.posting_details.walkscore.description}}</p>
+                </td>
+              </tr>
+            </table>
+            <h4>Transit</h4>
+            <table>
+              <tr>
+                <td>
+                    <button class = "button button-large" style = "background-color: {{appraiseTransit}}; color: white">{{passed.posting_details.walkscore.transit.score}}</button>
+                </td>
+                <td style = "vertical-align: middle;">
+                    <p style = "margin-left: 10px" >{{passed.posting_details.walkscore.transit.description}}</p>
+                </td>
+              </tr>
+            </table>
+            <h4>Bike</h4>
+            <table>
+              <tr>
+                <td>
+                    <button class = "button button-large" style = "background-color: {{appraiseBike}}; color: white">{{passed.posting_details.walkscore.bike.score}}</button>
+                </td>
+                <td style = "vertical-align: middle;">
+                    <p style = "margin-left: 10px" >{{passed.posting_details.walkscore.bike.description}}</p>
+                </td>
+              </tr>
+            </table>
+            
+
+
+            <div class = "divhr"></div>
+
+            <h3>Location</h3>
+            <p>{{passed.posting_details.locationCity}} {{passed.posting_details.locationOther}}</p>
+            <div ng-model="map"  id="map" style="z-index: 100"></div>
+    </div>
+    
+    
+        
+  </ion-content>
+</ion-view>

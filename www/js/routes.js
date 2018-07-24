@@ -21,6 +21,25 @@ angular.module('app.routes', [])
 
   .state('app.appointments', {
     url: '/appointments',
+    views:{
+      "tab7": {
+        templateUrl: 'templates/appointments.html',
+        controller: 'appointmentsCtrl'
+      }
+    }
+  })
+  .state('app.postingInfo', {
+    url: '/postingInfo',
+    views:{
+      "postingInfo": {
+        templateUrl: 'templates/postingInfo.html',
+        controller: 'postingInfoCtrl'
+      }
+    }
+  })
+  
+  .state('app.applications', {
+    url: '/applications',
     views: {
       'tab7': {
         templateUrl: 'templates/appointments.html',

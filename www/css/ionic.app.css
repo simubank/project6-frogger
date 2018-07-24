@@ -777,7 +777,8 @@
   content: ""; }
 
 .ion-android-add-circle:before {
-  content: ""; }
+  content: ""; 
+  }
 
 .ion-android-alarm-clock:before {
   content: ""; }
@@ -2433,7 +2434,7 @@
   content: ""; }
 
 .ion-minus-circled:before {
-  content: ""; }
+  content: "";}
 
 .ion-minus-round:before {
   content: ""; }
@@ -4267,7 +4268,7 @@ a.subdued {
 .bar-header {
   top: 0;
   border-top-width: 0;
-  border-bottom-width: 1px; }
+  border-bottom-width: 0px; }
   .bar-header.has-tabs-top {
     border-bottom-width: 0px;
     background-image: none; }
@@ -8798,7 +8799,7 @@ progress {
         color: #fff; }
   .button.button-royal {
     border-color: transparent;
-    background-color: #2C7818;
+    background-color: rgb(58, 23, 114);
     color: #fff; }
     .button.button-royal:hover {
       color: #fff;
